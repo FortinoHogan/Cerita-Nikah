@@ -1,11 +1,12 @@
 import React from 'react'
 import LoginPageLeft from '../../layouts/login-page-left/LoginPageLeft'
+import LoginPageRight from '../../layouts/login-page-right/LoginPageRight'
 
 const LoginPage = () => {
   return (
-    <div className='grid grid-cols-2'>
+    <div className='grid grid-cols-2 h-screen'>
         <LoginPageLeft />
-        <div className=''>test</div>
+        <LoginPageRight />
     </div>
   )
 }
