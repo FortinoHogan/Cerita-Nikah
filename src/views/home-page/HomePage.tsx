@@ -1,9 +1,32 @@
-import React from 'react'
+import React, { useState } from "react";
+import { doSignInWithGoogle } from "../../services/user/UserService";
 
 const HomePage = () => {
-  return (
-    <div>HomePage</div>
-  )
-}
+  const [isSigningIn, setIsSigningIn] = useState(false);
 
-export default HomePage
+  const onGoogleSignIn = (e: any) => {
+    e.preventDefault();
+    if (!isSigningIn) {
+      setIsSigningIn(true);
+      doSignInWithGoogle().catch((err) => {
+        setIsSigningIn(false);
+      });
+    }
+  };
+
+  return (
+    <div>
+      HomePage
+      <button
+        disabled={isSigningIn}
+        onClick={(e) => {
+          onGoogleSignIn(e);
+        }}
+      >
+        click me!
+      </button>
+    </div>
+  );
+};
+
+export default HomePage;
