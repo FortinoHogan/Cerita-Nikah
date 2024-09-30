@@ -32,7 +32,7 @@ const LoginPageLeft = () => {
             </div>
           </div>
           <div className='flex flex-col items-center'>
-            <ButtonGoogle text='In' onClick={() => { }} />
+            <ButtonGoogle text='In'/>
           </div>
         </div>
         <p className='text-center mt-5 text-custom-gray font-semibold'>Make new account? <span className='text-custom-pink font-semibold underline cursor-pointer' onClick={() => nav('/register')}>Click here</span></p>

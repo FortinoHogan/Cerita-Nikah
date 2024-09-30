@@ -36,7 +36,7 @@ const RegisterPageLeft = () => {
                         </div>
                     </div>
                     <div className='flex flex-col items-center'>
-                        <ButtonGoogle text='Up' onClick={() => { }} />
+                        <ButtonGoogle text='Up'/>
                     </div>
                 </div>
                 <p className='text-center mt-5 text-custom-gray font-semibold'>Already have an account? <span className='text-custom-pink font-semibold underline cursor-pointer' onClick={() => nav('/login')}>Sign In</span></p>

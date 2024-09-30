@@ -47,7 +47,7 @@ export function AuthProvider(props: IAuthContext) {
     setLoading(false);
   }
 
-  const value = {
+  const value: IAuthContextType = {
     isLogin,
     isEmailUser,
     isGoogleUser,
