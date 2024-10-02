@@ -4,7 +4,7 @@ const DesktopView = () => {
     return (
         <>
             <div className="relative mx-auto border-gray-800 dark:border-gray-800  border-[16px] rounded-t-xl h-[406px] w-[704px]">
-                <div className="rounded-xl overflow-hidden h-[406px] w-[704px]">
+                <div className="rounded-xl overflow-hidden h-[374px] bg-white">
                     <p>Ceritanya Content</p>
                 </div>
             </div>
