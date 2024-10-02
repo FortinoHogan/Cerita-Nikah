@@ -30,7 +30,7 @@ const NavbarHomePage = () => {
 
     return (
         <div>
-            <div className="grid grid-cols-15 items-center py-3">
+            <div className="grid grid-cols-15 items-center py-3 bg-[#F093B5]">
                 <div className="col-start-2 flex items-center gap-10 z-50">
                     <img
                         onClick={() => nav('/')}
