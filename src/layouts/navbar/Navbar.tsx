@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 const Navbar = () => {
     const nav = useNavigate();
     return (
-        <div className="flex justify-between px-20 items-center py-3 bg-[#F093B5] h-full">
+        <div className="flex justify-between px-20 items-center py-3 bg-[#F093B5] h-full shadow-[0px_4.0px_4.0px_rgba(0,0,0,0.38)]">
             <div className="flex items-center gap-10 z-50">
                 <img
                     onClick={() => nav('/')}

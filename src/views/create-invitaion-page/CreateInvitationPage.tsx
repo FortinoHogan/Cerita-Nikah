@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Sidebar from '../../layouts/sidebar/Sidebar'
 import Navbar from '../../layouts/navbar/Navbar'
+import FloatingDeviceContainer from '../../layouts/floating-device-container/FloatingDeviceContainer'
+import EditTemplateForm from '../../layouts/edit-template-form/EditTemplateForm'
+import DeviceMockup from '../../layouts/device-mockup/DeviceMockup'
+import { DeviceProvider } from '../../context/device-context/DeviceContext'
 
 const CreateInvitationPage = () => {
     return (
@@ -8,8 +12,21 @@ const CreateInvitationPage = () => {
             <div className='h-[9%]'>
                 <Navbar />
             </div>
-            <div className='h-[91%] px-10 pb-10'>
-                <Sidebar />
+            <div className='h-[91%] px-10 pb-10 w-full flex justify-center'>
+                <div className='w-[50%] flex justify-center gap-5'>
+                    <div className='w-[50%]'>
+                        <Sidebar />
+                    </div>
+                    <div className='w-[50%]'>
+                        <EditTemplateForm />
+                    </div>
+                </div>
+                <div className='w-[50%] relative h-full flex items-center justify-center'>
+                    <DeviceProvider>
+                        <FloatingDeviceContainer />
+                        <DeviceMockup />
+                    </DeviceProvider>
+                </div>
             </div>
         </div>
     )
