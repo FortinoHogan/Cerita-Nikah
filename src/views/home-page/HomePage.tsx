@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import Navbar from '../../components/navbar/Navbar';
+import NavbarHomePage from '../../layouts/navbar-home-page/NavbarHomePage';
 
 const HomePage = () => {
   return (
-    <div className='grid grid-cols-[15] h-screen'>
-      <Navbar />
+    <div>
+      <NavbarHomePage />
     </div>
   )
 }

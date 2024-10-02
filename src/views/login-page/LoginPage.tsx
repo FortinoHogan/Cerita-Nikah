@@ -11,7 +11,7 @@ const LoginPage = () => {
       {authContext?.isLogin && (<Navigate to={'/'} />)}
       <LoginPageLeft />
       <div className='max-lg:hidden'>
-      <LoginPageRight />
+        <LoginPageRight />
       </div>
     </div>
   )

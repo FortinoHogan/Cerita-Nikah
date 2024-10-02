@@ -20,7 +20,7 @@ const ButtonGoogle = (props: IButtonGoogle) => {
     return (
         <button onClick={(e) => {
             onGoogleSignIn(e);
-        }} disabled={isSigningIn} className='flex items-center gap-3 justify-center border-2 border-[#5d5d5d] text-custom-light-gray cursor-pointer max-sm:w-[360px] w-[55%] text-xl font-semibold p-3 text-center rounded-xl'>
+        }} disabled={isSigningIn} className='flex items-center gap-3 justify-center border-2 border-[#5d5d5d] text-custom-light-gray cursor-pointer max-sm:w-[360px] w-[55%] text-xl font-semibold p-3 text-center rounded-xl hover:bg-slate-400 hover:text-custom-white hover:border-slate-400'>
             <img className='w-7' src="assets/images/google.png" alt="google" />
             Sign {text} with Google
         </button>

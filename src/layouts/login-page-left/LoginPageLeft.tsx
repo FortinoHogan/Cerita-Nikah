@@ -3,6 +3,7 @@ import Input from '../../components/input/Input'
 import Button from '../../components/button/Button'
 import ButtonGoogle from '../../components/button-google/ButtonGoogle'
 import { useNavigate } from 'react-router-dom'
+import Anchor from '../../components/anchor/Anchor'
 
 const LoginPageLeft = () => {
   const [email, setEmail] = useState('')
@@ -32,10 +33,13 @@ const LoginPageLeft = () => {
             </div>
           </div>
           <div className='flex flex-col items-center'>
-            <ButtonGoogle text='In'/>
+            <ButtonGoogle text='In' />
           </div>
         </div>
-        <p className='text-center mt-5 text-custom-gray font-semibold'>Make new account? <span className='text-custom-pink font-semibold underline cursor-pointer' onClick={() => nav('/register')}>Click here</span></p>
+        <div className='flex items-center justify-center gap-1 mt-5'>
+          <p className='text-center text-custom-gray font-semibold'>Make new account? </p>
+          <Anchor text="Click here" href="/register" className="text-custom-pink font-semibold text-base" />
+        </div>
       </div>
     </div>
   )
