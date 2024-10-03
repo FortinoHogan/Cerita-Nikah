@@ -3,15 +3,16 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./views/home-page/HomePage";
 import LoginPage from "./views/login-page/LoginPage";
 import RegisterPage from "./views/register-page/RegisterPage";
-import { template } from "./libs/template";
+import { templatePersonalizedExample } from "./libs/templatePersonalized.example";
 import TemplatePersonalizedPage from "./views/template-personalized-page/TemplatePersonalizedPage";
 import DashboardPage from "./views/dashboard-page/DashboardPage";
 import CreateInvitationPage from "./views/create-invitaion-page/CreateInvitationPage";
 
 function App() {
-  const isSubDomain = window.location.host === template.domain;
+  // todo change templatePersonalizedExample into the real data
+  const isSubDomain = window.location.host === templatePersonalizedExample.domain;
 
-  if (isSubDomain && template.isPay) {
+  if (isSubDomain && templatePersonalizedExample.isPay) {
     return (
       <Routes>
         <Route path="*" element={<TemplatePersonalizedPage />} />
