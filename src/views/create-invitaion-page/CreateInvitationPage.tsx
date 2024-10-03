@@ -13,8 +13,8 @@ const CreateInvitationPage = () => {
                 <Navbar />
             </div>
             <div className='h-[91%] px-10 pb-10 w-full flex justify-center relative'>
-                <img src="assets/images/background.png" alt="background" className='w-full h-full absolute opacity-[30%]'/>
-                <div className='w-[50%] flex justify-center gap-5 z-50'>
+                <img src="assets/images/background.png" alt="background" className='w-full h-full absolute opacity-[30%] object-cover object-right'/>
+                <div className='w-[50%] flex justify-center gap-5 z-40'>
                     <div className='w-[50%]'>
                         <Sidebar />
                     </div>
