@@ -23,7 +23,7 @@ const LoginPageLeft = () => {
             <Input type="password" placeholder="Password" value={password} image="assets/images/password.png" onChange={(e) => setPassword(e.target.value)} />
           </div>
           <div className='flex flex-col items-center mt-10'>
-            <Button text='Sign In' className='text-custom-white' onClick={() => { }} />
+            <Button text='Sign In' className='text-custom-white text-xl' onClick={() => { }} />
           </div>
           <div className="flex w-full items-center justify-center my-8">
             <div className='flex items-center w-[55%]'>

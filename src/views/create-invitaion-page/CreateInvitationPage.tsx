@@ -5,6 +5,7 @@ import FloatingDeviceContainer from '../../layouts/floating-device-container/Flo
 import EditTemplateForm from '../../layouts/edit-template-form/EditTemplateForm'
 import DeviceMockup from '../../layouts/device-mockup/DeviceMockup'
 import { DeviceProvider } from '../../context/device-context/DeviceContext'
+import { FormProvider } from '../../context/form-context/FormContext'
 
 const CreateInvitationPage = () => {
     return (
@@ -12,15 +13,17 @@ const CreateInvitationPage = () => {
             <div className='h-[9%]'>
                 <Navbar />
             </div>
-            <div className='h-[91%] px-10 pb-10 w-full flex justify-center relative'>
-                <img src="assets/images/background.png" alt="background" className='w-full h-full absolute opacity-[30%] object-cover object-right'/>
+            <img src="assets/images/background.png" alt="background" className='w-full h-full absolute opacity-[30%] object-cover object-right' />
+            <div className='h-[91%] px-10 pb-10 w-full flex justify-center relative overflow-hidden'>
                 <div className='w-[50%] flex justify-center gap-5 z-40'>
-                    <div className='w-[50%]'>
-                        <Sidebar />
-                    </div>
-                    <div className='w-[50%]'>
-                        <EditTemplateForm />
-                    </div>
+                    <FormProvider>
+                        <div className='w-[50%]'>
+                            <Sidebar />
+                        </div>
+                        <div className='w-[50%]'>
+                            <EditTemplateForm />
+                        </div>
+                    </FormProvider>
                 </div>
                 <div className='w-[50%] relative h-full flex items-center justify-center'>
                     <DeviceProvider>

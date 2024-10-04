@@ -4,7 +4,7 @@ import { useDeviceContext } from '../../context/device-context/DeviceContext'
 
 const FloatingDeviceContainer = () => {
     const [isActive, setIsActive] = useState('phone')
-    const { deviceState, setDeviceState } = useDeviceContext();
+    const { setDeviceState } = useDeviceContext();
     return (
         <div className='pt-4 pb-6 px-6 rounded-3xl border-custom-pink border-2 absolute top-0 right-0 flex flex-col gap-6 '>
             <p className='text-custom-pink font-semibold text-lg'>Change Appearance</p>
