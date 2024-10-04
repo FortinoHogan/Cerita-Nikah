@@ -7,7 +7,7 @@ const Navbar = () => {
     const [showProfileModal, setShowProfileModal] = useState(false);
     const nav = useNavigate();
     return (
-        <div className="flex justify-between px-20 max-md:px-10 items-center py-3 bg-[#F093B5] h-28 shadow-[0px_4.0px_4.0px_rgba(0,0,0,0.38)] fixed w-full z-50">
+        <div className="flex justify-between px-20 max-md:px-10 items-center bg-[#F093B5] h-[85px] shadow-[0px_4.0px_4.0px_rgba(0,0,0,0.38)] fixed w-full z-50">
             <div className="flex items-center gap-10 z-50">
                 <img
                     onClick={() => nav('/')}
@@ -20,7 +20,7 @@ const Navbar = () => {
                 <img src="assets/images/slogan.png" alt="" className='' />
             </div>
             <div className="col-end-14 max-lg:col-end-15 flex items-center gap-10">
-                <img src="assets/images/share.png" alt="share" className='cursor-pointer max-lg:w-[25px]' />
+                <img src="assets/images/share.png" alt="share" className='cursor-pointer w-[30px] max-lg:w-[25px]' />
                 <div
                     className='relative'
                     onClick={() => {setShowProfileModal(!showProfileModal)}}
