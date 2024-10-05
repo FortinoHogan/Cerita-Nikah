@@ -1,7 +1,6 @@
 export interface IInput {
-    type: string
+    label: string
     placeholder: string
     value: string
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
-    image?: string
 }

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import Input from '../../components/input/Input'
 import Button from '../../components/button/Button'
 import ButtonGoogle from '../../components/button-google/ButtonGoogle'
 import { useNavigate } from 'react-router-dom'
 import Anchor from '../../components/anchor/Anchor'
+import AuthInput from '../../components/auth-input/AuthInput'
 
 const RegisterPageLeft = () => {
     const [email, setEmail] = useState('')
@@ -21,10 +21,10 @@ const RegisterPageLeft = () => {
                 </div>
                 <div className='flex flex-col w-full mt-10'>
                     <div className='flex flex-col gap-5'>
-                        <Input type="text" placeholder="Email" value={email} image="assets/images/email.png" onChange={(e) => setEmail(e.target.value)} />
-                        <Input type="text" placeholder="WhatsApp Phone Number" value={phoneNum} image="assets/images/whatsapp.png" onChange={(e) => setPhoneNum(e.target.value)} />
-                        <Input type="password" placeholder="Password" value={password} image="assets/images/password.png" onChange={(e) => setPassword(e.target.value)} />
-                        <Input type="password" placeholder="Confirm Password" value={confirmPassword} image="assets/images/password.png" onChange={(e) => setConfirmPassword(e.target.value)} />
+                        <AuthInput type="text" placeholder="Email" value={email} image="assets/images/email.png" onChange={(e) => setEmail(e.target.value)} />
+                        <AuthInput type="text" placeholder="WhatsApp Phone Number" value={phoneNum} image="assets/images/whatsapp.png" onChange={(e) => setPhoneNum(e.target.value)} />
+                        <AuthInput type="password" placeholder="Password" value={password} image="assets/images/password.png" onChange={(e) => setPassword(e.target.value)} />
+                        <AuthInput type="password" placeholder="Confirm Password" value={confirmPassword} image="assets/images/password.png" onChange={(e) => setConfirmPassword(e.target.value)} />
                     </div>
                     <div className='flex flex-col items-center mt-10'>
                         <Button text='Sign Up' className='text-custom-white text-xl' onClick={() => { }} />

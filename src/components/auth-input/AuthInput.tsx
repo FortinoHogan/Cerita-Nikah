@@ -1,7 +1,7 @@
 import React from 'react'
-import { IInput } from './IInput'
+import { IAuthInput } from './IAuthInput'
 
-const Input = (props: IInput) => {
+const AuthInput = (props: IAuthInput) => {
   const { type, placeholder, value, onChange, image } = props
   return (
     <div className='w-full flex items-center justify-center'>
@@ -13,4 +13,4 @@ const Input = (props: IInput) => {
   )
 }
 
-export default Input
+export default AuthInput
