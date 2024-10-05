@@ -1,11 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ProfileModal from '../../components/profile-modal/ProfileModal';
+import { useAuth } from '../../context/auth-context/AuthContext';
 
 const Navbar = () => {
-    const [email, setEmail] = useState('amara.whitmore@gmail.com')
     const [showProfileModal, setShowProfileModal] = useState(false);
+
     const nav = useNavigate();
+    const authContext = useAuth();
+    const user = authContext?.currentUser;
+
     return (
         <div className="flex justify-between px-20 max-md:px-10 items-center bg-[#F093B5] h-[85px] shadow-[0px_4.0px_4.0px_rgba(0,0,0,0.38)] fixed w-full z-50">
             <div className="flex items-center gap-10 z-50">
@@ -25,9 +29,9 @@ const Navbar = () => {
                     className='relative'
                     onClick={() => {setShowProfileModal(!showProfileModal)}}
                 >
-                    <img src="assets/images/profile.jpg" alt="profile" className='w-[50px] h-[50px] rounded-full object-cover object-top cursor-pointer max-lg:w-[35px] max-lg:h-[35px]' />
+                    <img src={user?.photoURL || 'assets/images/profile.jpg'} alt="profile" className='w-[50px] h-[50px] rounded-full object-cover object-top cursor-pointer max-lg:w-[35px] max-lg:h-[35px]' />
                     {showProfileModal &&
-                        <ProfileModal email={email}/>
+                        <ProfileModal />
                     }
                 </div>
             </div>
