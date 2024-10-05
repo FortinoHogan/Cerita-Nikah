@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ImageInput from '../../image-input/ImageInput'
-import Input from '../../InputGroup/Input'
+import Input from '../../input-group/input/Input'
 
 const CoverForm = () => {
   const [groomNickname, setGroomNickname] = useState('')

@@ -6,22 +6,25 @@ import EditTemplateForm from '../../layouts/edit-template-form/EditTemplateForm'
 import DeviceMockup from '../../layouts/device-mockup/DeviceMockup'
 import { DeviceProvider } from '../../context/device-context/DeviceContext'
 import { FormProvider } from '../../context/form-context/FormContext'
+import { ContentProvider } from '../../context/content-context/ContentContext'
 
 const CreateInvitationPage = () => {
     return (
-        <div className='h-screen flex flex-col gap-10'>
+        <div className='h-screen flex flex-col gap-10 max-lg:gap-7'>
             <div className='h-[9%]'>
                 <Navbar />
             </div>
             <img src="assets/images/background.png" alt="background" className='w-full h-full absolute opacity-[30%] object-cover object-right' />
-            <div className='h-[91%] px-10 pb-10 w-full flex justify-center relative overflow-hidden'>
+            <div className='h-[91%] px-10 max-lg:px-5 pb-10 w-full flex justify-center relative overflow-hidden'>
                 <div className='w-[50%] flex justify-center gap-5 z-40'>
                     <FormProvider>
                         <div className='w-[50%]'>
                             <Sidebar />
                         </div>
                         <div className='w-[50%]'>
-                            <EditTemplateForm />
+                            <ContentProvider>
+                                <EditTemplateForm />
+                            </ContentProvider>
                         </div>
                     </FormProvider>
                 </div>
