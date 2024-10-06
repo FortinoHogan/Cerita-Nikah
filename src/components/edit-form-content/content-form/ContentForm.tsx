@@ -67,7 +67,6 @@ const RenderContentProfilePage = (selected: string) => {
             selected === 'Groom' ? setGroomOrder(e.target.value) : setBrideOrder(e.target.value)
           }
         />
-
       </div>
     </div>
   )

@@ -21,7 +21,7 @@ const ProfileModal = () => {
   const nav = useNavigate();
 
   return (
-    <div className="absolute top-20 right-0 w-max border-2 border-custom-pink bg-white shadow-lg rounded-lg z-50">
+    <div className="absolute top-[4.2rem] right-0 w-max min-w-80 border-2 border-custom-pink bg-white shadow-lg rounded-lg z-50">
       <div className="flex items-center gap-5 text-custom-pink font-semibold p-4">
         <img
           src={authContext?.currentUser?.photoURL || 'assets/images/profile.jpg'}

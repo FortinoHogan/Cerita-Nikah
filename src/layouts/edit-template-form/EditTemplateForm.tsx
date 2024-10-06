@@ -39,11 +39,11 @@ const EditTemplateForm = () => {
                 {renderFormContent()}
             </div>
             {formState === 'content' && (
-                <div className='absolute top-[1.8rem] right-[-4.31rem] flex flex-col rounded-tl-xl rounded-tr-xl gap-[3.55rem]'>
-                    <p className={`transform rotate-90 ${contentState === 'regards' ? 'bg-custom-pink' : 'bg-[#f2a3c0]'} text-custom-white py-2 px-4 rounded-tl-xl cursor-pointer text-center`} onClick={() => setContentState('regards')}>
+                <div className={`transform rotate-90 absolute top-[4.3rem] right-[-6.83rem] flex rounded-tl-xl rounded-tr-xl ${contentState === 'regards' ? '' : ''}`}>
+                    <p className={` ${contentState === 'regards' ? 'bg-custom-pink' : 'bg-[#f2a3c0]'} text-custom-white py-2 px-4 rounded-tl-xl cursor-pointer text-center`} onClick={() => setContentState('regards')}>
                         Regards
                     </p>
-                    <p className={`transform rotate-90 ${contentState === 'profile' ? 'bg-custom-pink' : 'bg-[#f2a3c0]'} text-custom-white py-2 px-4 rounded-tr-xl cursor-pointer text-center`} onClick={() => setContentState('profile')}>
+                    <p className={`${contentState === 'profile' ? 'bg-custom-pink' : 'bg-[#f2a3c0]'} text-custom-white py-2 px-4 rounded-tr-xl cursor-pointer text-center`} onClick={() => setContentState('profile')}>
                         Profile
                     </p>
                 </div>

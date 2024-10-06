@@ -7,10 +7,14 @@ import DeviceMockup from '../../layouts/device-mockup/DeviceMockup'
 import { DeviceProvider } from '../../context/device-context/DeviceContext'
 import { FormProvider } from '../../context/form-context/FormContext'
 import { ContentProvider } from '../../context/content-context/ContentContext'
+import { useAuth } from '../../context/auth-context/AuthContext'
+import { Navigate } from 'react-router-dom'
 
 const CreateInvitationPage = () => {
+    const authContext = useAuth()
     return (
         <div className='h-screen flex flex-col gap-10 max-lg:gap-7'>
+            {!authContext?.isLogin && (<Navigate to={'/'} />)}
             <div className='h-[9%]'>
                 <Navbar />
             </div>
