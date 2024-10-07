@@ -2,6 +2,7 @@ import React from "react";
 import BlackPinkTemplate from "../views/templates-page/black-pink-template/BlackPinkTemplate";
 import WhiteBlossomTemplate from "../views/templates-page/white-blossom-template/WhiteBlossomTemplate";
 import HomePage from "../views/home-page/HomePage";
+import { useNavigate } from "react-router-dom";
 
 interface ITemplateData {
   id: string,
@@ -21,7 +22,6 @@ const TemplateData: ITemplateData[] = [
 
 export const TemplateGenerator = (templateId: string) => {
   const template = TemplateData.find((template) => template.id === templateId);
-  console.log("templateId", templateId);
-  console.log("template", template)
+  
   return template ? <template.view /> : <HomePage />;
 }

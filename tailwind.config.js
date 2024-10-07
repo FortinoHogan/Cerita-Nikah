@@ -4,6 +4,9 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    fontFamily: {
+      collingar: ["Collingar", "sans-serif"]
+    },
     extend: {
       colors: {
         'custom-gray': '#5d5d5d',
