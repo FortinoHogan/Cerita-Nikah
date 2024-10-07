@@ -1,78 +1,82 @@
-export const templateExample = {
-    id: '282a56a0-516d-48ab-ac6c-679e5417e034'
-}
+import { ITemplatePersonalized } from "../interfaces/templatePersonalized.interfaces";
 
-export const userExample = {
-    id: '5fe1f46a-f67e-4f4a-80a1-742c1c4a2940',
-    email: 'stevenforsythia@gmail.com'
-}
-
-export const templatePersonalizedExample = {
-    id: '4465e604-18aa-4784-8bca-e17c06a84b2d',
-    userId: '5fe1f46a-f67e-4f4a-80a1-742c1c4a2940',
-    templateId: '282a56a0-516d-48ab-ac6c-679e5417e034',
-    cover: '',
-    groomNickName: 'Steven',
-    brideNickName: 'Evelyn',
-    openingRemarks: '',
-    closingRemarks: '',
-    groom: {
-        picture: '',
-        fullName: 'Steven Forsythia',
-        fatherName: '',
-        motherName: '',
-        orderComeFamily: 'Fourth'
+export const templatePersonalizedExample: ITemplatePersonalized = {
+  id: "4465e604-18aa-4784-8bca-e17c06a84b2d",
+  userId: "5fe1f46a-f67e-4f4a-80a1-742c1c4a2940",
+  templateId: "282a56a0-516d-48ab-ac6c-679e5417e034",
+  cover: "",
+  groomNickName: "Steven",
+  brideNickName: "Evelyn",
+  openingRemarks: "",
+  closingRemarks: "",
+  groom: {
+    picture: "",
+    fullName: "Steven Forsythia",
+    fatherName: "",
+    motherName: "",
+    orderComeFamily: "Fourth",
+  },
+  bride: {
+    picture: "",
+    fullName: "Evelyn Elni Yang",
+    fatherName: "",
+    motherName: "",
+    orderComeFamily: "Third",
+  },
+  eventContract: {
+    eventName: "",
+    eventDate: "",
+    eventStartTIme: "",
+    eventEndTime: "",
+    zoneTime: "",
+    locationAddress: "",
+    locationLink: "",
+  },
+  eventReception: {
+    eventName: "",
+    eventDate: "",
+    eventStartTIme: "",
+    eventEndTime: "",
+    zoneTime: "",
+    locationAddress: "",
+    locationLink: "",
+  },
+  loveStory: [
+    {
+      storyTitle: "",
+      storyDate: "",
+      storyDescription: "",
+      storyPhoto: "",
     },
-    bride: {
-        picture: '',
-        fullName: 'Evelyn Elni Yang',
-        fatherName: '',
-        motherName: '',
-        orderComeFamily: 'Third'
+    {
+      storyTitle: "",
+      storyDate: "",
+      storyDescription: "",
+      storyPhoto: "",
     },
-    eventContract: {
-        eventName: '',
-        eventDate: '',
-        eventStartTIme: '',
-        eventEndTime: '',
-        zoneTime: '',
-        locationAddress: '',
-        locationLink: ''
+  ],
+  gallery: [
+    {
+      image: "",
     },
-    eventReception: {
-        eventName: '',
-        eventDate: '',
-        eventStartTIme: '',
-        eventEndTime: '',
-        zoneTime: '',
-        locationAddress: '',
-        locationLink: ''
+    {
+      image: "",
     },
-    loveStory: [
-        {
-            storyTitle: '',
-            storyDate: '',
-            storyDescription: '',
-            storyPhoto: ''
-        },
-        {
-            storyTitle: '',
-            storyDate: '',
-            storyDescription: '',
-            storyPhoto: ''
-        },
-    ],
-    gallery: [
-        {
-            image: ''
-        },
-        {
-            image: ''
-        }
-    ],
-    linkVideo: '',
-    backgroundMusic: '',
-    price: 350000,
-    isPay: true,
-    domain: 'stevelyn.ceritanikah.online'
-}
+  ],
+  rsvp: [
+    {
+      name: "Fortino",
+      isAttend: true,
+    },
+    {
+      name: "Ryan",
+      isAttend: false,
+    },
+  ],
+  linkVideo: "",
+  backgroundMusic: "",
+  price: 350000,
+  isPay: true,
+  domain: "stevelyn.ceritanikah.online",
+//   domain: "stevelyn.localhost:3000",
+};

@@ -7,15 +7,22 @@ import { templatePersonalizedExample } from "./libs/templatePersonalized.example
 import TemplatePersonalizedPage from "./views/template-personalized-page/TemplatePersonalizedPage";
 import DashboardPage from "./views/dashboard-page/DashboardPage";
 import CreateInvitationPage from "./views/create-invitaion-page/CreateInvitationPage";
+import ViewCreateInvitationPage from "./views/view-create-invitation-page/ViewCreateInvitationPage";
 
 function App() {
+  const [templatePersonalized, setTemplatePersonalized] = useState(
+    templatePersonalizedExample
+  );
   // todo change templatePersonalizedExample into the real data
-  const isSubDomain = window.location.host === templatePersonalizedExample.domain;
+  const isSubDomain = window.location.host === templatePersonalized.domain;
 
-  if (isSubDomain && templatePersonalizedExample.isPay) {
+  if (isSubDomain && templatePersonalized.isPay) {
     return (
       <Routes>
-        <Route path="*" element={<TemplatePersonalizedPage />} />
+        <Route
+          path="*"
+          element={<TemplatePersonalizedPage template={templatePersonalized} />}
+        />
       </Routes>
     );
   } else {
@@ -26,6 +33,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/edit" element={<CreateInvitationPage />} />
+        <Route path="/edit/view" element={<ViewCreateInvitationPage />} />
       </Routes>
     );
   }
