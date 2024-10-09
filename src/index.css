@@ -7,4 +7,8 @@
     font-family: "Collingar";
     src: url("/public/assets/fonts/Collingar.otf") format("opentype");
   }
+  @font-face {
+    font-family: "Edith-Regular";
+    src: url("/public/assets/fonts/Edith-Regular.ttf") format("opentype");
+  }
 }

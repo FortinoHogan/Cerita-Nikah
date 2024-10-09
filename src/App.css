@@ -1,8 +1,13 @@
 body {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .scrollbar-hidden::-webkit-scrollbar {
-    width: 0;
-    display: none;
+  width: 0;
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* Untuk Internet Explorer dan Edge */
+  scrollbar-width: none; /* Untuk Firefox */
 }

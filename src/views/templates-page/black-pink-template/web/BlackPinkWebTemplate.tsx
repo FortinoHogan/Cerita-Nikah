@@ -1,52 +1,180 @@
 import React, { useState, useEffect } from "react";
 import { useCountdown } from "../../../../libs/countdown";
+import { templatePersonalizedExample } from "../../../../libs/templatePersonalized.example";
+import { convertDotDate, convertSlashDate } from "../../../../libs/convertDate";
 
 const BlackPinkWebTemplate = () => {
-  const timeLeft = useCountdown("2025-08-17T00:00:00");
+  const [template, setTemplate] = useState(templatePersonalizedExample);
+  const [galleryIndex, setGalleryIndex] = useState(0);
+
+  const timeLeft = useCountdown(template.eventReception.eventDate);
 
   return (
     <div className="flex font-collingar text-white">
       <div className="w-8/12 flex bg-blue-50 h-screen fixed top-0 overflow-x-hidden left-0">
         <img
           className="z-10 h-full w-full object-cover object-top"
-          src="/assets/images/black-pink-template/black-pink-web-image.jpg"
+          src={template.cover}
           alt=""
         />
         <div className="text-center text-5xl absolute z-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <p>17.8.2025</p>
-          <p className="mt-5 text-[#FFA5A5]">{`${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`}</p>
+          <p className="font-edith">
+            {convertDotDate(template.eventReception.eventDate)}
+          </p>
+          <p className="font-edith text-[#FFA5A5]">{`${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`}</p>
         </div>
         <div className="z-20 text-7xl text-center flex items-center justify-center absolute bottom-20 left-1/2 transform -translate-x-1/2">
-          <p className="text-[#FFA5A5] absolute bottom-14 right-0">Galih</p>
+          <p className="text-[#FFA5A5] absolute bottom-14 right-0">
+            {template.groomNickName}
+          </p>
           <p className="absolute bottom-5 z-30">&</p>
-          <p className="text-[#FFA5A5] absolute -bottom-4 left-0">Ratna</p>
+          <p className="text-[#FFA5A5] absolute -bottom-4 left-0">
+            {template.brideNickName}
+          </p>
         </div>
       </div>
-      <div className="w-4/12 h-full fixed top-0 overflow-x-hidden right-0 bg-black">
+      <div className="w-4/12 h-full fixed top-0 overflow-x-auto right-0 bg-black">
         <div className="mt-5 ml-5 text-start h-4/6 flex items-start flex-col">
-          <div className="w-[45%] bg-white h-4/6"></div>
+          <div className="w-[45%] bg-white h-4/6">
+            <img
+              className="h-full w-full object-cover"
+              src={template.groom.picture}
+              alt=""
+            />
+          </div>
           <div className="mt-5 relative">
-            <p className="text-3xl text-[#FFA5A5]">Galih Kapal Lawd</p>
-            <div className="left-4 text-lg absolute top-6">
-              <p className="text-base mb-1 text-[#cecece]">First Son of</p>
-              <p>Mr. Muliyono Siregar</p>
-              <p>Mrs. Puan Siregar</p>
+            <p className="text-3xl text-[#FFA5A5]">{template.groom.fullName}</p>
+            <div className="left-4 text-lg absolute top-5">
+              <p className="text-2xl font-edith mb-1 text-[#cecece]">
+                {template.groom.orderComeFamily}
+              </p>
+              <p>{template.groom.fatherName}</p>
+              <p>{template.groom.motherName}</p>
             </div>
           </div>
         </div>
         <div className="mr-5 text-end h-4/6 flex items-end flex-col">
-          <div className="w-[45%] bg-white h-4/6"></div>
+          <div className="w-[45%] bg-white h-4/6">
+            <img
+              className="h-full w-full object-cover"
+              src={template.bride.picture}
+              alt=""
+            />
+          </div>
           <div className="mt-5 relative">
-            <p className="text-3xl text-[#FFA5A5]">Ratna Mewing Streak</p>
-            <div className="text-lg absolute top-6 right-4">
-              <p className="text-base mb-1 text-[#cecece]">First Daughter of</p>
-              <p>Mr. Budi Mewing</p>
-              <p>Mrs. Siti Mewing</p>
+            <p className="text-3xl text-[#FFA5A5]">{template.bride.fullName}</p>
+            <div className="text-lg absolute top-5 right-4">
+              <p className="text-2xl font-edith mb-1 text-[#cecece]">
+                {template.bride.orderComeFamily}
+              </p>
+              <p>{template.bride.fatherName}</p>
+              <p>{template.bride.motherName}</p>
             </div>
           </div>
         </div>
         <div className="mt-20">
-          <p className="text-3xl text-center text-[#FFA5A5]">Our Love Story</p>
+          <p className="text-6xl text-center font-edith text-[#FFA5A5]">
+            Our Love Story
+          </p>
+          <div className="flex mt-5 overflow-x-auto gap-10 scrollbar-hidden">
+            {template.loveStory.map((story, index) => (
+              <div className="flex flex-col">
+                <div
+                  className="bg-white h-60 w-[25rem] flex-shrink-0"
+                  key={index}
+                >
+                  <img
+                    className="h-full w-full object-cover"
+                    src={story.storyPhoto}
+                    alt=""
+                  />
+                </div>
+                <div className="flex gap-5 justify-end items-end mt-5">
+                  <p className="text-4xl font-edith text-[#FFA5A5]">
+                    {story.storyTitle}
+                  </p>
+                  <p className="bg-[#2D2D2D] px-2 pt-1">
+                    {convertSlashDate(story.storyDate)}
+                  </p>
+                </div>
+                <p className="text-2xl font-edith text-end mt-2">
+                  {story.storyDescription}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mt-28 w-full flex justify-center items-center flex-col">
+          <div className="flex w-11/12 relative justify-center items-center">
+            <div className="w-full absolute -top-12 text-end">
+              <p className="text-[#FFA5A5] text-6xl font-edith">Gallery</p>
+            </div>
+            <div className="w-11/12 h-[26rem] bg-white">
+              <img
+                className="h-full w-full object-cover"
+                src={template.galleries[galleryIndex].image}
+                alt=""
+              />
+            </div>
+          </div>
+          <div className="w-11/12 mt-5 flex gap-5 overflow-x-auto scrollbar-hidden">
+            {template.galleries.map((gallery, index) => (
+              <div
+                className="w-1/4 bg-white h-24 flex-shrink-0 cursor-pointer"
+                onClick={() => setGalleryIndex(index)}
+              >
+                <img
+                  className="h-full w-full object-cover"
+                  src={gallery.image}
+                  alt=""
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mt-10 bg-gradient-to-b from-[#181313] to-[#805C5C]">
+          <div className="pt-32 w-10/12">
+            <p className="text-end text-lg text-[#FFA5A5]">
+              A celebration love and union.
+            </p>
+          </div>
+          <div className="w-10/12 h-[18rem] relative">
+            <div className="w-full h-40 bg-white">
+              <img
+                className="h-full w-full object-cover"
+                src="/assets/images/black-pink-template/cincin.png"
+                alt=""
+              />
+            </div>
+            <div className="w-full flex items-center justify-center font-edith">
+              <div className="w-11/12 bg-[#5E3737] absolute bottom-0 text-end py-2 px-6">
+                <p className="text-4xl text-[#FFA5A5]">AKAD NIKAH</p>
+                <p className="text-lg">
+                  JUMAT, 17 AGUSTUS 1945 | 06:00 - 10:00 WIB
+                </p>
+                <p className="mt-2 underline">
+                  {template.eventContract.locationAddress}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="w-10/12 text-5xl font-edith mt-20 flex items-center justify-center">
+            <div className="w-11/12">
+              <p>RESEPSI</p>
+            </div>
+          </div>
+          <div className="w-full mt-5 bg-white h-72">t</div>
+          <div className="mt-5 w-10/12 mx-auto bg-[#5E3737]">
+            <p className="pl-5 py-2 mt-1 text-[#FFA5A5]">
+              A celebration love and union.
+            </p>
+          </div>
+          <div className="mt-5 w-10/12 mx-auto bg-[#5E3737]">
+            <div className="w-9/12 mx-auto">
+              <p>Jumat, 17 Agustus 1945</p>
+              <p>06:00 - 10:00 WIB</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

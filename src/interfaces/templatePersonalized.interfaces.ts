@@ -32,6 +32,17 @@ interface IRsvp {
   isAttend: boolean;
 }
 
+interface IComment {
+  name: string;
+  remark: string;
+}
+
+interface IPresent {
+  accountNumber?: string;
+  name?: string;
+  qrCode?: string;
+}
+
 export interface ITemplatePersonalized {
   id: string;
   userId: string;
@@ -46,11 +57,13 @@ export interface ITemplatePersonalized {
   eventContract: IEvent;
   eventReception: IEvent;
   loveStory: ILoveStory[];
-  gallery: IGallery[];
+  galleries: IGallery[];
   rsvp: IRsvp[];
+  comment: IComment[];
   linkVideo: string;
   backgroundMusic: string;
   price: number;
   isPay: boolean;
+  present: IPresent;
   domain: string;
 }

@@ -5,7 +5,8 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      collingar: ["Collingar", "sans-serif"]
+      collingar: ["Collingar", "sans-serif"],
+      edith: ["Edith-Regular", "sans-serif"]
     },
     extend: {
       colors: {
