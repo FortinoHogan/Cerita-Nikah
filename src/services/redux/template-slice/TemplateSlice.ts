@@ -146,10 +146,54 @@ export const TemplateSlice = createSlice({
       state.bride.motherName = action.payload.bride?.motherName || "";
       state.bride.orderComeFamily = action.payload.bride?.orderComeFamily || "";
     },
+    SET_EVENT_CONTRACT: (
+      state,
+      action: PayloadAction<Partial<TemplateState>>
+    ) => {
+      state.eventContract.eventName =
+        action.payload.eventContract?.eventName || "";
+      state.eventContract.eventDate =
+        action.payload.eventContract?.eventDate || "";
+      state.eventContract.eventStartTime =
+        action.payload.eventContract?.eventStartTime || "";
+      state.eventContract.eventEndTime =
+        action.payload.eventContract?.eventEndTime || "";
+      state.eventContract.zoneTime =
+        action.payload.eventContract?.zoneTime || "";
+      state.eventContract.locationAddress =
+        action.payload.eventContract?.locationAddress || "";
+      state.eventContract.locationLink =
+        action.payload.eventContract?.locationLink || "";
+    },
+    SET_EVENT_RECEPTION: (
+      state,
+      action: PayloadAction<Partial<TemplateState>>
+    ) => {
+      state.eventReception.eventName =
+        action.payload.eventReception?.eventName || "";
+      state.eventReception.eventDate =
+        action.payload.eventReception?.eventDate || "";
+      state.eventReception.eventStartTime =
+        action.payload.eventReception?.eventStartTime || "";
+      state.eventReception.eventEndTime =
+        action.payload.eventReception?.eventEndTime || "";
+      state.eventReception.zoneTime =
+        action.payload.eventReception?.zoneTime || "";
+      state.eventReception.locationAddress =
+        action.payload.eventReception?.locationAddress || "";
+      state.eventReception.locationLink =
+        action.payload.eventReception?.locationLink || "";
+    },
   },
 });
 
-export const { SET_TEMPLATE, SET_COVER, SET_CONTENT_REGARDS, SET_CONTENT_PROFILE } =
-  TemplateSlice.actions;
+export const {
+  SET_TEMPLATE,
+  SET_COVER,
+  SET_CONTENT_REGARDS,
+  SET_CONTENT_PROFILE,
+  SET_EVENT_CONTRACT,
+  SET_EVENT_RECEPTION,
+} = TemplateSlice.actions;
 
 export default TemplateSlice;
