@@ -3,10 +3,14 @@ import Button from "../../button/Button";
 import LoveStoryCard from "../../love-story-card/LoveStoryCard";
 import { ILoveStoryCard } from "../../love-story-card/ILoveStoryCard";
 import { v4 as uuidv4 } from "uuid";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../services/redux/Store";
+import { ADD_LOVE_STORY } from "../../../services/redux/template-slice/TemplateSlice";
+import LoveStoryCardFilled from "../../love-story-card-filled/LoveStoryCardFilled";
 
 const LoveStoryForm = () => {
-  const [cards, setCards] = useState<ILoveStoryCard[]>([]);
-
+  const { loveStory, loveStorySaved } = useSelector((state: RootState) => state.template);
+  const dispatch = useDispatch();
   const newCard = (): ILoveStoryCard => ({
     storyId: uuidv4(),
     storyTitle: "",
@@ -16,7 +20,7 @@ const LoveStoryForm = () => {
   });
 
   const addNewCard = () => {
-    setCards([...cards, newCard()]);
+    dispatch(ADD_LOVE_STORY(newCard()));
   };
 
   return (
@@ -27,8 +31,11 @@ const LoveStoryForm = () => {
         className="w-full text-white"
       />
       <div className="flex flex-col gap-5">
-        {cards.map((card, index) => (
-          <LoveStoryCard key={card.storyId} />
+        {loveStorySaved && loveStorySaved.map((card, index) => (
+          <LoveStoryCardFilled key={card.storyId} {...card} storyIndex={index}/>
+        ))}
+        {loveStory && loveStory.map((card, index) => (
+          <LoveStoryCard key={card.storyId} {...card}/>
         ))}
       </div>
     </div>

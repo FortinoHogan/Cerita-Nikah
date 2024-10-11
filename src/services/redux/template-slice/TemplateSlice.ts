@@ -1,15 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ILoveStoryCard } from "../../../components/love-story-card/ILoveStoryCard";
 
 interface IGallery {
   image: string;
-}
-
-export interface ILoveStory {
-  storyId: string;
-  storyTitle: string;
-  storyDate: string;
-  storyDescription: string;
-  storyPhoto: string;
 }
 
 export interface TemplateState {
@@ -53,7 +46,8 @@ export interface TemplateState {
     locationAddress: string;
     locationLink: string;
   };
-  loveStory: ILoveStory[] | null;
+  loveStory: ILoveStoryCard[] | null;
+  loveStorySaved: ILoveStoryCard[] | null;
   gallery: IGallery[] | null;
   linkVideo: string;
   backgroundMusic: string;
@@ -104,6 +98,7 @@ const initialState: TemplateState = {
     locationLink: "",
   },
   loveStory: null,
+  loveStorySaved: null,
   gallery: null,
   linkVideo: "",
   backgroundMusic: "",
@@ -184,6 +179,51 @@ export const TemplateSlice = createSlice({
       state.eventReception.locationLink =
         action.payload.eventReception?.locationLink || "";
     },
+    ADD_LOVE_STORY: (state, action: PayloadAction<ILoveStoryCard>) => {
+      if (!state.loveStory) {
+        state.loveStory = [];
+      }
+      state.loveStory?.push(action.payload);
+    },
+    SAVE_LOVE_STORY: (state, action: PayloadAction<ILoveStoryCard>) => {
+      if (!state.loveStorySaved) {
+        state.loveStorySaved = [];
+      }
+      state.loveStorySaved?.push(action.payload);
+    },
+    SET_LOVE_STORY: (state, action: PayloadAction<ILoveStoryCard>) => {
+      if (state.loveStory) {
+        const index = state.loveStory.findIndex(
+          (story) => story.storyId === action.payload.storyId
+        );
+        if (index !== -1) {
+          state.loveStory[index] = {
+            ...state.loveStory[index],
+            ...action.payload,
+          };
+        }
+      }
+    },
+    DELETE_LOVE_STORY: (state, action: PayloadAction<string>) => {
+      if (state.loveStorySaved) {
+        const index = state.loveStorySaved.findIndex(
+          (story) => story.storyId === action.payload
+        );
+        if (index !== -1) {
+          state.loveStorySaved.splice(index, 1);
+        }
+      }
+    },
+    REMOVE_LOVE_STORY: (state, action: PayloadAction<string>) => {
+      if (state.loveStory) {
+        const index = state.loveStory.findIndex(
+          (story) => story.storyId === action.payload
+        );
+        if (index !== -1) {
+          state.loveStory.splice(index, 1);
+        }
+      }
+    },
   },
 });
 
@@ -194,6 +234,11 @@ export const {
   SET_CONTENT_PROFILE,
   SET_EVENT_CONTRACT,
   SET_EVENT_RECEPTION,
+  ADD_LOVE_STORY,
+  SAVE_LOVE_STORY,
+  SET_LOVE_STORY,
+  DELETE_LOVE_STORY,
+  REMOVE_LOVE_STORY,
 } = TemplateSlice.actions;
 
 export default TemplateSlice;

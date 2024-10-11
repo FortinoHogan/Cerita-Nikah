@@ -8,7 +8,7 @@ const Button = (props: IButton) => {
     return (
         <div
             onClick={onClick}
-            className={`${roundedClassName} hover:bg-pink-700 transition ease cursor-pointer max-sm:w-[360px] w-[55%] text-lg font-semibold p-3 bg-custom-pink text-center`}
+            className={`${roundedClassName} hover:bg-pink-700 transition ease cursor-pointer max-sm:w-[360px] w-[55%] text-lg font-semibold p-3 bg-custom-pink text-center flex items-center justify-center`}
         >
             {children}
         </div>

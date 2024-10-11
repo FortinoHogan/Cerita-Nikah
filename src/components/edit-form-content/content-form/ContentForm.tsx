@@ -34,7 +34,7 @@ const RenderContentProfilePage = (selected: string) => {
   const { groom, bride } = useSelector((state: RootState) => state.template);
   const dispatch = useDispatch();
 
-  const handleChange = (key: string, value: string) => {
+  const handleInputChange = (key: string, value: string) => {
     if (selected === "Groom") {
       dispatch(SET_CONTENT_PROFILE({ groom: { ...groom, [key]: value }, bride }));
     } else {
@@ -79,28 +79,28 @@ const RenderContentProfilePage = (selected: string) => {
           label={`${selected}'s full name`}
           placeholder={`${selected === 'Groom' ? 'Man' : 'Woman'}'s full name`}
           value={selected === 'Groom' ? groom.fullName : bride.fullName}
-          onChange={(e) => handleChange('fullName', e.target.value)}
+          onChange={(e) => handleInputChange('fullName', e.target.value)}
         />
 
         <Input
           label={`Father's name (Optional)`}
           placeholder={`Father's name`}
           value={selected === 'Groom' ? groom.fatherName : bride.fatherName}
-          onChange={(e) => handleChange('fatherName', e.target.value)}
+          onChange={(e) => handleInputChange('fatherName', e.target.value)}
         />
 
         <Input
           label={`Mother's name (Optional)`}
           placeholder={`Mother's name`}
           value={selected === 'Groom' ? groom.motherName : bride.motherName}
-          onChange={(e) => handleChange('motherName', e.target.value)}
+          onChange={(e) => handleInputChange('motherName', e.target.value)}
         />
 
         <Input
           label={`What order do you come in your family (Optional)`}
           placeholder={`First, Second, Youngest, Only Child`}
           value={selected === 'Groom' ? groom.orderComeFamily : bride.orderComeFamily}
-          onChange={(e) => handleChange('orderComeFamily', e.target.value)}
+          onChange={(e) => handleInputChange('orderComeFamily', e.target.value)}
         />
       </div>
     </div>
