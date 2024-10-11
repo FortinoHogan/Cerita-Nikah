@@ -1,76 +1,112 @@
-import React, { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import Textarea from '../../input-group/textarea/Textarea'
 import { useContentContext } from '../../../context/content-context/ContentContext'
 import SwtichButton from '../../switch-button/SwitchButton'
 import ImageInput from '../../image-input/ImageInput'
 import Input from '../../input-group/input/Input'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../../services/redux/Store'
+import { SET_CONTENT_REGARDS, SET_CONTENT_PROFILE } from '../../../services/redux/template-slice/TemplateSlice'
+import ImagePreview from '../../image-preview/ImagePreview'
 
 const ContentRegardsPage = () => {
-  const [openingRemarks, setOpeningRemarks] = useState('')
-  const [closingRemarks, setClosingRemarks] = useState('')
+  const { openingRemarks, closingRemarks } = useSelector((state: RootState) => state.template)
+  const dispatch = useDispatch()
+  const handleOpeningRemarksChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const openingRemarks = e.target.value
+    dispatch(SET_CONTENT_REGARDS({ openingRemarks: openingRemarks, closingRemarks: closingRemarks }))
+  }
+
+  const handleClosingRemarksChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const closingRemarks = e.target.value
+    dispatch(SET_CONTENT_REGARDS({ closingRemarks: closingRemarks, openingRemarks: openingRemarks }))
+  }
+
   return (
     <div className='flex flex-col gap-6'>
-      <Textarea label="Give opening remarks as an opening to the invitation" placeholder="Fill with greetings or quotes" value={openingRemarks} onChange={(e) => { setOpeningRemarks(e.target.value) }} />
-      <Textarea label="Provide closing remarks or thanks" placeholder="Contains words of thanks" value={closingRemarks} onChange={(e) => { setClosingRemarks(e.target.value) }} />
+      <Textarea label="Give opening remarks as an opening to the invitation" placeholder="Fill with greetings or quotes" value={openingRemarks} onChange={handleOpeningRemarksChange} />
+      <Textarea label="Provide closing remarks or thanks" placeholder="Contains words of thanks" value={closingRemarks} onChange={handleClosingRemarksChange} />
     </div>
   )
 }
 
 const RenderContentProfilePage = (selected: string) => {
-  const [groomFullName, setGroomFullName] = useState('')
-  const [brideFullName, setBrideFullName] = useState('')
-  const [groomFatherName, setGroomFatherName] = useState('')
-  const [brideFatherName, setBrideFatherName] = useState('')
-  const [groomMotherName, setGroomMotherName] = useState('')
-  const [brideMotherName, setBrideMotherName] = useState('')
-  const [groomOrder, setGroomOrder] = useState('')
-  const [brideOrder, setBrideOrder] = useState('')
+  const { groom, bride } = useSelector((state: RootState) => state.template);
+  const dispatch = useDispatch();
+
+  const handleChange = (key: string, value: string) => {
+    if (selected === "Groom") {
+      dispatch(SET_CONTENT_PROFILE({ groom: { ...groom, [key]: value }, bride }));
+    } else {
+      dispatch(SET_CONTENT_PROFILE({ groom, bride: { ...bride, [key]: value } }));
+    }
+  };
+
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      if (selected === "Groom") {
+        dispatch(SET_CONTENT_PROFILE({ groom: { ...groom, picture: imageUrl }, bride }));
+      } else {
+        dispatch(SET_CONTENT_PROFILE({ groom, bride: { ...bride, picture: imageUrl } }));
+      }
+    }
+  };
+
+  const handleDeleteImage = () => {
+    if (selected === "Groom") {
+      dispatch(SET_CONTENT_PROFILE({ groom: { ...groom, picture: "" }, bride }));
+    } else {
+      dispatch(SET_CONTENT_PROFILE({ groom, bride: { ...bride, picture: "" } }));
+    }
+  };
+
+
   return (
     <div>
       <div className='flex flex-col gap-1 mt-7'>
-        <p className='font-semibold text-custom-gray'>Upload the photo that will be used for the {selected}</p>
-        {<ImageInput handleImageChange={() => {}}/>}
+        <p className='font-semibold text-custom-gray'>Upload the photo that will be used for the {selected}</p>{selected === 'Groom' && groom.picture ? (
+          <ImagePreview image={groom.picture} handleDeleteImage={handleDeleteImage} />
+        ) : selected === 'Bride' && bride.picture ? (
+          <ImagePreview image={bride.picture} handleDeleteImage={handleDeleteImage} />
+        ) : (
+          <ImageInput handleImageChange={handleImageChange} />
+        )}
       </div>
       <div className='mt-7 flex flex-col gap-3'>
         <Input
           label={`${selected}'s full name`}
           placeholder={`${selected === 'Groom' ? 'Man' : 'Woman'}'s full name`}
-          value={selected === 'Groom' ? groomFullName : brideFullName}
-          onChange={(e) =>
-            selected === 'Groom' ? setGroomFullName(e.target.value) : setBrideFullName(e.target.value)
-          }
+          value={selected === 'Groom' ? groom.fullName : bride.fullName}
+          onChange={(e) => handleChange('fullName', e.target.value)}
         />
 
         <Input
-          label={`${selected === 'Groom' ? "Father's name (Optional)" : "Father's name (Optional)"}`}
-          placeholder={`${selected === 'Groom' ? "Father's name" : "Father's name"}`}
-          value={selected === 'Groom' ? groomFatherName : brideFatherName}
-          onChange={(e) =>
-            selected === 'Groom' ? setGroomFatherName(e.target.value) : setBrideFatherName(e.target.value)
-          }
+          label={`Father's name (Optional)`}
+          placeholder={`Father's name`}
+          value={selected === 'Groom' ? groom.fatherName : bride.fatherName}
+          onChange={(e) => handleChange('fatherName', e.target.value)}
         />
 
         <Input
-          label={`${selected === 'Groom' ? "Mother's name (Optional)" : "Mother's name (Optional)"}`}
-          placeholder={`${selected === 'Groom' ? "Mother's name" : "Mother's name"}`}
-          value={selected === 'Groom' ? groomMotherName : brideMotherName}
-          onChange={(e) =>
-            selected === 'Groom' ? setGroomMotherName(e.target.value) : setBrideMotherName(e.target.value)
-          }
+          label={`Mother's name (Optional)`}
+          placeholder={`Mother's name`}
+          value={selected === 'Groom' ? groom.motherName : bride.motherName}
+          onChange={(e) => handleChange('motherName', e.target.value)}
         />
 
         <Input
           label={`What order do you come in your family (Optional)`}
           placeholder={`First, Second, Youngest, Only Child`}
-          value={selected === 'Groom' ? groomOrder : brideOrder}
-          onChange={(e) =>
-            selected === 'Groom' ? setGroomOrder(e.target.value) : setBrideOrder(e.target.value)
-          }
+          value={selected === 'Groom' ? groom.orderComeFamily : bride.orderComeFamily}
+          onChange={(e) => handleChange('orderComeFamily', e.target.value)}
         />
       </div>
     </div>
-  )
-}
+  );
+};
+
 
 const ContentProfilePage = () => {
   const [selected, setSelected] = useState('Groom')

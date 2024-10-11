@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import ImageInput from "../../image-input/ImageInput";
 import Input from "../../input-group/input/Input";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,38 +10,31 @@ const CoverForm = () => {
   const { cover, groomNickName, brideNickName } = useSelector(
     (state: RootState) => state.template
   );
-  const [groomNickname, setGroomNickname] = useState(groomNickName);
-  const [brideNickname, setBrideNickname] = useState(brideNickName);
-  const [selectedCover, setSelectedCover] = useState<File | null>(
-    cover || null
-  );
   const dispatch = useDispatch();
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setSelectedCover(file);
-      dispatch(SET_COVER({ cover: file, groomNickName, brideNickName }));
+      const coverUrl = URL.createObjectURL(file);
+      dispatch(SET_COVER({ cover: coverUrl, groomNickName, brideNickName }));
     }
   };
 
-  const handleGroomNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleGroomNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newGroomName = e.target.value;
-    setGroomNickname(newGroomName);
     dispatch(
       SET_COVER({
-        cover: selectedCover,
+        cover: cover,
         groomNickName: newGroomName,
         brideNickName,
       })
     );
   };
 
-  const handleBrideNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBrideNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newBrideName = e.target.value;
-    setBrideNickname(newBrideName);
     dispatch(
       SET_COVER({
-        cover: selectedCover,
+        cover: cover,
         groomNickName,
         brideNickName: newBrideName,
       })
@@ -49,8 +42,7 @@ const CoverForm = () => {
   };
 
   const handleDeleteImage = () => {
-    setSelectedCover(null);
-    dispatch(SET_COVER({ cover: null, groomNickName, brideNickName }));
+    dispatch(SET_COVER({ cover: "", groomNickName, brideNickName }));
   };
 
   return (
@@ -68,13 +60,13 @@ const CoverForm = () => {
           label={`Groom's nickname`}
           placeholder="Man"
           onChange={handleGroomNameChange}
-          value={groomNickname}
+          value={groomNickName}
         />
         <Input
           label={`Bride's nickname`}
           placeholder="Woman"
           onChange={handleBrideNameChange}
-          value={brideNickname}
+          value={brideNickName}
         />
       </div>
     </div>

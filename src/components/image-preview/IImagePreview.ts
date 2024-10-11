@@ -1,4 +1,4 @@
 export interface IImagePreview {
-  image: File;
+  image: string;
   handleDeleteImage: () => void;
 }

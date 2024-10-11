@@ -16,9 +16,9 @@ export interface TemplateState {
   id: string;
   userId: string;
   templateId: string;
-  cover?: File | null;
-  groomNickName?: string;
-  brideNickName?: string;
+  cover: string;
+  groomNickName: string;
+  brideNickName: string;
   openingRemarks: string;
   closingRemarks: string;
   groom: {
@@ -66,7 +66,7 @@ const initialState: TemplateState = {
   id: "",
   userId: "",
   templateId: "",
-  cover: null,
+  cover: "",
   groomNickName: "",
   brideNickName: "",
   openingRemarks: "",
@@ -120,13 +120,36 @@ export const TemplateSlice = createSlice({
       state.templateId = action.payload;
     },
     SET_COVER: (state, action: PayloadAction<Partial<TemplateState>>) => {
-      state.cover = action.payload.cover; 
-      state.groomNickName = action.payload.groomNickName;
-      state.brideNickName = action.payload.brideNickName;
-    }
+      state.cover = action.payload.cover || "";
+      state.groomNickName = action.payload.groomNickName || "";
+      state.brideNickName = action.payload.brideNickName || "";
+    },
+    SET_CONTENT_REGARDS: (
+      state,
+      action: PayloadAction<Partial<TemplateState>>
+    ) => {
+      state.openingRemarks = action.payload.openingRemarks || "";
+      state.closingRemarks = action.payload.closingRemarks || "";
+    },
+    SET_CONTENT_PROFILE: (
+      state,
+      action: PayloadAction<Partial<TemplateState>>
+    ) => {
+      state.groom.picture = action.payload.groom?.picture || "";
+      state.groom.fullName = action.payload.groom?.fullName || "";
+      state.groom.fatherName = action.payload.groom?.fatherName || "";
+      state.groom.motherName = action.payload.groom?.motherName || "";
+      state.groom.orderComeFamily = action.payload.groom?.orderComeFamily || "";
+      state.bride.picture = action.payload.bride?.picture || "";
+      state.bride.fullName = action.payload.bride?.fullName || "";
+      state.bride.fatherName = action.payload.bride?.fatherName || "";
+      state.bride.motherName = action.payload.bride?.motherName || "";
+      state.bride.orderComeFamily = action.payload.bride?.orderComeFamily || "";
+    },
   },
 });
 
-export const { SET_TEMPLATE, SET_COVER } = TemplateSlice.actions;
+export const { SET_TEMPLATE, SET_COVER, SET_CONTENT_REGARDS, SET_CONTENT_PROFILE } =
+  TemplateSlice.actions;
 
 export default TemplateSlice;
