@@ -36,7 +36,7 @@ const Navbar = () => {
                             <ProfileModal />
                         }
                     </div>
-                </> : <Button onClick={() => nav('/login')} text="Sign In" className="text-custom-white w-fit px-5 py-2" />}
+                </> : <Button onClick={() => nav('/login')} children="Sign In" className="text-custom-white w-fit px-5 py-2" />}
             </div>
             {showProfileModal && <div className='w-screen h-screen z-40 fixed top-0 left-0' onClick={() => setShowProfileModal(false)}></div>}
         </div>

@@ -29,7 +29,7 @@ const RenderContentProfilePage = (selected: string) => {
     <div>
       <div className='flex flex-col gap-1 mt-7'>
         <p className='font-semibold text-custom-gray'>Upload the photo that will be used for the {selected}</p>
-        {<ImageInput />}
+        {<ImageInput handleImageChange={() => {}}/>}
       </div>
       <div className='mt-7 flex flex-col gap-3'>
         <Input

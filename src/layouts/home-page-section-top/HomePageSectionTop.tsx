@@ -13,7 +13,7 @@ const HomePageSectionTop = () => {
                         <h1 className='text-4xl'>Cerita Nikah</h1>
                     </div>
                     <p className='text-[#F093B5] font-semibold text-lg'>Easily create elegant, personalized wedding invitations with our self-service platform. Choose your design, add your story, and share instantly. Fast, free, and fully customized!</p>
-                    <Button onClick={() => nav('/dashboard')} text="Create Now!" className="text-custom-white w-[165px] max-sm:w-[150px]" />
+                    <Button onClick={() => nav('/dashboard')} children="Create Now!" className="text-custom-white w-[165px] max-sm:w-[150px]" />
                 </div>
                 <div className='w-[50%] z-40 flex items-center justify-center max-sm:hidden'>
                     <img src="assets/images/homepage-right-image.png" alt="homepage" className='w-[35rem] max-2xl:w-[30rem] max-xl:w-[20rem]' />

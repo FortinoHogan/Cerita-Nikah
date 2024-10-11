@@ -1,5 +1,7 @@
+import { ReactNode } from "react";
+
 export interface IButton {
-    text: string
-    onClick: () => void
-    className: string
+  children: ReactNode;
+  onClick: () => void;
+  className: string;
 }
