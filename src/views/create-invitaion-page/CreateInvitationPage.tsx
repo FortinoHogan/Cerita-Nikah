@@ -9,6 +9,7 @@ import { FormProvider } from '../../context/form-context/FormContext'
 import { ContentProvider } from '../../context/content-context/ContentContext'
 import { useAuth } from '../../context/auth-context/AuthContext'
 import { Navigate } from 'react-router-dom'
+import { GalleryProvider } from '../../context/gallery-context/GalleryContext'
 
 const CreateInvitationPage = () => {
     const authContext = useAuth()
@@ -27,7 +28,9 @@ const CreateInvitationPage = () => {
                         </div>
                         <div className='w-[50%]'>
                             <ContentProvider>
-                                <EditTemplateForm />
+                                <GalleryProvider>
+                                    <EditTemplateForm />
+                                </GalleryProvider>
                             </ContentProvider>
                         </div>
                     </FormProvider>

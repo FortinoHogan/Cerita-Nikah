@@ -10,7 +10,7 @@ const ImageInput = (props: IImageInput) => {
                     <img src="assets/images/input-image.png" alt="input-image" className='w-16'/>
                     <p className="mb-2 text-sm text-custom-pink font-semibold">Click here to upload image</p>
                 </div>
-                <input id="dropzone-file" type="file" className="hidden" onChange={handleImageChange}/>
+                <input type="file" className="hidden" onChange={handleImageChange}/>
             </label>
         </div>
     )

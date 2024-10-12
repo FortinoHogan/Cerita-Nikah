@@ -53,8 +53,8 @@ const LoveStoryCard = (props: ILoveStoryCard) => {
         onChange={(e) => handleInputChange("storyDescription", e.target.value)}
       />
       <div className="flex flex-col gap-1 justify-center w-full">
-        <label htmlFor="" className="text-custom-gray font-semibold">Story Photo</label>
-        <input className="block w-full border border-custom-pink rounded-lg cursor-pointer focus:outline-none p-3 gap-3" id="file_input" type="file" onChange={handleImageChange} />
+        <label className="text-custom-gray font-semibold">Story Photo</label>
+        <input className="block w-full border border-custom-pink rounded-lg cursor-pointer focus:outline-none p-3 gap-3" type="file" onChange={handleImageChange} />
       </div>
       <div className="flex gap-5 mt-5">
         <div className="flex items-center justify-center p-3 rounded-xl w-14 border-[3px] border-custom-pink cursor-pointer" onClick={handleDelete}>

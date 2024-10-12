@@ -8,10 +8,12 @@ import LoveStoryForm from '../../components/edit-form-content/love-story-form/Lo
 import GalleryForm from '../../components/edit-form-content/gallery-form/GalleryForm';
 import BackgroundMusicForm from '../../components/edit-form-content/background-music-form/BackgroundMusicForm';
 import { useContentContext } from '../../context/content-context/ContentContext';
+import { useGalleryContext } from '../../context/gallery-context/GalleryContext';
 
 const EditTemplateForm = () => {
     const { formState } = useFormContext();
     const { contentState, setContentState } = useContentContext();
+    const { galleryState, setGalleryState } = useGalleryContext();
     const renderFormContent = () => {
         switch (formState) {
             case 'templates':
@@ -35,7 +37,7 @@ const EditTemplateForm = () => {
 
     return (
         <div className='w-full h-full relative'>
-            <div className={`border-2 border-custom-pink bg-[#fffcfc] rounded-xl w-full h-full gap-5 flex flex-col p-5 ${formState === 'content' ? 'rounded-tr-none' : ''}`}>
+            <div className={`border-2 border-custom-pink bg-[#fffcfc] rounded-xl w-full h-full gap-5 flex flex-col p-5 ${formState === 'content' || formState === 'gallery' ? 'rounded-tr-none' : ''}`}>
                 {renderFormContent()}
             </div>
             {formState === 'content' && (
@@ -45,6 +47,16 @@ const EditTemplateForm = () => {
                     </p>
                     <p className={`${contentState === 'profile' ? 'bg-custom-pink' : 'bg-[#f2a3c0]'} text-custom-white py-2 px-4 rounded-tr-xl cursor-pointer text-center`} onClick={() => setContentState('profile')}>
                         Profile
+                    </p>
+                </div>
+            )}
+            {formState === 'gallery' && (
+                <div className={`transform rotate-90 absolute top-[4rem] right-[-6.56rem] flex rounded-tl-xl rounded-tr-xl ${contentState === 'regards' ? '' : ''}`}>
+                    <p className={` ${galleryState === 'images' ? 'bg-custom-pink' : 'bg-[#f2a3c0]'} text-custom-white py-2 px-4 rounded-tl-xl cursor-pointer text-center`} onClick={() => setGalleryState('images')}>
+                        Images
+                    </p>
+                    <p className={`${galleryState === 'video' ? 'bg-custom-pink' : 'bg-[#f2a3c0]'} text-custom-white py-2 px-4 rounded-tr-xl cursor-pointer text-center`} onClick={() => setGalleryState('video')}>
+                        Video
                     </p>
                 </div>
             )}

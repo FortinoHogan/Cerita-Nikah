@@ -1,7 +1,6 @@
 import React, { useState, ChangeEvent } from 'react';
 import SwitchButton from '../../switch-button/SwitchButton';
 import Input from '../../input-group/input/Input';
-import { EventFormProps } from './EventForm.interface';
 import DatePickerInput from '../../input-group/date-picker/DatePickerInput';
 import TimeRangeInput from '../../input-group/time-range-input/TimeRangeInput';
 import Textarea from '../../input-group/textarea/Textarea';

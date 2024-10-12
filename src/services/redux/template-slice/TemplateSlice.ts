@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ILoveStoryCard } from "../../../components/love-story-card/ILoveStoryCard";
 
-interface IGallery {
+export interface IGallery {
+  imageId: string;
   image: string;
 }
 
@@ -224,6 +225,25 @@ export const TemplateSlice = createSlice({
         }
       }
     },
+    ADD_IMAGE_GALLERY: (state, action: PayloadAction<IGallery>) => {
+      if (!state.gallery) {
+        state.gallery = [];
+      }
+      state.gallery?.push(action.payload);
+    },
+    DELETE_IMAGE_GALLERY: (state, action: PayloadAction<string>) => {
+      if (state.gallery) {
+        const index = state.gallery.findIndex(
+          (image) => image.imageId === action.payload
+        );
+        if (index !== -1) {
+          state.gallery.splice(index, 1);
+        }
+      }
+    },
+    SET_LINK_VIDEO: (state, action: PayloadAction<string>) => {
+      state.linkVideo = action.payload;
+    },
   },
 });
 
@@ -239,6 +259,9 @@ export const {
   SET_LOVE_STORY,
   DELETE_LOVE_STORY,
   REMOVE_LOVE_STORY,
+  ADD_IMAGE_GALLERY,
+  DELETE_IMAGE_GALLERY,
+  SET_LINK_VIDEO,
 } = TemplateSlice.actions;
 
 export default TemplateSlice;

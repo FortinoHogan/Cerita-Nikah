@@ -1,4 +1,4 @@
 export interface IImagePreview {
   image: string;
-  handleDeleteImage: () => void;
+  handleDeleteImage: (id: any) => void;
 }
