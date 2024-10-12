@@ -18,7 +18,7 @@ const RenderMusicRow = (props: MusicRowProps) => {
   const { name, path, isPlayed, handleSelectMusic, handlePlayMusic } = props
   return (
     <div className='border-b-2 border-custom-pink'>
-      <div className='flex items-center justify-center w-full p-5'>
+      <div className='flex items-center justify-center w-full p-5 gap-5'>
         <p className={`${isPlayed ? 'text-custom-pink' : 'text-custom-gray'} w-[50%] font-semibold`}>{name}</p>
         <div className='w-[50%] flex items-center justify-center gap-5'>
           <Button onClick={() => { handlePlayMusic(path) }} className='w-full text-custom-white gap-2'>
