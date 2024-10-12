@@ -31,12 +31,15 @@ const GalleryImagePage = () => {
 
   return (
     <div>
-      <h1 className='font-semibold text-custom-gray'>Upload images to use in the gallery (Max 4)</h1>
+      <h1 className='font-semibold text-lg text-custom-gray'>Upload images to use in the gallery (Max 4)</h1>
       <p className='font-semibold text-sm text-custom-light-gray'>Subscribers can upload to 20 images<span className='text-custom-pink'>*</span></p>
       <div className='flex flex-col gap-5'>
         <Button onClick={() => { }} className="text-custom-white w-full mt-4">
           <label className="flex flex-col items-center justify-center w-full cursor-pointer">
-            <p>+ Add Image</p>
+            <div className='flex items-center justify-center gap-2'>
+              <img src="assets/images/select.png" alt="select" className='w-5'/>
+              <p>Add Image</p>
+            </div>
             <input type="file" className="hidden" onChange={handleImageChange} />
           </label>
         </Button>
@@ -58,7 +61,7 @@ const GalleryVideoPage = () => {
 
   return (
     <div>
-      <h1 className='font-semibold text-custom-gray'>Copy the video link into the field</h1>
+      <h1 className='font-semibold text-lg text-custom-gray'>Copy the video link into the field</h1>
       <p className='font-semibold text-sm text-custom-light-gray'>This feature used by “Do It Youself” subscribers<span className='text-custom-pink'>*</span></p>
       <div className='mt-5'>
         <Textarea placeholder="Copy youtube, drive link here" value={linkVideo} onChange={handleVideoLinkChange} />

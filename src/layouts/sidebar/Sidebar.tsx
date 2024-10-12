@@ -14,6 +14,8 @@ const Sidebar = () => {
             <SidebarButton text="Love Story" onClick={() => { setIsActive('Love Story'); setFormState('loveStory') }} image="assets/images/love-story.png" isActive={isActive} />
             <SidebarButton text="Gallery" onClick={() => { setIsActive('Gallery'); setFormState('gallery') }} image="assets/images/gallery.png" isActive={isActive} />
             <SidebarButton text="Background Music" onClick={() => { setIsActive('Background Music'); setFormState('backgroundMusic') }} image="assets/images/background-music.png" isActive={isActive} />
+            <SidebarButton text="RSVP Invitation" onClick={() => { setIsActive('RSVP Invitation'); setFormState('rsvpInvitation') }} image="assets/images/rsvp-invitation.png" isActive={isActive} />
+            <SidebarButton text="Angpao" onClick={() => { setIsActive('Angpao'); setFormState('angpao') }} image="assets/images/angpao.png" isActive={isActive} />
         </div>
     )
 }

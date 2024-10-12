@@ -9,6 +9,8 @@ import GalleryForm from '../../components/edit-form-content/gallery-form/Gallery
 import BackgroundMusicForm from '../../components/edit-form-content/background-music-form/BackgroundMusicForm';
 import { useContentContext } from '../../context/content-context/ContentContext';
 import { useGalleryContext } from '../../context/gallery-context/GalleryContext';
+import RSVPInvitationForm from '../../components/edit-form-content/rsvp-invitation-form/RSVPInvitationForm';
+import AngpaoForm from '../../components/edit-form-content/angpao-form/AngpaoForm';
 
 const EditTemplateForm = () => {
     const { formState } = useFormContext();
@@ -30,6 +32,10 @@ const EditTemplateForm = () => {
                 return <GalleryForm />;
             case 'backgroundMusic':
                 return <BackgroundMusicForm />;
+            case 'rsvpInvitation':
+                return <RSVPInvitationForm />
+            case 'angpao':
+                return <AngpaoForm />
             default:
                 return <TemplatesForm />;
         }

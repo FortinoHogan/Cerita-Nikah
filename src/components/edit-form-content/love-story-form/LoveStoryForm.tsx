@@ -26,10 +26,14 @@ const LoveStoryForm = () => {
   return (
     <div className="flex flex-col gap-5 overflow-y-auto scrollbar-hidden">
       <Button
-        children="+ Add new Story"
         onClick={addNewCard}
         className="w-full text-white"
-      />
+      >
+        <div className='flex items-center justify-center gap-2'>
+              <img src="assets/images/select.png" alt="select" className='w-5'/>
+              <p>Add New Story</p>
+            </div>
+      </Button>
       <div className="flex flex-col gap-5">
         {loveStorySaved && loveStorySaved.map((card, index) => (
           <LoveStoryCardFilled key={card.storyId} {...card} storyIndex={index}/>

@@ -244,6 +244,9 @@ export const TemplateSlice = createSlice({
     SET_LINK_VIDEO: (state, action: PayloadAction<string>) => {
       state.linkVideo = action.payload;
     },
+    SET_BACKGROUND_MUSIC: (state, action: PayloadAction<string>) => {
+      state.backgroundMusic = action.payload;
+    }
   },
 });
 
@@ -262,6 +265,7 @@ export const {
   ADD_IMAGE_GALLERY,
   DELETE_IMAGE_GALLERY,
   SET_LINK_VIDEO,
+  SET_BACKGROUND_MUSIC,
 } = TemplateSlice.actions;
 
 export default TemplateSlice;
