@@ -80,7 +80,7 @@ const BackgroundMusicForm = () => {
   }
 
   return (
-    <div className='flex flex-col gap-7'>
+    <div className='flex flex-col gap-7 overflow-y-auto scrollbar-hidden'>
       <div className='flex flex-col gap-2'>
         <h1 className='font-semibold text-lg text-custom-gray'>The song chosen for the invitation:</h1>
         <MusicDisplay active={backgroundMusic === '' ? false : true} text={backgroundMusic} />

@@ -65,7 +65,7 @@ const RSVPInvitationForm = () => {
   ]
 
   return (
-    <div className='flex flex-col gap-5'>
+    <div className='flex flex-col gap-5 overflow-y-auto scrollbar-hidden'>
       <div>
         <h1 className='font-semibold text-lg text-custom-gray'>With the RSVP feature, you can easily track who will attend or not, helping you manage your guest list efficiently</h1>
         <p className='font-semibold text-sm text-[#a8a8a8]'>Only Subscribers can activated RSVP feature<span className='text-custom-pink'>*</span></p>
