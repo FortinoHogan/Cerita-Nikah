@@ -11,4 +11,12 @@
     font-family: "Edith-Regular";
     src: url("/public/assets/fonts/Edith-Regular.ttf") format("opentype");
   }
+  @font-face {
+    font-family: "Forum-Regular";
+    src: url("/public/assets/fonts/Forum-Regular.ttf") format("opentype");
+  }
+  @font-face {
+    font-family: "Poppins-Regular";
+    src: url("/public/assets/fonts/Poppins-Regular.otf") format("opentype");
+  }
 }

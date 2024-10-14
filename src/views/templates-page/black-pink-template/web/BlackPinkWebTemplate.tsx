@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useCountdown } from "../../../../libs/countdown";
 import { templatePersonalizedExample } from "../../../../libs/templatePersonalized.example";
 import { convertDotDate, convertSlashDate } from "../../../../libs/convertDate";
+import TemplateCopyright from "../../../../components/template-copyright/TemplateCopyright";
 
 const BlackPinkWebTemplate = () => {
   const [template, setTemplate] = useState(templatePersonalizedExample);
@@ -169,10 +170,94 @@ const BlackPinkWebTemplate = () => {
               A celebration love and union.
             </p>
           </div>
-          <div className="mt-5 w-10/12 mx-auto bg-[#5E3737]">
-            <div className="w-9/12 mx-auto">
+          <div className="mt-6 w-10/12 mx-auto font-edith">
+            <div className="text-xl w-9/12 mx-auto">
               <p>Jumat, 17 Agustus 1945</p>
-              <p>06:00 - 10:00 WIB</p>
+              <p className="ml-2">06:00 - 10:00 WIB</p>
+              <p className="mt-5 underline">
+                {template.eventReception.locationAddress}
+              </p>
+            </div>
+          </div>
+          <div className="pt-32">
+            <p className="font-edith text-center text-5xl">RSVP</p>
+            <div className="w-full flex justify-center flex-col items-center mt-5 pb-36">
+              <input
+                className="w-11/12 bg-black outline-none focus:ring-0 px-6 placeholder-[#FFA5A5] py-2 text-[#FFA5A5] rounded-md"
+                type="text"
+                placeholder="Name..."
+              />
+              <div className="flex my-5 gap-2 flex-col text-[#FFA5A5]">
+                <div className="flex gap-2">
+                  <input
+                    type="radio"
+                    name="attendance"
+                    value="attend"
+                    id="attend"
+                    className="accent-[#FFA5A5]"
+                  />
+                  <label htmlFor="attend">Delightfully accepts</label>
+                </div>
+                <div className="flex gap-2">
+                  <input
+                    type="radio"
+                    name="attendance"
+                    value="absent"
+                    id="absent"
+                    className="accent-[#FFA5A5]"
+                  />
+                  <label htmlFor="absent">Regretfully decline</label>
+                </div>
+              </div>
+              <button className="w-11/12 bg-[#FFA5A5] py-1 rounded-md text-black font-bold">
+                SEND
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="from-[#805C5C] to-[#181313] bg-gradient-to-b">
+          <div className="pt-10">
+            <p className="text-center font-edith text-5xl text-[#FFA5A5]">
+              Blessing & Wishes
+            </p>
+            <div className="mt-5 h-96 overflow-auto scrollbar-hidden">
+              {template.comment.map((c, index) => (
+                <div className="flex flex-col mt-5 bg-black w-9/12 py-2 mx-auto font-edith px-5 rounded-md">
+                  <p className="text-2xl text-[#FFA5A5]">{c.name}</p>
+                  <p className="font-forum">{c.remark}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-5 w-10/12 mx-auto font-edith">
+              <p className="text-3xl mb-5">Send Blessing & Wishes</p>
+              <div className="flex flex-col gap-4">
+                <input
+                  className="bg-black outline-none focus:ring-0 px-6 placeholder-[#FFA5A5] py-2 text-[#FFA5A5] rounded-md"
+                  type="text"
+                  placeholder="Name..."
+                  name=""
+                  id=""
+                />
+                <input
+                  className="bg-black outline-none focus:ring-0 px-6 placeholder-[#FFA5A5] py-2 text-[#FFA5A5] rounded-md"
+                  type="text"
+                  placeholder="Blessing & Wishes..."
+                  name=""
+                  id=""
+                />
+                <button className="bg-[#FFA5A5] py-1 rounded-md text-black font-bold">
+                  SEND
+                </button>
+              </div>
+            </div>
+            <div className="pt-36">
+              <div className="flex gap-5 flex-col justify-center items-center">
+                <p className="font-edith text-3xl">Angpao</p>
+                <img className="w-8/12" src="/assets/images/qr.png" alt="" />
+              </div>
+            </div>
+            <div className="pt-20">
+              <TemplateCopyright backgroundColor="bg-black" />
             </div>
           </div>
         </div>
