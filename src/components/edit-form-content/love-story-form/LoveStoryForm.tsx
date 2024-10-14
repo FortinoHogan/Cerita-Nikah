@@ -19,14 +19,14 @@ const LoveStoryForm = () => {
     storyPhoto: "",
   });
 
-  const addNewCard = () => {
+  const handleAddNewCard = () => {
     dispatch(ADD_LOVE_STORY(newCard()));
   };
 
   return (
     <div className="flex flex-col gap-5 overflow-y-auto scrollbar-hidden">
       <Button
-        onClick={addNewCard}
+        onClick={handleAddNewCard}
         className="w-full text-white"
       >
         <div className='flex items-center justify-center gap-2'>

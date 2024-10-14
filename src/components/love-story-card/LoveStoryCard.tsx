@@ -33,7 +33,7 @@ const LoveStoryCard = (props: ILoveStoryCard) => {
   };
 
   return (
-    <div className="flex flex-col gap-3 w-full outline-none rounded-lg p-3 font-semibold text-custom-gray border-custom-pink border-[3px] overflow-y-auto scrollbar-hidden">
+    <div className="flex flex-col gap-3 w-full outline-none rounded-xl p-3 font-semibold text-custom-gray border-custom-pink border-[3px] overflow-y-auto scrollbar-hidden">
       <Input
         label="Story Title"
         placeholder="First Meet"

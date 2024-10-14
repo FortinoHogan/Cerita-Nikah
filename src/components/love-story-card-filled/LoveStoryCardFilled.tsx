@@ -17,7 +17,7 @@ const LoveStoryCardFilled = (props: ILoveStoryCardFilled) => {
     }
 
     return (
-        <div className="flex flex-col gap-3 w-full outline-none rounded-lg p-3 font-semibold text-custom-gray border-custom-pink border-[3px] overflow-y-auto scrollbar-hidden">
+        <div className="flex flex-col gap-3 w-full outline-none rounded-xl p-3 font-semibold text-custom-gray border-custom-pink border-[3px] overflow-y-auto scrollbar-hidden">
             <div className='flex justify-between'>
                 <h1>{storyIndex + 1}{storyIndex + 1 == 1 ? "st" : storyIndex + 1 == 2 ? "nd" : storyIndex + 1 == 3 ? "rd" : "th"} Story</h1>
                 <div className='flex gap-3'>

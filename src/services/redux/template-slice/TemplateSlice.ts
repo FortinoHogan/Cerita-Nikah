@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ILoveStoryCard } from "../../../components/love-story-card/ILoveStoryCard";
+import { IAccount } from "../../../components/account-card/IAccountCard";
 
 export interface IGallery {
   imageId: string;
@@ -52,6 +53,9 @@ export interface TemplateState {
   gallery: IGallery[] | null;
   linkVideo: string;
   backgroundMusic: string;
+  qris: string;
+  accounts: IAccount[] | null;
+  accountsSaved: IAccount[] | null;
   price: number;
   isPay: boolean;
   domain: string;
@@ -103,6 +107,9 @@ const initialState: TemplateState = {
   gallery: null,
   linkVideo: "",
   backgroundMusic: "",
+  qris: "",
+  accounts: null,
+  accountsSaved: null,
   price: 0,
   isPay: false,
   domain: "",
@@ -246,7 +253,58 @@ export const TemplateSlice = createSlice({
     },
     SET_BACKGROUND_MUSIC: (state, action: PayloadAction<string>) => {
       state.backgroundMusic = action.payload;
-    }
+    },
+    SET_QRIS: (state, action: PayloadAction<string>) => {
+      state.qris = action.payload;
+    },
+    DELETE_QRIS: (state) => {
+      state.qris = "";
+    },
+    ADD_ACCOUNT: (state, action: PayloadAction<IAccount>) => {
+      if (!state.accounts) {
+        state.accounts = [];
+      }
+      state.accounts?.push(action.payload);
+    },
+    SAVE_ACCOUNT: (state, action: PayloadAction<IAccount>) => {
+      if (!state.accountsSaved) {
+        state.accountsSaved = [];
+      }
+      state.accountsSaved?.push(action.payload);
+    },
+    SET_ACCOUNT: (state, action: PayloadAction<IAccount>) => {
+      if (state.accounts) {
+        const index = state.accounts.findIndex(
+          (account) => account.accountId === action.payload.accountId
+        );
+        if (index !== -1) {
+          state.accounts[index] = {
+            ...state.accounts[index],
+            ...action.payload,
+          };
+        }
+      }
+    },
+    DELETE_ACCOUNT: (state, action: PayloadAction<string>) => {
+      if (state.accountsSaved) {
+        const index = state.accountsSaved.findIndex(
+          (account) => account.accountId === action.payload
+        );
+        if (index !== -1) {
+          state.accountsSaved.splice(index, 1);
+        }
+      }
+    },
+    REMOVE_ACCOUNT: (state, action: PayloadAction<string>) => {
+      if (state.accounts) {
+        const index = state.accounts.findIndex(
+          (account) => account.accountId === action.payload
+        );
+        if (index !== -1) {
+          state.accounts.splice(index, 1);
+        }
+      }
+    },
   },
 });
 
@@ -266,6 +324,13 @@ export const {
   DELETE_IMAGE_GALLERY,
   SET_LINK_VIDEO,
   SET_BACKGROUND_MUSIC,
+  SET_QRIS,
+  DELETE_QRIS,
+  ADD_ACCOUNT,
+  SAVE_ACCOUNT,
+  SET_ACCOUNT,
+  DELETE_ACCOUNT,
+  REMOVE_ACCOUNT,
 } = TemplateSlice.actions;
 
 export default TemplateSlice;
