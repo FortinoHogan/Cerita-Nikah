@@ -1,14 +1,11 @@
 import React from "react";
 import { ITemplatePersonalizedPage } from "./TemplatePersonalizedPage.interfaces";
+import GenerateTemplate from "../../components/generate-template/GenerateTemplate";
 
 const TemplatePersonalizedPage = (props: ITemplatePersonalizedPage) => {
   const { template } = props;
-  return (
-    <div>
-      <div>{template.groom.fullName}</div>
-      <div>{template.bride.fullName}</div>
-    </div>
-  );
+
+  return <GenerateTemplate id={template.templateId} />;
 };
 
 export default TemplatePersonalizedPage;
