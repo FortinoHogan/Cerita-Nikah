@@ -20,12 +20,12 @@ const RenderMusicRow = (props: MusicRowProps) => {
     <div className='border-b-2 border-custom-pink'>
       <div className='flex items-center justify-center w-full p-5 gap-5'>
         <p className={`${isPlayed ? 'text-custom-pink' : 'text-custom-gray'} w-[50%] font-semibold`}>{name}</p>
-        <div className='w-[50%] flex items-center justify-center gap-5'>
-          <Button onClick={() => { handlePlayMusic(path) }} className='w-full text-custom-white gap-2'>
+        <div className='w-[50%] flex items-center justify-center gap-5 lg:w-[75%]'>
+          <Button onClick={() => { handlePlayMusic(path) }} className='w-full min-w-28 text-custom-white gap-2'>
             <img src={isPlayed ? "assets/images/stop.png" : "assets/images/play.png"} alt="button" className='w-5' />
             {isPlayed ? 'Stop' : 'Play'}
           </Button>
-          <Button onClick={() => { handleSelectMusic(name) }} className='w-full text-custom-white gap-2'>
+          <Button onClick={() => { handleSelectMusic(name) }} className='w-full min-w-28 text-custom-white gap-2'>
             <img src="assets/images/select.png" alt="button" className='w-5' />
             Select
           </Button>
