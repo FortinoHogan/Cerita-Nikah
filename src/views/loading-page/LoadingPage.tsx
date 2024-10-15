@@ -9,9 +9,9 @@ const LoadingPage = () => {
         alt="background"
         className="w-full h-full opacity-[30%] object-cover object-right fixed"
       />
-      <div className="flex justify-center items-center">
-        <img src="/assets/images/pacman.svg" alt="" />
-      </div>
+      {/* <div className="flex justify-center items-center"> */}
+        <img src="/assets/images/loading.svg" className="w-full max-h-screen" alt="" />
+      {/* </div> */}
     </div>
   );
 };
