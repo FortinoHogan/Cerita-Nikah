@@ -7,6 +7,7 @@ import { ADD_ACCOUNT, DELETE_QRIS, SET_QRIS } from '../../../services/redux/temp
 import { v4 as uuidv4 } from 'uuid';
 import AccountCard from '../../account-card/AccountCard';
 import { IAccount } from '../../account-card/IAccountCard';
+import AccountCardFilled from '../../account-card-filled/AccountCardFilled';
 
 const AngpaoForm = () => {
   const { qris, accounts, accountsSaved } = useSelector((state: RootState) => state.template);
@@ -15,7 +16,7 @@ const AngpaoForm = () => {
   const newCard = (): IAccount => ({
     accountId: uuidv4(),
     accountNumber: '',
-    bankName: '',
+    bankName: 'BCA',
   });
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -46,8 +47,8 @@ const AngpaoForm = () => {
           <p className='text-custom-pink font-semibold min-w-28'>Add account</p>
           <hr className="h-[2px] w-full bg-custom-pink border-0  rounded-sm" />
         </div>}
-        {accounts && accounts.map((account) => <AccountCard key={account.accountId} accountId={account.accountId} accountNumber={account.accountNumber} bankName={account.bankName}/>)}
-        {/* {accountsSaved && accountsSaved.map((account) => <AccountCard key={account.accountId} accountId={account.accountId} accountNumber={account.accountNumber} bankName={account.bankName} />)} */}
+        {accounts && accounts.map((account) => <AccountCard key={account.accountId} {...account}/>)}
+        {accountsSaved && accountsSaved.map((account) => <AccountCardFilled key={account.accountId} {...account}/>)}
       </div>
     </div>
   )
