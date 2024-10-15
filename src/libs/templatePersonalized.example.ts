@@ -3,7 +3,7 @@ import { ITemplatePersonalized } from "../interfaces/templatePersonalized.interf
 export const templatePersonalizedExample: ITemplatePersonalized = {
   id: "4465e604-18aa-4784-8bca-e17c06a84b2d",
   userId: "5fe1f46a-f67e-4f4a-80a1-742c1c4a2940",
-  templateId: "282a56a0-516d-48ab-ac6c-679e5417e034",
+  templateId: "efde7119-e53d-4733-9cc7-38cd2300d205",
   cover: "/assets/images/black-pink-template/black-pink-web-image.jpg",
   groomNickName: "Steven",
   brideNickName: "Evelyn",

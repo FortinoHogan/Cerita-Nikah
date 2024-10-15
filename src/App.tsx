@@ -3,20 +3,38 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./views/home-page/HomePage";
 import LoginPage from "./views/login-page/LoginPage";
 import RegisterPage from "./views/register-page/RegisterPage";
-import { templatePersonalizedExample } from "./libs/templatePersonalized.example";
 import TemplatePersonalizedPage from "./views/template-personalized-page/TemplatePersonalizedPage";
 import DashboardPage from "./views/dashboard-page/DashboardPage";
 import CreateInvitationPage from "./views/create-invitaion-page/CreateInvitationPage";
 import ViewCreateInvitationPage from "./views/view-create-invitation-page/ViewCreateInvitationPage";
+import { getTemplatePersonalizedByDomain } from "./services/template-personalized/TemplateService";
+import { ITemplatePersonalized } from "./interfaces/templatePersonalized.interfaces";
+import LoadingPage from "./views/loading-page/LoadingPage";
 
 function App() {
-  const [templatePersonalized, setTemplatePersonalized] = useState(
-    templatePersonalizedExample
-  );
-  // todo change templatePersonalizedExample into the real data
-  const isSubDomain = window.location.host === templatePersonalized.domain;
+  const [templatePersonalized, setTemplatePersonalized] =
+    useState<ITemplatePersonalized | null>(null);
+  const [loading, setLoading] = useState(true);
+  const isSubDomain = window.location.host.includes(".");
 
-  if (isSubDomain && templatePersonalized.isPay) {
+  useEffect(() => {
+    const fetchTemplatePersonalized = async () => {
+      const domain = window.location.host; // Get the current domain
+      const template = await getTemplatePersonalizedByDomain(domain); // Fetch template by domain
+      setTemplatePersonalized(template); // Set the template data into state
+      setLoading(false); // Stop the loading state
+    };
+
+    fetchTemplatePersonalized();
+  }, []);
+
+  if (loading && isSubDomain) {
+    return (
+      <LoadingPage />
+    )
+  }
+
+  if (templatePersonalized && !loading) {
     return (
       <Routes>
         <Route
