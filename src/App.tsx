@@ -15,7 +15,8 @@ function App() {
   const [templatePersonalized, setTemplatePersonalized] =
     useState<ITemplatePersonalized | null>(null);
   const [loading, setLoading] = useState(true);
-  const isSubDomain = window.location.host.includes(".");
+  const isSubDomain = window.location.host.endsWith(".ceritanikah.online") || window.location.host.endsWith(".localhost:3000");
+  // const isSubDomain = window.location.host.includes(".");
 
   useEffect(() => {
     const fetchTemplatePersonalized = async () => {
