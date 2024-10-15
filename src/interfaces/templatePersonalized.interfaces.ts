@@ -37,10 +37,14 @@ interface IComment {
   remark: string;
 }
 
-interface IPresent {
-  accountNumber?: string;
-  name?: string;
+interface IBankAccount {
+  bankName: string;
+  accountNumber: string
+}
+
+interface IBank {
   qrCode?: string;
+  bankAccount: IBankAccount[];
 }
 
 export interface ITemplatePersonalized {
@@ -64,6 +68,6 @@ export interface ITemplatePersonalized {
   backgroundMusic: string;
   price: number;
   isPay: boolean;
-  present: IPresent;
+  bank: IBank;
   domain: string;
 }

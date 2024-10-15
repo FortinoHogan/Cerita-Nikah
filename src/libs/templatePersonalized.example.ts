@@ -1,76 +1,70 @@
 import { ITemplatePersonalized } from "../interfaces/templatePersonalized.interfaces";
 
 export const templatePersonalizedExample: ITemplatePersonalized = {
-  id: "4465e604-18aa-4784-8bca-e17c06a84b2d",
-  userId: "5fe1f46a-f67e-4f4a-80a1-742c1c4a2940",
+  id: "12e81ed2-e710-4ead-8b25-370f12bd4c56",
+  userId: "0c2c7945-a52f-4d74-b6b6-58a2bb07c5d0",
   templateId: "efde7119-e53d-4733-9cc7-38cd2300d205",
   cover: "/assets/images/black-pink-template/black-pink-web-image.jpg",
-  groomNickName: "Steven",
-  brideNickName: "Evelyn",
-  openingRemarks: "",
+  groomNickName: "Damian",
+  brideNickName: "Isabelle",
+  openingRemarks:
+    "We give thanks to God for the blessing of love that has brought us together. It is with deep appreciation that we, along with our families, invite you to share in the celebration of our wedding day, as we unite our hearts in love and commitment.",
   closingRemarks: "",
   groom: {
     picture: "/assets/images/black-pink-template/groom.png",
-    fullName: "Steven Forsythia",
-    fatherName: "Mr. Mulyono Forsythia",
-    motherName: "Mrs. Puan Forsythia",
-    orderComeFamily: "Fourth Son of",
+    fullName: "Damian Renaud",
+    fatherName: "Mr. Marcus Renaud",
+    motherName: "Mrs. Eleanor Renaud",
+    orderComeFamily: "Second Son of ",
   },
   bride: {
     picture: "/assets/images/black-pink-template/bride.png",
-    fullName: "Evelyn Elni Yang",
-    fatherName: "Mr. Budi Yang",
-    motherName: "Mrs. Siti Yang",
-    orderComeFamily: "Third Daughter of",
+    fullName: "Isabelle Rousseau",
+    fatherName: "Mr. Charles Rousseau",
+    motherName: "Mrs. Victoria Rousseau",
+    orderComeFamily: "Only Daughter of",
   },
   eventContract: {
     eventName: "",
-    eventDate: "2025-02-14T08:00:00+0700",
-    eventStartTIme: "08:00",
-    eventEndTime: "10:00",
+    eventDate: "2024-12-01T10:00:00+0700",
+    eventStartTIme: "10:00",
+    eventEndTime: "12:00",
     zoneTime: "GMT+7",
     locationAddress:
-      "Letjen S. Parman Street, RT.14/RW.1, Kemanggisan, Palmerah District, West Jakarta City, Special Capital Region of Jakarta 11480",
+      "Jl. Pantai Indah Kapuk, RT.6/RW.2, Kamal Muara, Kec. Penjaringan, Jkt Utara, Daerah Khusus Ibukota Jakarta 14470",
     locationLink: "",
   },
   eventReception: {
     eventName: "",
-    eventDate: "2025-02-14T12:00:00+0700",
-    eventStartTIme: "12:00",
-    eventEndTime: "18:00",
+    eventDate: "2024-12-01T18:00:00+0700",
+    eventStartTIme: "18:00",
+    eventEndTime: "22:00",
     zoneTime: "GMT+7",
     locationAddress:
-      "Letjen S. Parman Street, RT.14/RW.1, Kemanggisan, Palmerah District, West Jakarta City, Special Capital Region of Jakarta 11480",
-    locationLink: "https://www.google.com/maps/place/Jl.+Letjen+S.+Parman,+RT.14%2FRW.1,+Kemanggisan,+Kec.+Palmerah,+Kota+Jakarta+Barat,+Daerah+Khusus+Ibukota+Jakarta/@-6.1834804,106.7966469,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f6938e2ceddf:0x7d96cef5c1fa7056!8m2!3d-6.1834804!4d106.7966469!16s%2Fg%2F11x7vpb20?entry=ttu&g_ep=EgoyMDI0MTAwNS4yIKXMDSoASAFQAw%3D%3D",
+      "Jl. Pantai Indah Kapuk, RT.6/RW.2, Kamal Muara, Kec. Penjaringan, Jkt Utara, Daerah Khusus Ibukota Jakarta 14470",
+    locationLink: "",
   },
   loveStory: [
     {
-      storyTitle: "KAPAL LAWD",
-      storyDate: "1999-09-09T00:00:00",
+      storyTitle: "The First Encounter",
+      storyDate: "2016-03-01T00:00:00",
       storyDescription:
-        "kau bagai kapal lawd yang terus melaju, diluasnya ombak samudra biru. dan kebetulan kau pilih aku, jadi pelabuhanmu.",
+        "In Willow Creek, we attend Isabelle's first art exhibition. She meets Damian, a reserved writer, and their eyes lock, sparking an instant connection.",
       storyPhoto: "/assets/images/black-pink-template/galery-1.png",
     },
     {
-      storyTitle: "KAPAL LAWD",
-      storyDate: "1999-09-09T00:00:00",
+      storyTitle: "Building a Connection",
+      storyDate: "2016-03-15T00:00:00",
       storyDescription:
-        "kau bagai kapal lawd yang terus melaju, diluasnya ombak samudra biru. dan kebetulan kau pilih aku, jadi pelabuhanmu.",
+        "Our friendship deepens over coffee and laughter at a cozy café. During a riverside stroll, their playful banter and lingering glances reveal a growing chemistry.",
       storyPhoto: "/assets/images/black-pink-template/galery-2.png",
     },
     {
-      storyTitle: "KAPAL LAWD",
-      storyDate: "1999-09-09T00:00:00",
+      storyTitle: "The Blossoming Love",
+      storyDate: "2017-03-01T00:00:00",
       storyDescription:
-        "kau bagai kapal lawd yang terus melaju, diluasnya ombak samudra biru. dan kebetulan kau pilih aku, jadi pelabuhanmu.",
+        "Under a starlit sky, we confess our feelings each other, realizing we are falling in love, bound together by inspiration and connection.",
       storyPhoto: "/assets/images/black-pink-template/galery-3.png",
-    },
-    {
-      storyTitle: "KAPAL LAWD",
-      storyDate: "1999-09-09T00:00:00",
-      storyDescription:
-        "kau bagai kapal lawd yang terus melaju, diluasnya ombak samudra biru. dan kebetulan kau pilih aku, jadi pelabuhanmu.",
-      storyPhoto: "/assets/images/black-pink-template/galery-4.png",
     },
   ],
   galleries: [
@@ -112,22 +106,32 @@ export const templatePersonalizedExample: ITemplatePersonalized = {
   comment: [
     {
       name: "Fortino",
-      remark: "Sehat selalu panjang umur gusy",
+      remark:
+        "May your marriage be filled with love, joy, and strength. Wishing you a lifetime of happiness and togetherness.",
     },
     {
       name: "Ryan",
-      remark: "Anjay nikah brokkk!!!",
+      remark:
+        "Love has brought you together, and it will guide you forward. Wishing you both a lifetime of wonderful memories and shared dreams.",
     },
   ],
-  linkVideo: "",
+  linkVideo: "https://www.youtube.com/watch?v=nqHFCV_3PxU",
   backgroundMusic: "",
   price: 350000,
   isPay: true,
-  present: {
-    accountNumber: "5271932619",
-    name: "Steven",
+  bank: {
     qrCode: "",
+    bankAccount: [
+      {
+        accountNumber: "5271932619",
+        bankName: "BCA",
+      },
+      {
+        accountNumber: "5271932619",
+        bankName: "Mandiri",
+      },
+    ],
   },
-  domain: "stevelyn.ceritanikah.online",
+  domain: "damisabel.ceritanikah.online",
   //   domain: "stevelyn.localhost:3000",
 };
