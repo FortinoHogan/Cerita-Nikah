@@ -10,6 +10,7 @@ import ViewCreateInvitationPage from "./views/view-create-invitation-page/ViewCr
 import { getTemplatePersonalizedByDomain } from "./services/template-personalized/TemplateService";
 import { ITemplatePersonalized } from "./interfaces/templatePersonalized.interfaces";
 import LoadingPage from "./views/loading-page/LoadingPage";
+import NotFoundPage from "./views/not-found-page/NotFoundPage";
 
 function App() {
   const [templatePersonalized, setTemplatePersonalized] =
@@ -20,10 +21,10 @@ function App() {
 
   useEffect(() => {
     const fetchTemplatePersonalized = async () => {
-      const domain = window.location.host; // Get the current domain
-      const template = await getTemplatePersonalizedByDomain(domain); // Fetch template by domain
-      setTemplatePersonalized(template); // Set the template data into state
-      setLoading(false); // Stop the loading state
+      const domain = window.location.host;
+      const template = await getTemplatePersonalizedByDomain(domain);
+      setTemplatePersonalized(template);
+      setLoading(false);
     };
 
     fetchTemplatePersonalized();
@@ -47,12 +48,13 @@ function App() {
   } else {
     return (
       <Routes>
-        <Route path="*" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/edit" element={<CreateInvitationPage />} />
         <Route path="/edit/view" element={<ViewCreateInvitationPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     );
   }
