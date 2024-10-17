@@ -1,10 +1,22 @@
-import React from 'react'
-import Button from '../../components/button/Button'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import Button from "../../components/button/Button";
+import { useNavigate } from "react-router-dom";
 
 const NotFoundPage = () => {
+  
+  const handleRedirect = () => {
+    const { hostname, port } = window.location;
+    let baseDomain;
 
-  const nav = useNavigate();
+    if (hostname.includes("localhost")) {
+      baseDomain = `localhost:${port}`;
+      window.location.href = `http://${baseDomain}`;
+    } else {
+      baseDomain = hostname.split(".").slice(-2).join(".");
+      window.location.href = `https://${baseDomain}`;
+    }
+  };
+
   return (
     <div className="min-h-screen flex bg-[#FFFCFA] justify-center items-center">
       <img
@@ -30,12 +42,16 @@ const NotFoundPage = () => {
           or deleted. Don't worry, though! You can head back using the button
           below.
         </p>
-        <div className='flex flex-col items-center mt-10'>
-          <Button children='Back to Homepage' className='text-custom-white text-md lg:text-xl' onClick={() => nav("/")} />
+        <div className="flex flex-col items-center mt-10">
+          <Button
+            children="Back to Homepage"
+            className="text-custom-white text-md lg:text-xl"
+            onClick={handleRedirect}
+          />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;

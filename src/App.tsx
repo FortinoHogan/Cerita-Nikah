@@ -30,34 +30,21 @@ function App() {
     fetchTemplatePersonalized();
   }, []);
 
-  if (loading && isSubDomain) {
-    return (
-      <LoadingPage />
-    )
-  }
-
-  if (templatePersonalized && !loading) {
-    return (
-      <Routes>
-        <Route
-          path="*"
-          element={<TemplatePersonalizedPage template={templatePersonalized} />}
-        />
-      </Routes>
-    );
-  } else {
-    return (
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/edit" element={<CreateInvitationPage />} />
-        <Route path="/edit/view" element={<ViewCreateInvitationPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    );
-  }
+  if (loading && isSubDomain) return <LoadingPage />
+  if (!loading && isSubDomain && !templatePersonalized) return <NotFoundPage />
+  if (!loading && isSubDomain && templatePersonalized) return <TemplatePersonalizedPage template={templatePersonalized} />
+  
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/edit" element={<CreateInvitationPage />} />
+      <Route path="/edit/view" element={<ViewCreateInvitationPage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  );
 }
 
 export default App;
