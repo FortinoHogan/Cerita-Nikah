@@ -4,4 +4,5 @@ export interface ILoveStoryCard {
     storyDate: string;
     storyDescription: string;
     storyPhoto: string;
+    storyFile?: File;
 }

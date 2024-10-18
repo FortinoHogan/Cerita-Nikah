@@ -27,7 +27,7 @@ export const templatePersonalizedExample: ITemplatePersonalized = {
   eventContract: {
     eventName: "",
     eventDate: "2024-12-01T10:00:00+0700",
-    eventStartTIme: "10:00",
+    eventStartTime: "10:00",
     eventEndTime: "12:00",
     zoneTime: "GMT+7",
     locationAddress:
@@ -37,7 +37,7 @@ export const templatePersonalizedExample: ITemplatePersonalized = {
   eventReception: {
     eventName: "",
     eventDate: "2024-12-01T18:00:00+0700",
-    eventStartTIme: "18:00",
+    eventStartTime: "18:00",
     eventEndTime: "22:00",
     zoneTime: "GMT+7",
     locationAddress:
@@ -119,19 +119,14 @@ export const templatePersonalizedExample: ITemplatePersonalized = {
   backgroundMusic: "",
   price: 350000,
   isPay: true,
-  bank: {
-    qrCode: "",
-    bankAccount: [
-      {
-        accountNumber: "5271932619",
-        bankName: "BCA",
-      },
-      {
-        accountNumber: "5271932619",
-        bankName: "Mandiri",
-      },
-    ],
-  },
+  qris: "",
+  account: [
+    {
+      accountId: "",
+      accountNumber: "",
+      bankName: ""
+    },
+  ],
   domain: "damisabel.ceritanikah.online",
   //   domain: "stevelyn.localhost:3000",
 };
