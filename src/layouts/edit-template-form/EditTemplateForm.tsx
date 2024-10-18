@@ -11,6 +11,7 @@ import { useContentContext } from '../../context/content-context/ContentContext'
 import { useGalleryContext } from '../../context/gallery-context/GalleryContext';
 import RSVPInvitationForm from '../../components/edit-form-content/rsvp-invitation-form/RSVPInvitationForm';
 import AngpaoForm from '../../components/edit-form-content/angpao-form/AngpaoForm';
+import SubDomainForm from '../../components/edit-form-content/sub-domain-form/SubDomainForm';
 
 const EditTemplateForm = () => {
     const { formState } = useFormContext();
@@ -18,6 +19,8 @@ const EditTemplateForm = () => {
     const { galleryState, setGalleryState } = useGalleryContext();
     const renderFormContent = () => {
         switch (formState) {
+            case 'subDomain':
+                return <SubDomainForm />
             case 'templates':
                 return <TemplatesForm />;
             case 'cover':

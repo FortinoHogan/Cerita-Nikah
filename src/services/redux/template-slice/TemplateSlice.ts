@@ -305,6 +305,9 @@ export const TemplateSlice = createSlice({
         }
       }
     },
+    ADD_DOMAIN: (state, action: PayloadAction<string>) => {
+      state.domain = action.payload;
+    }
   },
 });
 
@@ -331,6 +334,7 @@ export const {
   SET_ACCOUNT,
   DELETE_ACCOUNT,
   REMOVE_ACCOUNT,
+  ADD_DOMAIN,
 } = TemplateSlice.actions;
 
 export default TemplateSlice;

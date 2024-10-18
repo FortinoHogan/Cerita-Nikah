@@ -14,7 +14,7 @@ export const useFormContext = () => {
 };
 
 export const FormProvider = ({ children }: { children: ReactNode }) => {
-    const [formState, setFormState] = useState("templates");
+    const [formState, setFormState] = useState("subDomain");
 
     return (
         <FormContext.Provider value={{ formState, setFormState }}>

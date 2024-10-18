@@ -3,10 +3,11 @@ import SidebarButton from '../../components/sidebar-button/SidebarButton'
 import { useFormContext } from '../../context/form-context/FormContext'
 
 const Sidebar = () => {
-    const [isActive, setIsActive] = useState('Templates')
+    const [isActive, setIsActive] = useState('Sub Domain')
     const { setFormState } = useFormContext()
     return (
         <div className='bg-[#F093B5] rounded-xl w-full h-full gap-5 flex flex-col py-5 overflow-y-auto scrollbar-hidden'>
+            <SidebarButton text="Sub Domain" onClick={() => { setIsActive('Sub Domain'); setFormState('subDomain') }} image="assets/images/sub-domain-menu.png" isActive={isActive} />
             <SidebarButton text="Templates" onClick={() => { setIsActive('Templates'); setFormState('templates') }} image="assets/images/template.png" isActive={isActive} />
             <SidebarButton text="Cover" onClick={() => { setIsActive('Cover'); setFormState('cover') }} image="assets/images/cover.png" isActive={isActive} />
             <SidebarButton text="Content" onClick={() => { setIsActive('Content'); setFormState('content') }} image="assets/images/content.png" isActive={isActive} />
