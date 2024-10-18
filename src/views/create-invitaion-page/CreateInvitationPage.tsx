@@ -10,9 +10,17 @@ import { ContentProvider } from '../../context/content-context/ContentContext'
 import { useAuth } from '../../context/auth-context/AuthContext'
 import { Navigate } from 'react-router-dom'
 import { GalleryProvider } from '../../context/gallery-context/GalleryContext'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../services/redux/Store'
+import { addTemplatePersonalized } from '../../services/template-personalized/TemplateService'
+import Button from '../../components/button/Button'
 
 const CreateInvitationPage = () => {
     const authContext = useAuth()
+    const templatePersonalized = useSelector((state: RootState) => state.template);
+    const handleSave = () => {
+        addTemplatePersonalized(templatePersonalized);
+    }
     return (
         <div className='h-screen flex flex-col gap-10 max-lg:gap-7'>
             {!authContext?.isLogin && (<Navigate to={'/'} />)}
@@ -38,6 +46,7 @@ const CreateInvitationPage = () => {
                 <div className='w-[50%] relative h-full flex items-center justify-center'>
                     <DeviceProvider>
                         <FloatingDeviceContainer />
+                        <Button onClick={handleSave} className='w-[15.5rem] max-2xl:w-[13rem] max-xl:w-[11rem] p-3 max-2xl:pb-4 max-2xl:pt-2 max-2xl:px-4 rounded-xl absolute top-40 right-0 flex flex-col gap-6 text-custom-white items-center justify-center' children='Save Changes' />
                         <DeviceMockup />
                     </DeviceProvider>
                 </div>
