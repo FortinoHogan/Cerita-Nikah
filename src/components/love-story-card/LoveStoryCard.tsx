@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { DELETE_LOVE_STORY, REMOVE_LOVE_STORY, SAVE_LOVE_STORY, SET_LOVE_STORY } from "../../services/redux/template-slice/TemplateSlice";
 
 const LoveStoryCard = (props: ILoveStoryCard) => {
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const { storyId, storyTitle, storyDate, storyDescription, storyPhoto } = props;
   const dispatch = useDispatch();
 
@@ -19,13 +20,15 @@ const LoveStoryCard = (props: ILoveStoryCard) => {
     const file = e.target.files?.[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
+      setImageFile(file);
+
       handleInputChange("storyPhoto", imageUrl);
     }
   }
 
   const handleSave = () => {
     dispatch(REMOVE_LOVE_STORY(storyId));
-    dispatch(SAVE_LOVE_STORY(props));
+    dispatch(SAVE_LOVE_STORY({ ...props, storyFile: imageFile ? imageFile : undefined}));
   };
 
   const handleDelete = () => {

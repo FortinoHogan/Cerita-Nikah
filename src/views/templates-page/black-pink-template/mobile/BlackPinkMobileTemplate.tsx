@@ -71,65 +71,71 @@ const BlackPinkMobileTemplate = () => {
           </div>
         </div>
       </div>
-      <div className="mt-20">
-        <p className="text-4xl text-center font-edith text-[#FFA5A5]">
-          Our Love Story
-        </p>
-        <div className="flex mt-5 overflow-x-auto gap-10 scrollbar-hidden">
-          {template.loveStory.map((story, index) => (
-            <div className="flex flex-col">
-              <div
-                className="bg-white h-60 w-[22rem] flex-shrink-0"
-                key={index}
-              >
-                <img
-                  className="h-full w-full object-cover"
-                  src={story.storyPhoto}
-                  alt=""
-                />
-              </div>
-              <div className="flex gap-5 justify-end items-end mt-5">
-                <p className="text-3xl font-edith text-[#FFA5A5]">
-                  {story.storyTitle}
+      {template.loveStory && (
+        <div className="mt-20">
+          <p className="text-4xl text-center font-edith text-[#FFA5A5]">
+            Our Love Story
+          </p>
+          <div className="flex mt-5 overflow-x-auto gap-10 scrollbar-hidden">
+            {template.loveStory.map((story, index) => (
+              <div className="flex flex-col">
+                <div
+                  className="bg-white h-60 w-[22rem] flex-shrink-0"
+                  key={index}
+                >
+                  <img
+                    className="h-full w-full object-cover"
+                    src={story.storyPhoto}
+                    alt=""
+                  />
+                </div>
+                <div className="flex gap-5 justify-end items-end mt-5">
+                  <p className="text-3xl font-edith text-[#FFA5A5]">
+                    {story.storyTitle}
+                  </p>
+                  <p className="bg-[#2D2D2D] text-sm px-2 pt-1">
+                    {convertSlashDate(story.storyDate)}
+                  </p>
+                </div>
+                <p className="pl-5 text-1xl font-edith text-end mt-2">
+                  {story.storyDescription}
                 </p>
-                <p className="bg-[#2D2D2D] text-sm px-2 pt-1">
-                  {convertSlashDate(story.storyDate)}
-                </p>
               </div>
-              <p className="pl-5 text-1xl font-edith text-end mt-2">
-                {story.storyDescription}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       <div className="mt-28 w-full flex justify-center items-center flex-col">
         <div className="flex w-11/12 relative justify-center items-center">
           <div className="w-full absolute -top-8 text-end">
             <p className="text-[#FFA5A5] text-4xl font-edith">Gallery</p>
           </div>
-          <div className="w-11/12 h-[23rem] bg-white">
-            <img
-              className="h-full w-full object-cover"
-              src={template.galleries[galleryIndex].image}
-              alt=""
-            />
-          </div>
-        </div>
-        <div className="w-11/12 mt-5 flex gap-5 overflow-x-auto scrollbar-hidden">
-          {template.galleries.map((gallery, index) => (
-            <div
-              className="w-1/4 bg-white h-24 flex-shrink-0 cursor-pointer"
-              onClick={() => setGalleryIndex(index)}
-            >
+          {template.galleries && template.galleries[galleryIndex].image && (
+            <div className="w-11/12 h-[23rem] bg-white">
               <img
                 className="h-full w-full object-cover"
-                src={gallery.image}
+                src={template.galleries[galleryIndex].image}
                 alt=""
               />
             </div>
-          ))}
+          )}
         </div>
+        {template.galleries && (
+          <div className="w-11/12 mt-5 flex gap-5 overflow-x-auto scrollbar-hidden">
+            {template.galleries.map((gallery, index) => (
+              <div
+                className="w-1/4 bg-white h-24 flex-shrink-0 cursor-pointer"
+                onClick={() => setGalleryIndex(index)}
+              >
+                <img
+                  className="h-full w-full object-cover"
+                  src={gallery.image}
+                  alt=""
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       <div className="bg-[#805C5C]">
         <div className="mt-10 bg-gradient-to-b from-[#181313] to-[#805C5C]">
@@ -219,14 +225,16 @@ const BlackPinkMobileTemplate = () => {
             <p className="text-center font-edith text-5xl text-[#FFA5A5]">
               Blessing & Wishes
             </p>
-            <div className="mt-5 h-96 overflow-auto scrollbar-hidden">
-              {template.comment.map((c, index) => (
-                <div className="flex flex-col mt-5 bg-black w-9/12 py-2 mx-auto font-edith px-5 rounded-md">
-                  <p className="text-2xl text-[#FFA5A5]">{c.name}</p>
-                  <p className="font-forum">{c.remark}</p>
-                </div>
-              ))}
-            </div>
+            {template.comment && (
+              <div className="mt-5 h-96 overflow-auto scrollbar-hidden">
+                {template.comment.map((c, index) => (
+                  <div className="flex flex-col mt-5 bg-black w-9/12 py-2 mx-auto font-edith px-5 rounded-md">
+                    <p className="text-2xl text-[#FFA5A5]">{c.name}</p>
+                    <p className="font-forum">{c.remark}</p>
+                  </div>
+                ))}
+              </div>
+            )}
             <div className="mt-5 w-10/12 mx-auto font-edith">
               <p className="text-3xl mb-5">Send Blessing & Wishes</p>
               <div className="flex flex-col gap-4">

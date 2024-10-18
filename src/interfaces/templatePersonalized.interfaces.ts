@@ -9,7 +9,7 @@ interface IPerson {
 interface IEvent {
   eventName: string;
   eventDate: string;
-  eventStartTIme: string;
+  eventStartTime: string;
   eventEndTime: string;
   zoneTime: string;
   locationAddress: string;
@@ -37,14 +37,10 @@ interface IComment {
   remark: string;
 }
 
-interface IBankAccount {
+export interface IAccount {
+  accountId: string;
+  accountNumber: string;
   bankName: string;
-  accountNumber: string
-}
-
-interface IBank {
-  qrCode?: string;
-  bankAccount: IBankAccount[];
 }
 
 export interface ITemplatePersonalized {
@@ -60,14 +56,15 @@ export interface ITemplatePersonalized {
   bride: IPerson;
   eventContract: IEvent;
   eventReception: IEvent;
-  loveStory: ILoveStory[];
+  loveStory: ILoveStory[] | null;
   galleries: IGallery[];
-  rsvp: IRsvp[];
-  comment: IComment[];
+  rsvp?: IRsvp[];
+  comment?: IComment[];
   linkVideo: string;
   backgroundMusic: string;
   price: number;
   isPay: boolean;
-  bank: IBank;
+  qris: string;
+  account: IAccount[] | null;
   domain: string;
 }

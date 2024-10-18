@@ -23,7 +23,7 @@ const AngpaoForm = () => {
     const file = e.target.files?.[0];
     if (file) {
       const coverUrl = URL.createObjectURL(file);
-      dispatch(SET_QRIS(coverUrl));
+      dispatch(SET_QRIS({ qris: coverUrl, qrisFile: file }));
     }
   };
 

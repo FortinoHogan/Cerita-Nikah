@@ -5,6 +5,7 @@ import { IAccount } from "../../../components/account-card/IAccountCard";
 export interface IGallery {
   imageId: string;
   image: string;
+  file?: File
 }
 
 export interface TemplateState {
@@ -12,12 +13,14 @@ export interface TemplateState {
   userId: string;
   templateId: string;
   cover: string;
+  coverFile?: File;
   groomNickName: string;
   brideNickName: string;
   openingRemarks: string;
   closingRemarks: string;
   groom: {
     picture: string;
+    file?: File;
     fullName: string;
     fatherName: string;
     motherName: string;
@@ -25,6 +28,7 @@ export interface TemplateState {
   };
   bride: {
     picture: string;
+    file?: File;
     fullName: string;
     fatherName: string;
     motherName: string;
@@ -54,6 +58,7 @@ export interface TemplateState {
   linkVideo: string;
   backgroundMusic: string;
   qris: string;
+  qrisFile?: File;
   accounts: IAccount[] | null;
   accountsSaved: IAccount[] | null;
   price: number;
@@ -124,6 +129,7 @@ export const TemplateSlice = createSlice({
     },
     SET_COVER: (state, action: PayloadAction<Partial<TemplateState>>) => {
       state.cover = action.payload.cover || "";
+      state.coverFile = action.payload.coverFile;
       state.groomNickName = action.payload.groomNickName || "";
       state.brideNickName = action.payload.brideNickName || "";
     },
@@ -139,11 +145,13 @@ export const TemplateSlice = createSlice({
       action: PayloadAction<Partial<TemplateState>>
     ) => {
       state.groom.picture = action.payload.groom?.picture || "";
+      state.groom.file = action.payload.groom?.file;
       state.groom.fullName = action.payload.groom?.fullName || "";
       state.groom.fatherName = action.payload.groom?.fatherName || "";
       state.groom.motherName = action.payload.groom?.motherName || "";
       state.groom.orderComeFamily = action.payload.groom?.orderComeFamily || "";
       state.bride.picture = action.payload.bride?.picture || "";
+      state.bride.file = action.payload.bride?.file;
       state.bride.fullName = action.payload.bride?.fullName || "";
       state.bride.fatherName = action.payload.bride?.fatherName || "";
       state.bride.motherName = action.payload.bride?.motherName || "";
@@ -254,8 +262,9 @@ export const TemplateSlice = createSlice({
     SET_BACKGROUND_MUSIC: (state, action: PayloadAction<string>) => {
       state.backgroundMusic = action.payload;
     },
-    SET_QRIS: (state, action: PayloadAction<string>) => {
-      state.qris = action.payload;
+    SET_QRIS: (state, action: PayloadAction<Partial<TemplateState>>) => {
+      state.qris = action.payload.qris || "";
+      state.qrisFile = action.payload.qrisFile
     },
     DELETE_QRIS: (state) => {
       state.qris = "";

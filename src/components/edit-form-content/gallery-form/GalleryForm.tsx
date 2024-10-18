@@ -12,16 +12,17 @@ const GalleryImagePage = () => {
   const { gallery } = useSelector((state: RootState) => state.template);
   const dispatch = useDispatch();
 
-  const newImage = (imageUrl: string): IGallery => ({
+  const newImage = (imageUrl: string, imageFile: File): IGallery => ({
     imageId: uuidv4(),
     image: imageUrl,
+    file: imageFile
   })
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      dispatch(ADD_IMAGE_GALLERY(newImage(imageUrl)))
+      dispatch(ADD_IMAGE_GALLERY(newImage(imageUrl, file)))
     }
   }
 

@@ -15,7 +15,7 @@ const CoverForm = () => {
     const file = e.target.files?.[0];
     if (file) {
       const coverUrl = URL.createObjectURL(file);
-      dispatch(SET_COVER({ cover: coverUrl, groomNickName, brideNickName }));
+      dispatch(SET_COVER({ cover: coverUrl, coverFile: file, groomNickName, brideNickName }));
     }
   };
 

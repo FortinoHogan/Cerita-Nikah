@@ -47,9 +47,9 @@ const RenderContentProfilePage = (selected: string) => {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       if (selected === "Groom") {
-        dispatch(SET_CONTENT_PROFILE({ groom: { ...groom, picture: imageUrl }, bride }));
+        dispatch(SET_CONTENT_PROFILE({ groom: { ...groom, picture: imageUrl, file: file }, bride }));
       } else {
-        dispatch(SET_CONTENT_PROFILE({ groom, bride: { ...bride, picture: imageUrl } }));
+        dispatch(SET_CONTENT_PROFILE({ groom, bride: { ...bride, picture: imageUrl, file: file } }));
       }
     }
   };
