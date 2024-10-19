@@ -7,7 +7,7 @@ import { RootState } from "../../../services/redux/Store";
 import ImagePreview from "../../image-preview/ImagePreview";
 
 const CoverForm = () => {
-  const { cover, groomNickName, brideNickName } = useSelector(
+  const { cover, groomNickName, brideNickName, coverFile } = useSelector(
     (state: RootState) => state.template
   );
   const dispatch = useDispatch();
@@ -24,6 +24,7 @@ const CoverForm = () => {
     dispatch(
       SET_COVER({
         cover: cover,
+        coverFile: coverFile,
         groomNickName: newGroomName,
         brideNickName,
       })
@@ -35,6 +36,7 @@ const CoverForm = () => {
     dispatch(
       SET_COVER({
         cover: cover,
+        coverFile: coverFile,
         groomNickName,
         brideNickName: newBrideName,
       })
@@ -42,7 +44,7 @@ const CoverForm = () => {
   };
 
   const handleDeleteImage = () => {
-    dispatch(SET_COVER({ cover: "", groomNickName, brideNickName }));
+    dispatch(SET_COVER({ cover: "", coverFile: undefined, groomNickName, brideNickName }));
   };
 
   return (

@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 import { ITemplatePersonalized } from "../interfaces/templatePersonalized.interfaces";
 
 export const templatePersonalizedExample: ITemplatePersonalized = {
@@ -129,4 +130,5 @@ export const templatePersonalizedExample: ITemplatePersonalized = {
   ],
   domain: "damisabel.ceritanikah.online",
   //   domain: "stevelyn.localhost:3000",
+  timestamp: Timestamp.now()
 };

@@ -5,7 +5,7 @@ import { templatePersonalizedExample } from "../../libs/templatePersonalized.exa
 const ViewCreateInvitationPage = () => {
   const [template, setTemplate] = useState(templatePersonalizedExample);
   
-  return <GenerateTemplate id={template.templateId} />;
+  return <GenerateTemplate template={template} />;
 };
 
 export default ViewCreateInvitationPage;

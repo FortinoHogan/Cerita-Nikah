@@ -3,10 +3,11 @@ import { templatePersonalizedExample } from "../../../../libs/templatePersonaliz
 import { useCountdown } from "../../../../libs/countdown";
 import { convertDotDate, convertSlashDate } from "../../../../libs/convertDate";
 import TemplateCopyright from "../../../../components/template-copyright/TemplateCopyright";
+import { ITemplatesPage } from "../../TemplatesPage.interfaces";
 
-const BlackPinkMobileTemplate = () => {
+const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
   const [galleryIndex, setGalleryIndex] = useState(0);
-  const [template, setTemplate] = useState(templatePersonalizedExample);
+  const [template, setTemplate] = useState(props.template);
 
   const timeLeft = useCountdown(template.eventReception.eventDate);
 

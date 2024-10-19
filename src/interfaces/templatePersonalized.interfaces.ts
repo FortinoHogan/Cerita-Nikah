@@ -1,3 +1,5 @@
+import { Timestamp } from "firebase/firestore";
+
 interface IPerson {
   picture: string;
   fullName: string;
@@ -67,4 +69,5 @@ export interface ITemplatePersonalized {
   qris: string;
   account: IAccount[] | null;
   domain: string;
+  timestamp: Timestamp;
 }

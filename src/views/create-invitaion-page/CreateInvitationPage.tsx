@@ -14,13 +14,19 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../../services/redux/Store'
 import { addTemplatePersonalized } from '../../services/template-personalized/TemplateService'
 import Button from '../../components/button/Button'
+import { IMessage } from '../../interfaces/message.interfaces'
 
 const CreateInvitationPage = () => {
     const authContext = useAuth()
     const templatePersonalized = useSelector((state: RootState) => state.template);
-    const handleSave = () => {
-        addTemplatePersonalized(templatePersonalized);
+    const [message, setMessage] = useState<IMessage>();
+
+    const handleSave = async () => {
+        const createTemplate = await addTemplatePersonalized(templatePersonalized);
+        setMessage(createTemplate);
+        console.log(message);
     }
+    
     return (
         <div className='h-screen flex flex-col gap-10 max-lg:gap-7'>
             {!authContext?.isLogin && (<Navigate to={'/'} />)}
