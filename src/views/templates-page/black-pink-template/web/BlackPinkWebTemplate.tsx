@@ -3,9 +3,10 @@ import { useCountdown } from "../../../../libs/countdown";
 import { templatePersonalizedExample } from "../../../../libs/templatePersonalized.example";
 import { convertDotDate, convertSlashDate } from "../../../../libs/convertDate";
 import TemplateCopyright from "../../../../components/template-copyright/TemplateCopyright";
+import { ITemplatesPage } from "../../TemplatesPage.interfaces";
 
-const BlackPinkWebTemplate = () => {
-  const [template, setTemplate] = useState(templatePersonalizedExample);
+const BlackPinkWebTemplate = (props: ITemplatesPage) => {
+  const [template, setTemplate] = useState(props.template);
   const [galleryIndex, setGalleryIndex] = useState(0);
 
   const timeLeft = useCountdown(template.eventReception.eventDate);
@@ -43,7 +44,7 @@ const BlackPinkWebTemplate = () => {
               alt=""
             />
           </div>
-          <div className="mt-5 relative">
+          <div className="mt-5 relative w-full">
             <p className="text-3xl text-[#FFA5A5]">{template.groom.fullName}</p>
             <div className="left-4 text-lg absolute top-5">
               <p className="text-2xl font-edith mb-1 text-[#cecece]">
@@ -62,7 +63,7 @@ const BlackPinkWebTemplate = () => {
               alt=""
             />
           </div>
-          <div className="mt-5 relative">
+          <div className="mt-5 relative w-full">
             <p className="text-3xl text-[#FFA5A5]">{template.bride.fullName}</p>
             <div className="text-lg absolute top-5 right-4">
               <p className="text-2xl font-edith mb-1 text-[#cecece]">

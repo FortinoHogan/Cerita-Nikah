@@ -3,10 +3,11 @@ import BlackPinkTemplate from "../views/templates-page/black-pink-template/Black
 import WhiteBlossomTemplate from "../views/templates-page/white-blossom-template/WhiteBlossomTemplate";
 import HomePage from "../views/home-page/HomePage";
 import { useNavigate } from "react-router-dom";
+import { ITemplatesPage } from "../views/templates-page/TemplatesPage.interfaces";
 
 interface ITemplateData {
   id: string,
-  view: React.FC
+  view: React.FC<ITemplatesPage>
 }
 
 const TemplateData: ITemplateData[] = [
@@ -20,8 +21,8 @@ const TemplateData: ITemplateData[] = [
   },
 ];
 
-export const TemplateGenerator = (templateId: string) => {
-  const template = TemplateData.find((template) => template.id === templateId);
+export const TemplateGenerator = (data: ITemplatesPage) => {
+  const templateDatas = TemplateData.find((templateData) => templateData.id === data.template.templateId);
   
-  return template ? <template.view /> : <HomePage />;
+  return templateDatas ? <templateDatas.view template={data.template} /> : <HomePage />;
 }
