@@ -46,7 +46,7 @@ const CreateInvitationPage = () => {
                 <div className='w-[50%] relative h-full flex items-center justify-center'>
                     <DeviceProvider>
                         <FloatingDeviceContainer />
-                        <Button onClick={handleSave} className='w-[15.5rem] max-2xl:w-[13rem] max-xl:w-[11rem] p-3 max-2xl:pb-4 max-2xl:pt-2 max-2xl:px-4 rounded-xl absolute top-40 right-0 flex flex-col gap-6 text-custom-white items-center justify-center' children='Save Changes' />
+                        <Button onClick={handleSave} className='w-[15.5rem] max-2xl:w-[1rem] max-xl:w-[11rem] p-3 max-2xl:pb-4 max-2xl:pt-2 max-2xl:px-4 rounded-xl absolute top-40 right-0 flex flex-col gap-6 text-custom-white items-center justify-center' children='Save Changes' />
                         <DeviceMockup />
                     </DeviceProvider>
                 </div>
