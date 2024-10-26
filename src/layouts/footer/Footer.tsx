@@ -48,23 +48,27 @@ const Footer = () => {
           <h1 className="text-custom-white font-semibold text-4xl">
             Payment Methods
           </h1>
-          <div className="flex items-center gap-5">
-            <img src="assets/images/qris.png" alt="qris" className="w-28" />
-            <img
-              src="assets/images/shopeepay.png"
-              alt="shopeepay"
-              className="w-10"
-            />
-            <img src="assets/images/gopay.png" alt="gopay" className="w-10" />
-            <img src="assets/images/dana.png" alt="dana" className="w-10" />
-            <img src="assets/images/visa.png" alt="visa" className="w-28" />
+          <div className="flex gap-5 max-sm:flex-col">
+            <div className="flex items-center gap-5">
+              <img src="assets/images/qris.png" alt="qris" className="w-28" />
+              <img
+                src="assets/images/shopeepay.png"
+                alt="shopeepay"
+                className="w-10"
+              />
+              <img src="assets/images/gopay.png" alt="gopay" className="w-10" />
+            </div>
+            <div className="flex items-center gap-5">
+              <img src="assets/images/dana.png" alt="dana" className="w-10" />
+              <img src="assets/images/visa.png" alt="visa" className="w-28" />
+            </div>
           </div>
         </div>
       </div>
       <hr className="h-[2px] w-full mt-3 bg-white border-0 rounded-sm" />
-      <div className="text-custom-white font-semibold flex items-center justify-between pt-7">
+      <div className="text-custom-white font-semibold flex items-center justify-between pt-7 max-sm:flex-col max-sm:items-start max-sm:gap-5">
         <p>&copy; 2024 Cerita Nikah. All rights reserved.</p>
-        <div className="flex gap-10">
+        <div className="flex gap-10 max-sm:flex-col max-sm:gap-0">
           <p>Terms & Condition</p>
           <p>Privacy Policy</p>
         </div>

@@ -9,7 +9,7 @@ const Button = (props: IButton) => {
     return (
         <div
             onClick={onClick}
-            className={`${roundedClassName} ${widthClassName} hover:bg-pink-700 transition ease cursor-pointer max-sm:w-[360px] text-lg font-semibold p-3 bg-custom-pink text-center flex items-center justify-center`}
+            className={`${roundedClassName} ${widthClassName} hover:bg-pink-700 transition ease cursor-pointer text-lg font-semibold p-3 bg-custom-pink text-center flex items-center justify-center`}
         >
             {children}
         </div>

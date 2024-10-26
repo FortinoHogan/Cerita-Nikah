@@ -27,7 +27,7 @@ const RegisterPageLeft = () => {
                         <AuthInput type="password" placeholder="Confirm Password" value={confirmPassword} image="assets/images/password.png" onChange={(e) => setConfirmPassword(e.target.value)} />
                     </div>
                     <div className='flex flex-col items-center mt-10'>
-                        <Button children='Sign Up' className='text-custom-white text-xl' onClick={() => { }} />
+                        <Button children='Sign Up' className='text-custom-white text-xl max-sm:w-[360px]' onClick={() => { }} />
                     </div>
                     <div className="flex w-full items-center justify-center my-8">
                         <div className='flex items-center w-[55%]'>
