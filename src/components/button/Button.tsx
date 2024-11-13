@@ -4,7 +4,7 @@ import { IButton } from './IButton'
 const Button = (props: IButton) => {
     const { children, onClick, className } = props
     const roundedClassName = className.includes('rounded') ? className : `${className} rounded-xl`
-    const widthClassName = className.includes('w-') ? className : `${className} w-[55%]`
+    const widthClassName = className.includes('w-') ? className : ''
 
     return (
         <div
