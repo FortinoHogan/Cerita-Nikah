@@ -123,6 +123,8 @@ export const addTemplatePersonalized = async (templateState: TemplateState) => {
       message: "Success Create Template!",
     };
 
+    console.log(message);
+
     return message;
   } catch (err: any) {
     const message: IMessage = {
