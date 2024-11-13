@@ -65,7 +65,7 @@ export const TemplateMapper = (template: TemplateState): ITemplatePersonalized =
       locationAddress: template.eventReception.locationAddress,
       locationLink: template.eventReception.locationLink
     },
-    loveStory: template.loveStory,
+    loveStory: template.loveStorySaved || null,
     galleries: template.gallery || null,
     rsvp: [],
     comment: [],

@@ -7,7 +7,6 @@ import { ITemplatesPage } from "../TemplatesPage.interfaces";
 
 const BlackPinkTemplate = (props: ITemplatesPage) => {
   const mobileView = useMobileView();
-  console.log('parent-template', props.template);
 
   if (mobileView || isMobile || props.view === "mobile") return <BlackPinkMobileTemplate template={props.template} />;
   else return <BlackPinkWebTemplate template={props.template} />;
