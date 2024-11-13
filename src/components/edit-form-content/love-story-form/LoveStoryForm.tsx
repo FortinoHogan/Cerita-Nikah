@@ -9,7 +9,9 @@ import { ADD_LOVE_STORY } from "../../../services/redux/template-slice/TemplateS
 import LoveStoryCardFilled from "../../love-story-card-filled/LoveStoryCardFilled";
 
 const LoveStoryForm = () => {
-  const { loveStory, loveStorySaved } = useSelector((state: RootState) => state.template);
+  const { loveStory, loveStorySaved } = useSelector(
+    (state: RootState) => state.template
+  );
   const dispatch = useDispatch();
   const newCard = (): ILoveStoryCard => ({
     storyId: uuidv4(),
@@ -25,22 +27,25 @@ const LoveStoryForm = () => {
 
   return (
     <div className="flex flex-col gap-5 overflow-y-auto scrollbar-hidden">
-      <Button
-        onClick={handleAddNewCard}
-        className="w-full text-white"
-      >
-        <div className='flex items-center justify-center gap-2'>
-              <img src="assets/images/select.png" alt="select" className='w-5'/>
-              <p>Add New Story</p>
-            </div>
+      <Button onClick={handleAddNewCard} className="w-full text-white">
+        <div className="flex items-center justify-center gap-2">
+          <img src="assets/images/select.png" alt="select" className="w-5" />
+          <p>Add New Story</p>
+        </div>
       </Button>
       <div className="flex flex-col gap-5">
-        {loveStorySaved && loveStorySaved.map((card, index) => (
-          <LoveStoryCardFilled key={card.storyId} {...card} storyIndex={index}/>
-        ))}
-        {loveStory && loveStory.map((card, index) => (
-          <LoveStoryCard key={card.storyId} {...card}/>
-        ))}
+        {loveStory &&
+          loveStory.map((card, index) => (
+            <LoveStoryCard key={card.storyId} {...card} />
+          ))}
+        {loveStorySaved &&
+          loveStorySaved.map((card, index) => (
+            <LoveStoryCardFilled
+              key={card.storyId}
+              {...card}
+              storyIndex={index}
+            />
+          ))}
       </div>
     </div>
   );

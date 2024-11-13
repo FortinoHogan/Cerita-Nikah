@@ -24,6 +24,7 @@ const CreateInvitationPage = () => {
     const handleSave = async () => {
         const createTemplate = await addTemplatePersonalized(templatePersonalized);
         setMessage(createTemplate);
+        console.log(createTemplate);
         console.log(message);
     }
     

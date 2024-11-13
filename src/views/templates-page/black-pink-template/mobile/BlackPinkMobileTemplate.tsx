@@ -67,7 +67,7 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
               </div>
             )}
           </div>
-          <div className="mt-5 relative">
+          <div className="mt-5 relative w-full">
             <p className="text-3xl text-[#FFA5A5]">
               {template.groom.fullName === ""
                 ? "Groom Name"
@@ -107,7 +107,7 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
               </div>
             )}
           </div>
-          <div className="mt-5 relative">
+          <div className="mt-5 relative w-full">
             <p className="text-3xl text-[#FFA5A5]">
               {template.bride.fullName === ""
                 ? "Bride Name"
