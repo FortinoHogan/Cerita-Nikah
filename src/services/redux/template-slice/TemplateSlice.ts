@@ -11,7 +11,9 @@ export interface IGallery {
 export interface TemplateState {
   id: string;
   userId: string;
+  templateName: string;
   templateId: string;
+  templateColor: string;
   cover: string;
   coverFile?: File;
   groomNickName: string;
@@ -69,7 +71,9 @@ export interface TemplateState {
 const initialState: TemplateState = {
   id: "",
   userId: "",
+  templateName: "",
   templateId: "",
+  templateColor: "",
   cover: "",
   groomNickName: "",
   brideNickName: "",
@@ -124,8 +128,10 @@ export const TemplateSlice = createSlice({
   name: "template",
   initialState,
   reducers: {
-    SET_TEMPLATE: (state, action: PayloadAction<string>) => {
-      state.templateId = action.payload;
+    SET_TEMPLATE: (state, action: PayloadAction<Partial<TemplateState>>) => {
+      state.templateId = action.payload.templateId || "";
+      state.templateName = action.payload.templateName || "";
+      state.templateColor = action.payload.templateColor || "";
     },
     SET_COVER: (state, action: PayloadAction<Partial<TemplateState>>) => {
       state.cover = action.payload.cover || "";

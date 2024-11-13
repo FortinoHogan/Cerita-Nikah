@@ -5,6 +5,7 @@ import { ITemplatesPage } from "../../views/templates-page/TemplatesPage.interfa
 
 const GenerateTemplate = (props: ITemplatesPage) => {
   const generateTemplate = TemplateGenerator(props);
+  console.log("generateTemplate", generateTemplate);
 
   return <> {generateTemplate} </>;
 };

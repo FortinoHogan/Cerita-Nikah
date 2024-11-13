@@ -36,20 +36,22 @@ const ConfirmationTemplate = ({
 
 const TemplatesForm = () => {
   const [selected, setSelected] = useState("Free Spirit");
-  const {templateId} = useSelector((state: RootState) => state.template);
+  const { templateId, templateName } = useSelector(
+    (state: RootState) => state.template
+  );
   const data = templatesData;
 
-  const changeTemplate = (title: string) => {
-    store.dispatch(SET_TEMPLATE(title));
+  const changeTemplate = (id: string, name: string) => {
+    store.dispatch(SET_TEMPLATE({ templateId: id, templateName: name }));
   };
 
   return (
     <div className="overflow-y-auto scrollbar-hidden flex flex-col gap-7">
       {templateId ? (
         <ConfirmationTemplate
-          title={templateId}
-          image={data.find((item) => item.title === templateId)?.image}
-          onClick={() => changeTemplate("")}
+          title={templateName}
+          image={data.find((item) => item.id === templateId)?.image}
+          onClick={() => changeTemplate("", "")}
         />
       ) : (
         <>
@@ -63,7 +65,7 @@ const TemplatesForm = () => {
             <div
               key={index}
               className="flex flex-col gap-3 cursor-pointer"
-              onClick={() => changeTemplate(item.title)}
+              onClick={() => changeTemplate(item.id, item.title)}
             >
               <h1 className="font-semibold text-custom-gray">{item.title}</h1>
               {/* GANTI IMAGE KALO UDAH ADA*/}

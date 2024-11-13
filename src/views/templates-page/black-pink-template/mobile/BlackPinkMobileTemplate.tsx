@@ -1,82 +1,144 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { templatePersonalizedExample } from "../../../../libs/templatePersonalized.example";
 import { useCountdown } from "../../../../libs/countdown";
 import { convertDotDate, convertSlashDate } from "../../../../libs/convertDate";
 import TemplateCopyright from "../../../../components/template-copyright/TemplateCopyright";
 import { ITemplatesPage } from "../../TemplatesPage.interfaces";
+import { store } from "../../../../services/redux/Store";
+import { SET_TEMPLATE } from "../../../../services/redux/template-slice/TemplateSlice";
 
 const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
   const [galleryIndex, setGalleryIndex] = useState(0);
   const [template, setTemplate] = useState(props.template);
+  console.log("black-pink", template);
+
+  // useEffect(() => {
+  //   store.dispatch(
+  //     SET_TEMPLATE({
+  //       templateId: template.templateId,
+  //       templateColor: "bg-black",
+  //       templateName: "Black Pink Template",
+  //     })
+  //   );
+  // }, []);
 
   const timeLeft = useCountdown(template.eventReception.eventDate);
-
   return (
     <div className="font-collingar text-white h-full bg-black">
-      <div className="min-h-screen relative">
-        <img
-          className="z-10 min-h-screen object-cover object-top"
-          src={template.cover}
-          alt=""
-        />
+      <div className="min-h-svh relative bg-black">
+        {template.cover ? (
+          <img
+            className="z-10 min-h-screen object-cover object-top"
+            src={template.cover}
+            alt=""
+          />
+        ) : (
+          <p className="text-center pt-80">Cover</p>
+        )}
         <div className="z-20 text-4xl font-collingar text-center flex items-center justify-center absolute bottom-20 left-1/2 transform -translate-x-1/2">
           <p className="text-[#FFA5A5] absolute bottom-9 right-0">
-            {template.groomNickName}
+            {template.groomNickName === "" ? "Name" : template.groomNickName}
           </p>
           <p className="absolute bottom-5 z-30 text-white">&</p>
           <p className="text-[#FFA5A5] absolute bottom-1 left-0">
-            {template.brideNickName}
+            {template.brideNickName === "" ? "Name" : template.brideNickName}
           </p>
         </div>
         <div className="absolute bottom-12 text-xl text-white left-1/2 transform -translate-x-1/2 font-edith">
-          <p>{convertDotDate(template.eventReception.eventDate)}</p>
+          <p>
+            {template.eventReception.eventDate === ""
+              ? "Example Date"
+              : convertDotDate(template.eventReception.eventDate)}
+          </p>
         </div>
       </div>
       <div className="bg-black">
         <div className="mt-5 ml-5 bg-black h-96 text-start flex items-start flex-col">
-          <div className="w-[45%] h-4/6">
-            <img
-              className="h-full w-full object-cover"
-              src={template.groom.picture}
-              alt=""
-            />
+          <div className="w-[45%] bg-white h-4/6">
+            {template.groom.picture ? (
+              <img
+                className="h-full w-full object-cover"
+                src={template.groom.picture}
+                alt=""
+              />
+            ) : (
+              <div className="pt-24 flex justify-center items-center flex-col text-black">
+                <div>Groom</div>
+                <div>Picture</div>
+              </div>
+            )}
           </div>
           <div className="mt-5 relative">
-            <p className="text-3xl text-[#FFA5A5]">{template.groom.fullName}</p>
+            <p className="text-3xl text-[#FFA5A5]">
+              {template.groom.fullName === ""
+                ? "Groom Name"
+                : template.groom.fullName}
+            </p>
             <div className="left-4 text-lg absolute top-5">
               <p className="text-2xl font-edith mb-1 text-[#cecece]">
-                {template.groom.orderComeFamily}
+                {template.groom.orderComeFamily === ""
+                  ? "First Son of"
+                  : template.groom.orderComeFamily}
               </p>
-              <p>{template.groom.fatherName}</p>
-              <p>{template.groom.motherName}</p>
+              <p>
+                {template.groom.fatherName === ""
+                  ? "Father Name"
+                  : template.groom.fatherName}
+              </p>
+              <p>
+                {template.groom.motherName === ""
+                  ? "Mother Name"
+                  : template.groom.motherName}
+              </p>
             </div>
           </div>
         </div>
         <div className="mt-10 mr-5 h-96 text-end bg-black flex items-end flex-col">
           <div className="w-[45%] bg-white h-4/6">
-            <img
-              className="h-full w-full object-cover"
-              src={template.bride.picture}
-              alt=""
-            />
+            {template.bride.picture ? (
+              <img
+                className="h-full w-full object-cover"
+                src={template.bride.picture}
+                alt=""
+              />
+            ) : (
+              <div className="pt-24 flex justify-center items-center flex-col text-black">
+                <div>Bride</div>
+                <div>Picture</div>
+              </div>
+            )}
           </div>
           <div className="mt-5 relative">
-            <p className="text-3xl text-[#FFA5A5]">{template.bride.fullName}</p>
+            <p className="text-3xl text-[#FFA5A5]">
+              {template.bride.fullName === ""
+                ? "Bride Name"
+                : template.bride.fullName}
+            </p>
             <div className="text-lg absolute top-5 right-4">
               <p className="text-2xl font-edith mb-1 text-[#cecece]">
-                {template.bride.orderComeFamily}
+                {template.bride.orderComeFamily === ""
+                  ? "First Son of"
+                  : template.bride.orderComeFamily}
               </p>
-              <p>{template.bride.fatherName}</p>
-              <p>{template.bride.motherName}</p>
+              <p>
+                {template.bride.fatherName === ""
+                  ? "Father Name"
+                  : template.bride.fatherName}
+              </p>
+              <p>
+                {template.bride.motherName === ""
+                  ? "Mother Name"
+                  : template.bride.motherName}
+              </p>
             </div>
           </div>
         </div>
       </div>
-      {template.loveStory && (
-        <div className="mt-20">
-          <p className="text-4xl text-center font-edith text-[#FFA5A5]">
-            Our Love Story
-          </p>
+      <div className="mt-20">
+        <p className="text-4xl text-center font-edith text-[#FFA5A5]">
+          Our Love Story
+        </p>
+        {template.loveStory ? (
           <div className="flex mt-5 overflow-x-auto gap-10 scrollbar-hidden">
             {template.loveStory.map((story, index) => (
               <div className="flex flex-col">
@@ -104,8 +166,27 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
               </div>
             ))}
           </div>
-        </div>
-      )}
+        ) : (
+          <div className="flex mt-5 overflow-x-auto gap-10 scrollbar-hidden">
+            {Array(5).fill(undefined).map((_, index) => (
+              <div className="flex flex-col">
+                <div className="bg-white text-black text-center pt-24 h-60 w-[22rem] flex-shrink-0">
+                  Love Story Image
+                </div>
+                <div className="flex gap-5 justify-end items-end mt-5">
+                  <p className="text-3xl font-edith text-[#FFA5A5]">
+                    Story Title
+                  </p>
+                  <p className="bg-[#2D2D2D] text-sm px-2 pt-1">09/09/1999</p>
+                </div>
+                <p className="pl-5 text-1xl font-edith text-end mt-2">
+                  Description
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
       <div className="mt-28 w-full flex justify-center items-center flex-col">
         <div className="flex w-11/12 relative justify-center items-center">
           <div className="w-full absolute -top-8 text-end">
@@ -121,7 +202,7 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
             </div>
           )}
         </div>
-        {template.galleries && (
+        {template.galleries ? (
           <div className="w-11/12 mt-5 flex gap-5 overflow-x-auto scrollbar-hidden">
             {template.galleries.map((gallery, index) => (
               <div
@@ -135,6 +216,21 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
                 />
               </div>
             ))}
+          </div>
+        ) : (
+          <div className="w-11/12 mt-5 flex gap-5 overflow-x-auto scrollbar-hidden">
+            <div className="w-1/4 bg-white h-24 flex-shrink-0 cursor-pointer text-center text-black pt-8">
+              Gallery
+            </div>
+            <div className="w-1/4 bg-white h-24 flex-shrink-0 cursor-pointer text-center text-black pt-8">
+              Gallery
+            </div>
+            <div className="w-1/4 bg-white h-24 flex-shrink-0 cursor-pointer text-center text-black pt-8">
+              Gallery
+            </div>
+            <div className="w-1/4 bg-white h-24 flex-shrink-0 cursor-pointer text-center text-black pt-8">
+              Gallery
+            </div>
           </div>
         )}
       </div>

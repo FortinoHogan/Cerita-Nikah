@@ -59,7 +59,7 @@ export interface ITemplatePersonalized {
   eventContract: IEvent;
   eventReception: IEvent;
   loveStory: ILoveStory[] | null;
-  galleries: IGallery[];
+  galleries: IGallery[] | null;
   rsvp?: IRsvp[];
   comment?: IComment[];
   linkVideo: string;
@@ -69,5 +69,5 @@ export interface ITemplatePersonalized {
   qris: string;
   account: IAccount[] | null;
   domain: string;
-  timestamp: Timestamp;
+  timestamp?: Timestamp;
 }

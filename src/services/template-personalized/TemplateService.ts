@@ -40,11 +40,13 @@ export const addTemplatePersonalized = async (templateState: TemplateState) => {
       );
     }
 
-    storyFile.map((story, index) => {
-      if (templateState.loveStorySaved && loveStoryData)
-        loveStoryData[index].storyPhoto = story;
-      else loveStoryData[index].storyPhoto = "";
-    });
+    if (storyFile) {
+      storyFile.map((story, index) => {
+        if (templateState.loveStorySaved && loveStoryData)
+          loveStoryData[index].storyPhoto = story;
+        else loveStoryData[index].storyPhoto = "";
+      });
+    }
 
     // Sequential Upload for single images
     if (templateState.coverFile)
@@ -105,28 +107,28 @@ export const addTemplatePersonalized = async (templateState: TemplateState) => {
       qris: typeof qrisFile === "string" ? qrisFile : "",
       templateId: "282a56a0-516d-48ab-ac6c-679e5417e034", // hard coded => todo change based on templateState.templateId
       userId: templateState.userId,
-      timestamp: Timestamp.now()
+      timestamp: Timestamp.now(),
     };
 
-    console.log("templateState", templateState)
-    console.log("templatePersonalized", templatePersonalized)
+    console.log("templateState", templateState);
+    console.log("templatePersonalized", templatePersonalized);
 
     await setDoc(
       doc(db, "TemplatePersonalized", templatePersonalized.id),
       templatePersonalized
     );
-    
+
     const message: IMessage = {
       isSuccess: true,
-      message: "Success Create Template!"
-    }
+      message: "Success Create Template!",
+    };
 
     return message;
   } catch (err: any) {
     const message: IMessage = {
       isSuccess: false,
-      message: err.message
-    }
+      message: err.message,
+    };
     return message;
   }
 };
@@ -153,13 +155,13 @@ export const getTemplatePersonalizedByDomain = async (
 };
 
 export const isSubDomainAlreadyTaken = async (domain: string) => {
-  const templatesRef = collection(db, "TemplatePersonalized"); 
+  const templatesRef = collection(db, "TemplatePersonalized");
 
   const q = query(templatesRef, where("domain", "==", domain));
 
   const querySnapshot = await getDocs(q);
 
   if (!querySnapshot.empty) return true;
-  
+
   return false;
-}
+};
