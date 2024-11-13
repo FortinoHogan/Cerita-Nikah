@@ -20,7 +20,9 @@ export const addTemplatePersonalized = async (templateState: TemplateState) => {
     let coverFile, groomFile, brideFile, qrisFile;
     let storyFile: string[] = [];
     let galleryFile: string[] = [];
-    let loveStoryTemp = _.cloneDeep(templateState.loveStorySaved);
+    let loveStoryTemp = Array.isArray(templateState.loveStorySaved)
+      ? _.cloneDeep(templateState.loveStorySaved)
+      : [];
     const loveStoryData = loveStoryTemp.map(
       ({ storyFile, ...rest }: any) => rest
     );
@@ -120,10 +122,8 @@ export const addTemplatePersonalized = async (templateState: TemplateState) => {
 
     const message: IMessage = {
       isSuccess: true,
-      message: "Success Create Template!",
+      message: `${templatePersonalized.groomNickName} & ${templatePersonalized.brideNickName}`,
     };
-
-    console.log(message);
 
     return message;
   } catch (err: any) {
