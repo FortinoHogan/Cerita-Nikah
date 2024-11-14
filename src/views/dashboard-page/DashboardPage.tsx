@@ -56,7 +56,7 @@ const DashboardPage = () => {
           Your Invitations
         </h1>
         <div className="grid grid-cols-5 gap-16 max-2xl:grid-cols-3 max-xl:grid-cols-2 max-lg:grid-cols-1">
-          {templatePersonalized.map((template, index) => (
+          {templatePersonalized.slice().reverse().map((template, index) => (
             <FilledInvitationCard data={template} key={index} />
           ))}
           <img
