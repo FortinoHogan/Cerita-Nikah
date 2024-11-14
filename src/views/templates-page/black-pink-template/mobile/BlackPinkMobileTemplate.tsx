@@ -18,6 +18,7 @@ import {
   IComment,
   IRsvp,
 } from "../../../../interfaces/templatePersonalized.interfaces";
+import { AccountBankData } from "../../../../components/account-card/AccountBank.data";
 
 const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
   const { template, fromWebView } = props;
@@ -36,10 +37,15 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
   const [rsvpName, setRsvpName] = useState("");
   const [isAbsence, setIsAbsence] = useState(false);
   const [rsvp, setRsvp] = useState("");
-  // console.log("template on black pink", template);
+  console.log("template on black pink", template);
   // console.log("resepsi src", resepsiSrc);
   // console.log("akad lat", akadLatitude);
   // console.log("akad long", akadLongitude);
+
+  const getBankImage = (name: string) => {
+    const data = AccountBankData.find((data) => data.name === name);
+    return data?.image;
+  };
 
   const handleBlessing = () => {
     const newBlessing: IComment = {
@@ -584,6 +590,17 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
                 )}
               </div>
             </div>
+            {template.account && (
+              <div className="mt-5 text-center text-lg">
+                {template.account.map((bank) => (
+                  <div className="mt-10 flex justify-center items-center flex-col gap-3">
+                    <img className="w-5/12" src={getBankImage(bank.bankName)} alt="" />
+                    <span>Nomor Rekening {bank.bankName}</span>
+                    <span>{bank.accountNumber}</span>
+                  </div>
+                ))}
+              </div>
+            )}
             <div className="pt-20">
               <TemplateCopyright backgroundColor="bg-black" />
             </div>

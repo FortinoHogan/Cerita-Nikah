@@ -74,7 +74,7 @@ export const TemplateMapper = (template: TemplateState): ITemplatePersonalized =
     price: template.price,
     isPay: template.isPay,
     qris: template.qris,
-    account: template.accounts,
+    account: template.accountsSaved || null,
     domain: template.domain,
   }
 }

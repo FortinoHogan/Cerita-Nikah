@@ -9,6 +9,7 @@ const MobileView = () => {
     (state: RootState) => state.template
   );
   const template = TemplateMapper(templatePersonalized);
+  console.log("parent", templatePersonalized);
 
   return (
     <div className="relative mt-16 mx-auto border-gray-800 bg-gray-800 border-[14px] max-2xl:border-[8px] max-xl:border-[6px] rounded-[2.5rem] h-[669px] w-[328px] shadow-xl max-2xl:h-[560px] max-2xl:w-[270px] max-xl:h-[475px] max-xl:w-[230px] max-lg:h-[405px] max-lg:w-[197px]">
