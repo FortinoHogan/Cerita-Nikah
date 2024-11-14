@@ -3,4 +3,5 @@ import { ITemplatePersonalized } from "../../interfaces/templatePersonalized.int
 export interface ITemplatesPage {
     template: ITemplatePersonalized
     view?: string
+    fromWebView?: boolean
 }

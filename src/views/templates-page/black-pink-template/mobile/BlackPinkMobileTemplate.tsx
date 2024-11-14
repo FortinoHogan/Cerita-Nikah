@@ -10,14 +10,17 @@ import TemplateCopyright from "../../../../components/template-copyright/Templat
 import { ITemplatesPage } from "../../TemplatesPage.interfaces";
 import { store } from "../../../../services/redux/Store";
 import { SET_TEMPLATE } from "../../../../services/redux/template-slice/TemplateSlice";
-import { addBlessing, addRsvp } from "../../../../services/template-personalized/TemplateService";
+import {
+  addBlessing,
+  addRsvp,
+} from "../../../../services/template-personalized/TemplateService";
 import {
   IComment,
   IRsvp,
 } from "../../../../interfaces/templatePersonalized.interfaces";
 
 const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
-  const { template } = props;
+  const { template, fromWebView } = props;
   const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
   const [galleryIndex, setGalleryIndex] = useState(0);
@@ -55,7 +58,7 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
       isAttend: isAbsence,
       name: rsvpName,
     };
-    
+
     addRsvp(template, newRsvp);
     setRsvp("");
     setRsvpName("");
@@ -143,33 +146,35 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
   );
   return (
     <div className="font-collingar text-white h-full bg-black">
-      <div className="min-h-svh relative bg-black">
-        {template.cover ? (
-          <img
-            className="z-10 min-h-screen object-cover object-top"
-            src={template.cover}
-            alt=""
-          />
-        ) : (
-          <p className="text-center pt-80">Cover</p>
-        )}
-        <div className="z-20 text-4xl font-collingar text-center flex items-center justify-center absolute bottom-20 left-1/2 transform -translate-x-1/2">
-          <p className="text-[#FFA5A5] absolute bottom-9 right-0">
-            {template.groomNickName === "" ? "Name" : template.groomNickName}
-          </p>
-          <p className="absolute bottom-5 z-30 text-white">&</p>
-          <p className="text-[#FFA5A5] absolute bottom-1 left-0">
-            {template.brideNickName === "" ? "Name" : template.brideNickName}
-          </p>
+      {!fromWebView && (
+        <div className="min-h-svh relative bg-black">
+          {template.cover ? (
+            <img
+              className="z-10 min-h-screen object-cover object-top"
+              src={template.cover}
+              alt=""
+            />
+          ) : (
+            <p className="text-center pt-80">Cover</p>
+          )}
+          <div className="z-20 text-4xl font-collingar text-center flex items-center justify-center absolute bottom-20 left-1/2 transform -translate-x-1/2">
+            <p className="text-[#FFA5A5] absolute bottom-9 right-0">
+              {template.groomNickName === "" ? "Name" : template.groomNickName}
+            </p>
+            <p className="absolute bottom-5 z-30 text-white">&</p>
+            <p className="text-[#FFA5A5] absolute bottom-1 left-0">
+              {template.brideNickName === "" ? "Name" : template.brideNickName}
+            </p>
+          </div>
+          <div className="absolute bottom-12 text-xl text-white left-1/2 transform -translate-x-1/2 font-edith">
+            <p>
+              {template.eventReception.eventDate === ""
+                ? "Example Date"
+                : convertDotDate(template.eventReception.eventDate)}
+            </p>
+          </div>
         </div>
-        <div className="absolute bottom-12 text-xl text-white left-1/2 transform -translate-x-1/2 font-edith">
-          <p>
-            {template.eventReception.eventDate === ""
-              ? "Example Date"
-              : convertDotDate(template.eventReception.eventDate)}
-          </p>
-        </div>
-      </div>
+      )}
       <div className="bg-black">
         <div className="mt-5 ml-5 bg-black h-96 text-start flex items-start flex-col">
           <div className="w-[45%] bg-white h-4/6">

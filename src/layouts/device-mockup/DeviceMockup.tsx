@@ -12,8 +12,17 @@ import { TemplateMapper } from "../../libs/Template";
 const DeviceMockup = () => {
   const { deviceState } = useDeviceContext();
   const navigate = useNavigate();
+  const templatePersonalized = useSelector(
+    (state: RootState) => state.template
+  );
 
-  const handleNavigate = () => navigate("/edit/view");
+  const handleNavigate = () => {
+    if (
+      templatePersonalized.templateId !== "" &&
+      templatePersonalized.templateId !== null
+    )
+      navigate("/edit/view");
+  };
 
   return (
     <div className="flex flex-col items-center justify-center">

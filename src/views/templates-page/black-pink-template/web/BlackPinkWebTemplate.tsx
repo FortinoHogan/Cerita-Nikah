@@ -4,39 +4,49 @@ import { templatePersonalizedExample } from "../../../../libs/templatePersonaliz
 import { convertDotDate, convertSlashDate } from "../../../../libs/convertDate";
 import TemplateCopyright from "../../../../components/template-copyright/TemplateCopyright";
 import { ITemplatesPage } from "../../TemplatesPage.interfaces";
+import BlackPinkMobileTemplate from "../mobile/BlackPinkMobileTemplate";
 
 const BlackPinkWebTemplate = (props: ITemplatesPage) => {
-  const [template, setTemplate] = useState(props.template);
-  const [galleryIndex, setGalleryIndex] = useState(0);
+  const { template } = props;
+  // const [galleryIndex, setGalleryIndex] = useState(0);
 
-  const timeLeft = useCountdown(template.eventReception.eventDate);
+  // const timeLeft = useCountdown(template.eventReception.eventDate);
 
   return (
     <div className="flex font-collingar text-white">
-      <div className="w-8/12 flex bg-blue-50 h-screen fixed top-0 overflow-x-hidden left-0">
-        <img
-          className="z-10 h-full w-full object-cover object-top"
-          src={template.cover}
-          alt=""
-        />
-        <div className="text-center text-5xl absolute z-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <p className="font-edith">
-            {convertDotDate(template.eventReception.eventDate)}
-          </p>
-          <p className="font-edith text-[#FFA5A5]">{`${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`}</p>
+      <div className="w-9/12 flex bg-blue-50 h-screen fixed top-0 overflow-x-hidden left-0">
+        {template.cover === "" ? (
+          <div className="bg-white w-full h-full text-black text-5xl text-center pt-96">
+            cover
+          </div>
+        ) : (
+          <img
+            className="z-10 h-full w-full object-cover object-top"
+            src={template.cover}
+            alt=""
+          />
+        )}
+        <div className="font-edith text-center text-5xl absolute z-20 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          {template.eventReception.eventDate === "" ? (
+            <div>example date</div>
+          ) : (
+            <p>{convertDotDate(template.eventReception.eventDate)}</p>
+          )}
+          {/* <p className="font-edith text-[#FFA5A5]">{`${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`}</p> */}
         </div>
         <div className="z-20 text-7xl text-center flex items-center justify-center absolute bottom-20 left-1/2 transform -translate-x-1/2">
           <p className="text-[#FFA5A5] absolute bottom-14 right-0">
-            {template.groomNickName}
+            {template.groomNickName === "" ? "Name" : template.groomNickName}
           </p>
           <p className="absolute bottom-5 z-30">&</p>
           <p className="text-[#FFA5A5] absolute -bottom-4 left-0">
-            {template.brideNickName}
+            {template.brideNickName === "" ? "Name" : template.brideNickName}
           </p>
         </div>
       </div>
-      <div className="w-4/12 h-full fixed top-0 overflow-x-auto right-0 bg-black">
-        <div className="mt-5 ml-5 text-start h-4/6 flex items-start flex-col">
+      <div className="w-3/12 h-full fixed top-0 overflow-x-auto right-0 bg-black">
+        <BlackPinkMobileTemplate fromWebView={true} template={template} />
+        {/* <div className="mt-5 ml-5 text-start h-4/6 flex items-start flex-col">
           <div className="w-[45%] bg-white h-4/6">
             <img
               className="h-full w-full object-cover"
@@ -269,7 +279,7 @@ const BlackPinkWebTemplate = (props: ITemplatesPage) => {
               <TemplateCopyright backgroundColor="bg-black" />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
