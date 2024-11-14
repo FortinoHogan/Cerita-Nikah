@@ -23,10 +23,6 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
   const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
   const { template } = props;
-  console.log("template on black pink", template);
-  // console.log("resepsi src", resepsiSrc);
-  // console.log("akad lat", akadLatitude);
-  // console.log("akad long", akadLongitude);
 
   const extractAkadCoordinates = (url: string) => {
     const regex = /@(-?\d+\.\d+),(-?\d+\.\d+)/; // Regex to match @lat,long

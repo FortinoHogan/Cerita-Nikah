@@ -31,6 +31,7 @@ const AngpaoForm = () => {
     dispatch(ADD_ACCOUNT(newCard()));
   };
 
+
   const handleDeleteImage = () => {
     dispatch(DELETE_QRIS());
   };
