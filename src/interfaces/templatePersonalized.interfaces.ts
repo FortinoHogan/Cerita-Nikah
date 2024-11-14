@@ -29,12 +29,12 @@ interface IGallery {
   image: string;
 }
 
-interface IRsvp {
+export interface IRsvp {
   name: string;
   isAttend: boolean;
 }
 
-interface IComment {
+export interface IComment {
   name: string;
   remark: string;
 }

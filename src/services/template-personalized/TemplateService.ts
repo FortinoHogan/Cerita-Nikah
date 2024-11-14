@@ -5,10 +5,15 @@ import {
   query,
   setDoc,
   Timestamp,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import { db } from "../firebase";
-import { ITemplatePersonalized } from "../../interfaces/templatePersonalized.interfaces";
+import {
+  IComment,
+  IRsvp,
+  ITemplatePersonalized,
+} from "../../interfaces/templatePersonalized.interfaces";
 import { TemplateState } from "../redux/template-slice/TemplateSlice";
 import { handleUploudImage } from "../uploud-generator/UploudGenerator";
 import { v4 as uuidv4 } from "uuid";
@@ -166,4 +171,36 @@ export const isSubDomainAlreadyTaken = async (domain: string) => {
   if (!querySnapshot.empty) return true;
 
   return false;
+};
+
+export const addBlessing = async (
+  template: ITemplatePersonalized,
+  newComment: IComment
+) => {
+  const docRef = doc(db, "TemplatePersonalized", template.id);
+
+  try {
+    await updateDoc(docRef, {
+      comment: template.comment
+        ? [...template.comment, newComment]
+        : [newComment],
+    });
+  } catch (error) {
+    console.error("Error updating template:", error);
+  }
+};
+
+export const addRsvp = async (
+  template: ITemplatePersonalized,
+  newRsvp: IRsvp
+) => {
+  const docRef = doc(db, "TemplatePersonalized", template.id);
+
+  try {
+    await updateDoc(docRef, {
+      rsvp: template.rsvp ? [...template.rsvp, newRsvp] : [newRsvp],
+    });
+  } catch (error) {
+    console.error("Error updating template:", error);
+  }
 };

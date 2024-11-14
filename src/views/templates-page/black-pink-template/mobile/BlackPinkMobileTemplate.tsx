@@ -10,8 +10,16 @@ import TemplateCopyright from "../../../../components/template-copyright/Templat
 import { ITemplatesPage } from "../../TemplatesPage.interfaces";
 import { store } from "../../../../services/redux/Store";
 import { SET_TEMPLATE } from "../../../../services/redux/template-slice/TemplateSlice";
+import { addBlessing, addRsvp } from "../../../../services/template-personalized/TemplateService";
+import {
+  IComment,
+  IRsvp,
+} from "../../../../interfaces/templatePersonalized.interfaces";
 
 const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
+  const { template } = props;
+  const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
+
   const [galleryIndex, setGalleryIndex] = useState(0);
   const [akadLatitude, setAkadLatitude] = useState<string | null>(null);
   const [akadLongitude, setAkadLongitude] = useState<string | null>(null);
@@ -19,14 +27,45 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
   const [resepsiLatitude, setResepsiLatitude] = useState<string | null>(null);
   const [resepsiLongitude, setResepsiLongitude] = useState<string | null>(null);
   const [resepsiSrc, setResepsiSrc] = useState("");
-
-  const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
-
-  const { template } = props;
-  console.log("template on black pink", template);
+  const [blessingName, setBlessingName] = useState("");
+  const [blessing, setBlessing] = useState("");
+  const [comment, setComment] = useState(template.comment || []);
+  const [rsvpName, setRsvpName] = useState("");
+  const [isAbsence, setIsAbsence] = useState(false);
+  const [rsvp, setRsvp] = useState("");
+  // console.log("template on black pink", template);
   // console.log("resepsi src", resepsiSrc);
   // console.log("akad lat", akadLatitude);
   // console.log("akad long", akadLongitude);
+
+  const handleBlessing = () => {
+    const newBlessing: IComment = {
+      name: blessingName,
+      remark: blessing,
+    };
+
+    addBlessing(template, newBlessing);
+    setComment(comment ? [...comment, newBlessing] : [newBlessing]);
+    setBlessing("");
+    setBlessingName("");
+  };
+
+  const handleRsvp = () => {
+    const newRsvp: IRsvp = {
+      isAttend: isAbsence,
+      name: rsvpName,
+    };
+    
+    addRsvp(template, newRsvp);
+    setRsvp("");
+    setRsvpName("");
+  };
+
+  const handleAttendChange = (e: any) => {
+    setRsvp(e.target.value);
+    if (rsvp === "attend") setIsAbsence(false);
+    if (rsvp === "absent") setIsAbsence(true);
+  };
 
   const extractAkadCoordinates = (url: string) => {
     const regex = /@(-?\d+\.\d+),(-?\d+\.\d+)/; // Regex to match @lat,long
@@ -448,6 +487,8 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
                 className="w-11/12 bg-black outline-none focus:ring-0 px-6 placeholder-[#FFA5A5] py-2 text-[#FFA5A5] rounded-md"
                 type="text"
                 placeholder="Name..."
+                value={rsvpName}
+                onChange={(e) => setRsvpName(e.target.value)}
               />
               <div className="flex my-5 gap-2 flex-col text-[#FFA5A5]">
                 <div className="flex gap-2">
@@ -457,6 +498,7 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
                     value="attend"
                     id="attend"
                     className="accent-[#FFA5A5]"
+                    onChange={handleAttendChange}
                   />
                   <label htmlFor="attend">Delightfully accepts</label>
                 </div>
@@ -467,11 +509,15 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
                     value="absent"
                     id="absent"
                     className="accent-[#FFA5A5]"
+                    onChange={handleAttendChange}
                   />
                   <label htmlFor="absent">Regretfully decline</label>
                 </div>
               </div>
-              <button className="w-11/12 bg-[#FFA5A5] py-1 rounded-md text-black font-bold">
+              <button
+                onClick={handleRsvp}
+                className="w-11/12 bg-[#FFA5A5] py-1 rounded-md text-black font-bold"
+              >
                 SEND
               </button>
             </div>
@@ -482,9 +528,9 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
             <p className="text-center font-edith text-5xl text-[#FFA5A5]">
               Blessing & Wishes
             </p>
-            {template.comment && (
+            {comment && (
               <div className="mt-5 h-96 overflow-auto scrollbar-hidden">
-                {template.comment.map((c, index) => (
+                {comment.map((c, index) => (
                   <div className="flex flex-col mt-5 bg-black w-9/12 py-2 mx-auto font-edith px-5 rounded-md">
                     <p className="text-2xl text-[#FFA5A5]">{c.name}</p>
                     <p className="font-forum">{c.remark}</p>
@@ -501,6 +547,8 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
                   placeholder="Name..."
                   name=""
                   id=""
+                  value={blessingName}
+                  onChange={(e) => setBlessingName(e.target.value)}
                 />
                 <input
                   className="bg-black outline-none focus:ring-0 px-6 placeholder-[#FFA5A5] py-2 text-[#FFA5A5] rounded-md"
@@ -508,8 +556,13 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
                   placeholder="Blessing & Wishes..."
                   name=""
                   id=""
+                  value={blessing}
+                  onChange={(e) => setBlessing(e.target.value)}
                 />
-                <button className="bg-[#FFA5A5] py-1 rounded-md text-black font-bold">
+                <button
+                  onClick={handleBlessing}
+                  className="bg-[#FFA5A5] py-1 rounded-md text-black font-bold"
+                >
                   SEND
                 </button>
               </div>
@@ -518,7 +571,9 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
               <div className="flex gap-5 flex-col justify-center items-center">
                 <p className="font-edith text-3xl">Angpao</p>
                 {template.qris === "" ? (
-                  <div className="size-56 bg-white text-black text-center pt-24">QR Code</div>
+                  <div className="size-56 bg-white text-black text-center pt-24">
+                    QR Code
+                  </div>
                 ) : (
                   <img className="w-8/12" src={template.qris} alt="" />
                 )}
