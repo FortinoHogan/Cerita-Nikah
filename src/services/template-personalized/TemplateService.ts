@@ -85,7 +85,7 @@ export const addTemplatePersonalized = async (
 
     const templatePersonalized: ITemplatePersonalized = {
       backgroundMusic: templateState.backgroundMusic,
-      account: templateState.accounts,
+      account: templateState.accountsSaved,
       bride: {
         fatherName: templateState.bride.fatherName,
         fullName: templateState.bride.fullName,
@@ -115,7 +115,7 @@ export const addTemplatePersonalized = async (
       openingRemarks: templateState.openingRemarks,
       price: templateState.price,
       qris: typeof qrisFile === "string" ? qrisFile : "",
-      templateId: "282a56a0-516d-48ab-ac6c-679e5417e034", // hard coded => todo change based on templateState.templateId
+      templateId: templateState.templateId,
       userId: userId || "",
       timestamp: Timestamp.now(),
     };
