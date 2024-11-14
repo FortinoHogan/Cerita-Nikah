@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ILoveStoryCard } from "../../../components/love-story-card/ILoveStoryCard";
 import { IAccount } from "../../../components/account-card/IAccountCard";
+import { ITemplatePersonalized } from "../../../interfaces/templatePersonalized.interfaces";
 
 export interface IGallery {
   imageId: string;
@@ -326,6 +327,10 @@ export const TemplateSlice = createSlice({
     ADD_DOMAIN: (state, action: PayloadAction<string>) => {
       state.domain = action.payload;
     },
+    CLEAR_STATE: () => initialState,
+    LOAD_STATE: (state, action: PayloadAction<TemplateState>) => {
+      return { ...state, ...action.payload };
+    }
   },
 });
 
@@ -354,6 +359,8 @@ export const {
   DELETE_ACCOUNT,
   REMOVE_ACCOUNT,
   ADD_DOMAIN,
+  CLEAR_STATE,
+  LOAD_STATE,
 } = TemplateSlice.actions;
 
 export default TemplateSlice;

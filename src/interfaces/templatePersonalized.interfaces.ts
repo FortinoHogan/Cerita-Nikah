@@ -18,14 +18,14 @@ interface IEvent {
   locationLink: string;
 }
 
-interface ILoveStory {
+export interface ILoveStory {
   storyTitle: string;
   storyDate: string;
   storyDescription: string;
   storyPhoto: string;
 }
 
-interface IGallery {
+export interface IGallery {
   image: string;
 }
 

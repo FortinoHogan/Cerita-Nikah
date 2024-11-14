@@ -2,7 +2,7 @@ import React from "react";
 
 const Loading = () => {
   return (
-    <div className="bg-[#f28da9] opacity-70 fixed min-h-[100%] w-[100%] z-50 flex items-center justify-center">
+    <div className="bg-[#f28da9] opacity-70 fixed min-h-[100%] w-[100%] z-[99] flex items-center justify-center">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="4rem"

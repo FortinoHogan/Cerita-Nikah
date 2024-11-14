@@ -14,7 +14,7 @@ const Navbar = () => {
   const user = authContext?.currentUser;
 
   return (
-    <div className="flex justify-between px-20 max-md:px-10 items-center bg-[#F093B5] h-[85px] shadow-[0px_4.0px_4.0px_rgba(0,0,0,0.38)] fixed w-full z-40">
+    <div className="flex justify-between px-20 max-md:px-10 items-center bg-[#F093B5] h-[85px] shadow-[0px_4.0px_4.0px_rgba(0,0,0,0.38)] fixed w-full z-50">
       <div className="flex items-center gap-10 z-50">
         <img
           onClick={() => nav("/")}
