@@ -11,3 +11,7 @@ body {
   -ms-overflow-style: none; /* Untuk Internet Explorer dan Edge */
   scrollbar-width: none; /* Untuk Firefox */
 }
+
+.iframe-youtube {
+  border-radius: 0.375rem;
+}

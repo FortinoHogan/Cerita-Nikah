@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { templatePersonalizedExample } from "../../../../libs/templatePersonalized.example";
 import { useCountdown } from "../../../../libs/countdown";
-import { convertDotDate, convertSlashDate } from "../../../../libs/convertDate";
+import {
+  convertDetailDate,
+  convertDotDate,
+  convertSlashDate,
+} from "../../../../libs/convertDate";
 import TemplateCopyright from "../../../../components/template-copyright/TemplateCopyright";
 import { ITemplatesPage } from "../../TemplatesPage.interfaces";
 import { store } from "../../../../services/redux/Store";
@@ -9,7 +13,79 @@ import { SET_TEMPLATE } from "../../../../services/redux/template-slice/Template
 
 const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
   const [galleryIndex, setGalleryIndex] = useState(0);
+  const [akadLatitude, setAkadLatitude] = useState<string | null>(null);
+  const [akadLongitude, setAkadLongitude] = useState<string | null>(null);
+  const [akadSrc, setAkadSrc] = useState("");
+  const [resepsiLatitude, setResepsiLatitude] = useState<string | null>(null);
+  const [resepsiLongitude, setResepsiLongitude] = useState<string | null>(null);
+  const [resepsiSrc, setResepsiSrc] = useState("");
+
+  const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
+
   const { template } = props;
+  console.log("template on black pink", template);
+  // console.log("resepsi src", resepsiSrc);
+  // console.log("akad lat", akadLatitude);
+  // console.log("akad long", akadLongitude);
+
+  const extractAkadCoordinates = (url: string) => {
+    const regex = /@(-?\d+\.\d+),(-?\d+\.\d+)/; // Regex to match @lat,long
+    const match = url.match(regex);
+    if (match) {
+      setAkadLatitude(match[1]);
+      setAkadLongitude(match[2]);
+    } else {
+      console.error("Coordinates not found in the URL");
+    }
+  };
+
+  const extractResepsiCoordinates = (url: string) => {
+    const regex = /@(-?\d+\.\d+),(-?\d+\.\d+)/; // Regex to match @lat,long
+    const match = url.match(regex);
+    if (match) {
+      setResepsiLatitude(match[1]);
+      setResepsiLongitude(match[2]);
+    } else {
+      console.error("Coordinates not found in the URL");
+    }
+  };
+
+  useEffect(() => {
+    if (
+      template.eventContract.locationLink &&
+      template.eventContract.locationLink !== ""
+    ) {
+      extractAkadCoordinates(template.eventContract.locationLink);
+    }
+  }, [template.eventContract.locationLink]);
+
+  useEffect(() => {
+    if (
+      template.eventReception.locationLink &&
+      template.eventReception.locationLink !== ""
+    ) {
+      extractResepsiCoordinates(template.eventReception.locationLink);
+    }
+  }, [template.eventReception.locationLink]);
+
+  useEffect(() => {
+    setAkadSrc(
+      `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${akadLatitude},${akadLongitude}`
+    );
+  }, [akadLatitude, akadLongitude, apiKey]);
+
+  useEffect(() => {
+    setResepsiSrc(
+      `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${resepsiLatitude},${resepsiLongitude}`
+    );
+  }, [resepsiLatitude, resepsiLongitude, apiKey]);
+
+  const getVideoId = (url: string) => {
+    const urlObj = new URL(url);
+    return urlObj.searchParams.get("v");
+  };
+  const videoId =
+    template.linkVideo === "" ? "" : getVideoId(template.linkVideo);
 
   useEffect(() => {
     store.dispatch(
@@ -21,7 +97,11 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
     );
   }, []);
 
-  const timeLeft = useCountdown(template.eventReception.eventDate);
+  const timeLeft = useCountdown(
+    template.eventReception.eventDate === ""
+      ? "2069-12-12"
+      : template.eventReception.eventDate
+  );
   return (
     <div className="font-collingar text-white h-full bg-black">
       <div className="min-h-svh relative bg-black">
@@ -193,7 +273,9 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
           <div className="w-full absolute -top-8 text-end">
             <p className="text-[#FFA5A5] text-4xl font-edith">Gallery</p>
           </div>
-          {template.galleries && template.galleries.length > 0 && template.galleries[galleryIndex].image ? (
+          {template.galleries &&
+          template.galleries.length > 0 &&
+          template.galleries[galleryIndex].image ? (
             <div className="w-11/12 h-[23rem] bg-white">
               <img
                 className="h-full w-full object-cover"
@@ -241,28 +323,78 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
       </div>
       <div className="bg-[#805C5C]">
         <div className="mt-10 bg-gradient-to-b from-[#181313] to-[#805C5C]">
-          <div className="pt-32 w-10/12">
+          <div className="pt-32 w-full">
+            <p className="text-center text-[#FFA5A5] text-4xl font-edith">
+              Video
+            </p>
+            <div
+              className={`mt-5 h-52 w-10/12 mx-auto ${
+                template.linkVideo === "" ? "bg-white" : ""
+              } rounded-md`}
+            >
+              {template.linkVideo === "" ? (
+                <p className="text-black text-center pt-24">Link Video</p>
+              ) : (
+                <iframe
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  className="iframe-youtube"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  width="100%"
+                  height="100%"
+                />
+              )}
+            </div>
+          </div>
+          <div className="pt-32 w-full text-center text-[#FFA5A5]">
+            <p className="text-xl">Days Until Our Wedding</p>
+            <div className="font-edith text-xl text-white">
+              <span>{timeLeft.days} Days </span>
+              <span>{timeLeft.hours} Hours </span>
+              <span>{timeLeft.minutes} Minutes </span>
+              <span>{timeLeft.seconds} Seconds</span>
+            </div>
+          </div>
+          <div className="pt-32 w-full pr-2">
             <p className="text-end text-lg text-[#FFA5A5]">
               A celebration love and union.
             </p>
           </div>
-          <div className="w-10/12 h-[18rem] relative">
-            <div className="w-full h-40 bg-white">
-              <img
-                className="h-full w-full object-cover"
-                src="/assets/images/black-pink-template/cincin.png"
-                alt=""
-              />
+          <div className="w-full h-[26rem] relative">
+            <div className="w-full h-72 bg-white">
+              {template.eventContract.locationLink === "" ? (
+                <p className="text-center text-black pt-32">Event Contract</p>
+              ) : (
+                <iframe
+                  src={akadSrc}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  title="Google Map"
+                />
+              )}
             </div>
             <div className="w-full flex items-center justify-center font-edith">
               <div className="w-11/12 bg-[#5E3737] absolute bottom-0 text-end py-2 px-6">
                 <p className="text-4xl text-[#FFA5A5]">AKAD NIKAH</p>
-                <p className="text-lg">
-                  JUMAT, 17 AGUSTUS 1945 | 06:00 - 10:00 WIB
-                </p>
-                <p className="mt-2 underline">
-                  {template.eventContract.locationAddress}
-                </p>
+                {template.eventContract.eventDate === "" ? (
+                  <div>Example Date</div>
+                ) : (
+                  <div>
+                    <p className="text-lg">
+                      {convertDetailDate(template.eventContract.eventDate)} |{" "}
+                      {template.eventContract.eventStartTime} -{" "}
+                      {template.eventContract.eventEndTime} WIB
+                    </p>
+                    <p className="mt-2 underline">
+                      {template.eventContract.locationAddress}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -271,19 +403,42 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
               <p>RESEPSI</p>
             </div>
           </div>
-          <div className="w-full mt-5 bg-white h-72">t</div>
+          <div className="w-full mt-5 bg-white h-72">
+            {template.eventReception.locationLink === "" ? (
+              <p className="text-center text-black pt-32">Event Reception</p>
+            ) : (
+              <iframe
+                src={resepsiSrc}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                title="Google Map"
+              />
+            )}
+          </div>
           <div className="mt-5 w-10/12 mx-auto bg-[#5E3737]">
             <p className="pl-5 py-2 mt-1 text-[#FFA5A5]">
               A celebration love and union.
             </p>
           </div>
           <div className="mt-6 w-10/12 mx-auto font-edith">
-            <div className="text-xl w-9/12 mx-auto">
-              <p>Jumat, 17 Agustus 1945</p>
-              <p className="ml-2">06:00 - 10:00 WIB</p>
-              <p className="mt-5 underline">
-                {template.eventReception.locationAddress}
-              </p>
+            <div className="text-xl w-9/12 mx-auto w-full">
+              {template.eventReception.eventDate === "" ? (
+                <div>example date</div>
+              ) : (
+                <div>
+                  <p>{convertDetailDate(template.eventReception.eventDate)}</p>
+                  <p className="ml-2">
+                    {template.eventReception.eventStartTime} -{" "}
+                    {template.eventReception.eventEndTime}
+                  </p>
+                  <p className="mt-5 underline">
+                    {template.eventReception.locationAddress}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
           <div className="pt-32">
@@ -362,7 +517,11 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
             <div className="pt-36">
               <div className="flex gap-5 flex-col justify-center items-center">
                 <p className="font-edith text-3xl">Angpao</p>
-                <img className="w-8/12" src="/assets/images/qr.png" alt="" />
+                {template.qris === "" ? (
+                  <div className="size-56 bg-white text-black text-center pt-24">QR Code</div>
+                ) : (
+                  <img className="w-8/12" src={template.qris} alt="" />
+                )}
               </div>
             </div>
             <div className="pt-20">
