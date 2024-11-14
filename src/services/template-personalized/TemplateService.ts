@@ -117,8 +117,8 @@ export const addTemplatePersonalized = async (templateState: TemplateState) => {
       timestamp: Timestamp.now(),
     };
 
-    console.log("templateState", templateState);
-    console.log("templatePersonalized", templatePersonalized);
+    // console.log("templateState", templateState);
+    // console.log("templatePersonalized", templatePersonalized);
 
     await setDoc(
       doc(db, "TemplatePersonalized", templatePersonalized.id),

@@ -48,7 +48,7 @@ const CoverForm = () => {
   };
 
   return (
-    <div>
+    <div className="overflow-y-auto scrollbar-hidden">
       <p className="font-semibold text-custom-gray pr-16 mb-2 text-justify">
         Upload image that will be used as the main photo on the cover
       </p>

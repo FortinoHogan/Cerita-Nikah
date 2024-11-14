@@ -5,6 +5,7 @@ import Navbar from '../../layouts/navbar/Navbar';
 import HomePageTemplates from '../../layouts/home-page-templates/HomePageTemplates';
 import HomePagePackage from '../../layouts/home-page-package/HomePagePackage';
 import Footer from '../../layouts/footer/Footer';
+import Loading from '../../components/loading/Loading';
 
 const HomePage = () => {
   return (

@@ -16,6 +16,7 @@ import { addTemplatePersonalized } from "../../services/template-personalized/Te
 import Button from "../../components/button/Button";
 import { IMessage } from "../../interfaces/message.interfaces";
 import Swal from "sweetalert2";
+import Loading from "../../components/loading/Loading";
 
 const CreateInvitationPage = () => {
   const authContext = useAuth();
@@ -23,10 +24,13 @@ const CreateInvitationPage = () => {
     (state: RootState) => state.template
   );
   const [message, setMessage] = useState<IMessage>();
+  const [loading, setLoading] = useState(false);
 
   const handleSave = async () => {
+    setLoading(true);
     const createTemplate = await addTemplatePersonalized(templatePersonalized);
     setMessage(createTemplate);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -36,14 +40,14 @@ const CreateInvitationPage = () => {
           title: message?.message,
           text: "Wedding Invitation Created Successfully",
           icon: "success",
-          confirmButtonColor: '#e64d87'
+          confirmButtonColor: "#e64d87",
         });
       } else {
         Swal.fire({
           title: "Unable to Create Wedding Invitation",
           text: message?.message,
           icon: "error",
-          confirmButtonColor: '#e64d87'
+          confirmButtonColor: "#e64d87",
         });
       }
     }
@@ -51,6 +55,7 @@ const CreateInvitationPage = () => {
 
   return (
     <div className="h-screen flex flex-col gap-10 max-lg:gap-7">
+      {loading && <Loading />}
       {!authContext?.isLogin && <Navigate to={"/"} />}
       <div className="h-[9%]">
         <Navbar />

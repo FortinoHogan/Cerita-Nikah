@@ -1,24 +1,24 @@
-import { createContext, useState, useContext, ReactNode } from 'react';
-import { FormContextType } from './FormContext.interface';
+import { createContext, useState, useContext, ReactNode } from "react";
+import { FormContextType } from "./FormContext.interface";
 
 const FormContext = createContext<FormContextType | null>(null);
 
 export const useFormContext = () => {
-    const context = useContext(FormContext);
+  const context = useContext(FormContext);
 
-    if (!context) {
-        throw new Error('formContext must be used within a Provider');
-    }
+  if (!context) {
+    throw new Error("formContext must be used within a Provider");
+  }
 
-    return context;
+  return context;
 };
 
 export const FormProvider = ({ children }: { children: ReactNode }) => {
-    const [formState, setFormState] = useState("subDomain");
+  const [formState, setFormState] = useState("subDomain");
 
-    return (
-        <FormContext.Provider value={{ formState, setFormState }}>
-            {children}
-        </FormContext.Provider>
-    );
+  return (
+    <FormContext.Provider value={{ formState, setFormState }}>
+      {children}
+    </FormContext.Provider>
+  );
 };
