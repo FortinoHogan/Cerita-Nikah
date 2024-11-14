@@ -69,7 +69,9 @@ const TemplatesForm = () => {
             >
               <h1 className="font-semibold text-custom-gray">{item.title}</h1>
               {/* GANTI IMAGE KALO UDAH ADA*/}
-              <div className="bg-[#d9d9d9] rounded-xl h-72"></div>
+              <div className="bg-[#d9d9d9] rounded-xl h-96">
+                <img className="w-full h-full object-cover rounded-xl" src={item.image} alt="" />  
+              </div>
             </div>
           ))}
         </>
