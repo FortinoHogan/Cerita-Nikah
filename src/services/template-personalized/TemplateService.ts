@@ -20,7 +20,10 @@ import { v4 as uuidv4 } from "uuid";
 import { IMessage } from "../../interfaces/message.interfaces";
 const _ = require("lodash");
 
-export const addTemplatePersonalized = async (templateState: TemplateState) => {
+export const addTemplatePersonalized = async (
+  templateState: TemplateState,
+  userId?: string
+) => {
   try {
     let coverFile, groomFile, brideFile, qrisFile;
     let storyFile: string[] = [];
@@ -113,7 +116,7 @@ export const addTemplatePersonalized = async (templateState: TemplateState) => {
       price: templateState.price,
       qris: typeof qrisFile === "string" ? qrisFile : "",
       templateId: "282a56a0-516d-48ab-ac6c-679e5417e034", // hard coded => todo change based on templateState.templateId
-      userId: templateState.userId,
+      userId: userId || "",
       timestamp: Timestamp.now(),
     };
 
@@ -158,6 +161,25 @@ export const getTemplatePersonalizedByDomain = async (
     return doc.data() as ITemplatePersonalized;
   } else {
     return null; // No matching document found
+  }
+};
+
+export const getTemplatePersonalizedByUserId = async (
+  userId: string
+): Promise<ITemplatePersonalized[]> => {
+  const templatesRef = collection(db, "TemplatePersonalized"); // Reference to the TemplatePersonalized collection
+
+  // Create a query to find documents where the "userId" field matches the specified userId
+  const q = query(templatesRef, where("userId", "==", userId));
+
+  // Execute the query and retrieve the documents
+  const querySnapshot = await getDocs(q);
+
+  // If documents are found, map them to an array of ITemplatePersonalized
+  if (!querySnapshot.empty) {
+    return querySnapshot.docs.map((doc) => doc.data() as ITemplatePersonalized);
+  } else {
+    return []; // No matching documents found
   }
 };
 

@@ -5,7 +5,7 @@ import { IAccount } from "../../../components/account-card/IAccountCard";
 export interface IGallery {
   imageId: string;
   image: string;
-  file?: File
+  file?: File;
 }
 
 export interface TemplateState {
@@ -128,6 +128,9 @@ export const TemplateSlice = createSlice({
   name: "template",
   initialState,
   reducers: {
+    SET_USER_ID: (state, action: PayloadAction<string>) => {
+      state.userId = action.payload;
+    },
     SET_TEMPLATE: (state, action: PayloadAction<Partial<TemplateState>>) => {
       state.templateId = action.payload.templateId || "";
       state.templateName = action.payload.templateName || "";
@@ -270,7 +273,7 @@ export const TemplateSlice = createSlice({
     },
     SET_QRIS: (state, action: PayloadAction<Partial<TemplateState>>) => {
       state.qris = action.payload.qris || "";
-      state.qrisFile = action.payload.qrisFile
+      state.qrisFile = action.payload.qrisFile;
     },
     DELETE_QRIS: (state) => {
       state.qris = "";
@@ -322,11 +325,12 @@ export const TemplateSlice = createSlice({
     },
     ADD_DOMAIN: (state, action: PayloadAction<string>) => {
       state.domain = action.payload;
-    }
+    },
   },
 });
 
 export const {
+  SET_USER_ID,
   SET_TEMPLATE,
   SET_COVER,
   SET_CONTENT_REGARDS,

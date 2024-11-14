@@ -28,7 +28,7 @@ const CreateInvitationPage = () => {
 
   const handleSave = async () => {
     setLoading(true);
-    const createTemplate = await addTemplatePersonalized(templatePersonalized);
+    const createTemplate = await addTemplatePersonalized(templatePersonalized, authContext?.currentUser?.uid);
     setMessage(createTemplate);
     setLoading(false);
   };
