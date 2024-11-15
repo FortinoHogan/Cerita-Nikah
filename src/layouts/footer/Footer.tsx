@@ -22,7 +22,7 @@ const Footer = () => {
               src="assets/images/instagram.png"
               alt="instagram"
               className="w-10 cursor-pointer"
-              onClick={() => window.open("https://www.instagram.com")}
+              onClick={() => window.open("https://www.instagram.com/ceritanikahid/")}
             />
             <img
               src="assets/images/email-footer.png"
