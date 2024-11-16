@@ -21,9 +21,10 @@ const ConfirmationTemplate = ({
         <span className="text-custom-pink">"{title}"</span> is selected as your
         wedding invitation
       </p>
-      {/* GANTI IMAGE KALO UDAH ADA*/}
       <div className="flex flex-col gap-8">
-        <div className="bg-[#d9d9d9] rounded-xl h-72"></div>
+        <div className="bg-[#d9d9d9] rounded-xl h-96">
+          <img className="w-full h-full object-cover rounded-xl" src={image} alt="" />
+        </div>
         <Button
           onClick={onClick}
           children="Change Template"
@@ -68,9 +69,8 @@ const TemplatesForm = () => {
               onClick={() => changeTemplate(item.id, item.title)}
             >
               <h1 className="font-semibold text-custom-gray">{item.title}</h1>
-              {/* GANTI IMAGE KALO UDAH ADA*/}
               <div className="bg-[#d9d9d9] rounded-xl h-96">
-                <img className="w-full h-full object-cover rounded-xl" src={item.image} alt="" />  
+                <img className="w-full h-full object-cover rounded-xl" src={item.image} alt="" />
               </div>
             </div>
           ))}

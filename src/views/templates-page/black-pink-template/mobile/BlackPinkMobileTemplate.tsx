@@ -37,7 +37,7 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
   const [rsvpName, setRsvpName] = useState("");
   const [isAbsence, setIsAbsence] = useState(false);
   const [rsvp, setRsvp] = useState("");
-  console.log("template on black pink", template);
+  // console.log("template on black pink", template);
   // console.log("resepsi src", resepsiSrc);
   // console.log("akad lat", akadLatitude);
   // console.log("akad long", akadLongitude);
@@ -270,7 +270,7 @@ const BlackPinkMobileTemplate = (props: ITemplatesPage) => {
         {template.loveStory ? (
           <div className="flex mt-5 overflow-x-auto gap-10 scrollbar-hidden">
             {template.loveStory.map((story, index) => (
-              <div className="flex flex-col">
+              <div className="flex flex-col" key={index}>
                 <div
                   className="bg-white h-60 w-[22rem] flex-shrink-0"
                   key={index}
