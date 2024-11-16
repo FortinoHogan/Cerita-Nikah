@@ -16,6 +16,7 @@ export const homePagePackagesData: IPackageCard[] = [
       "Location Navigation",
       "Static Background Music",
       "Valid for 1 Year",
+      "Cerita Nikah Copyright",
     ],
   },
   {
