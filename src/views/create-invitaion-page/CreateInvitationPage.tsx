@@ -65,13 +65,13 @@ const CreateInvitationPage = () => {
         alt="background"
         className="w-full h-full absolute opacity-[30%] object-cover object-right"
       />
-      <div className="h-[91%] px-10 max-lg:px-5 pb-10 w-full flex justify-center relative overflow-hidden">
-        <div className="w-[50%] flex justify-center gap-5 z-40">
+      <div className="h-[91%] px-10 max-lg:px-5 pb-10 w-full flex justify-center relative overflow-hidden max-md:flex-col-reverse max-md:overflow-y-auto scrollbar-hidden max-md:h-auto max-sm:min-h-[300vh] ">
+        <div className="w-[50%] flex justify-center gap-5 z-40 max-md:w-full max-md:min-h-[80vh] max-md:mb-[50rem] max-sm:flex-col max-sm:min-h-[80vh] max-sm:mb-[100rem]">
           <FormProvider>
-            <div className="w-[50%]">
+            <div className="w-[50%] max-sm:w-full">
               <Sidebar />
             </div>
-            <div className="w-[50%]">
+            <div className="w-[50%] max-sm:w-full">
               <ContentProvider>
                 <GalleryProvider>
                   <EditTemplateForm />
@@ -80,7 +80,7 @@ const CreateInvitationPage = () => {
             </div>
           </FormProvider>
         </div>
-        <div className="w-[50%] relative h-full flex items-center justify-center">
+        <div className="w-[50%] relative h-full flex items-center justify-center max-md:w-full max-md:min-h-[75vh] max-md:mt-14 max-sm:min-h-[40%] max-sm:my-20">
           <DeviceProvider>
             <FloatingDeviceContainer />
             <Button

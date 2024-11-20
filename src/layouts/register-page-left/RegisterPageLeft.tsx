@@ -14,7 +14,7 @@ const RegisterPageLeft = () => {
     return (
         <div className='h-full flex flex-col justify-center relative'>
             <img className='top-5 left-8 w-20 h-20 absolute cursor-pointer' onClick={() => nav('/')} src="assets/images/logo.png" alt="logo" />
-            <div className='h-full flex flex-col justify-center'>
+            <div className='h-full flex flex-col justify-center max-sm:mt-24'>
                 <div className='text-center'>
                     <h1 className='text-custom-gray text-2xl font-semibold'>Sign Up to <span className='text-custom-pink'>Cerita Nikah</span></h1>
                     <p className='text-custom-light-gray font-semibold'>You can customize the invitation to your liking</p>

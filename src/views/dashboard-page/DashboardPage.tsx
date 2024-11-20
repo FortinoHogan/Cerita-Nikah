@@ -51,8 +51,8 @@ const DashboardPage = () => {
         alt="background"
         className="w-full h-full absolute opacity-[30%] object-cover object-right"
       />
-      <div className="h-[91%] px-10 max-lg:px-5 pb-10 w-full relative overflow-hidden flex flex-col gap-5">
-        <h1 className="text-5xl font-semibold text-custom-pink">
+      <div className="h-[91%] px-10 max-lg:px-5 pb-10 w-full relative overflow-hidden flex flex-col gap-5 max-lg:mt-5 max-lg:ml-5">
+        <h1 className="text-5xl font-semibold text-custom-pink max-md:text-3xl">
           Your Invitations
         </h1>
         <div className="grid grid-cols-5 gap-16 max-2xl:grid-cols-3 max-xl:grid-cols-2 max-lg:grid-cols-1">

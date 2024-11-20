@@ -18,7 +18,7 @@ const PackageCard = (props: IPackageCard) => {
             )}
             <div className="mb-10">
               {priceParts.map((part, index) => (
-                <h1 className="font-semibold text-3xl text-custom-gray text-center">
+                <h1 className="font-semibold text-3xl text-custom-gray text-center" key={index}>
                   {part}
                   {index < priceParts.length - 1 && <br />}
                 </h1>
